@@ -1,0 +1,200 @@
+{
+ "status": "close",
+ "timeout_seconds": 900,
+ "needs_keys": [],
+ "close_note": "Germany and Japan reproduce the published three-decimal values exactly (within 0.001 pp). The U.S. and Canadian models are within 0.003 pp: their monthly fit ends on a day the site filled from a same-day par curve, joined to the official curve as it stood that day; the official file later covers that day itself.",
+ "compare": [
+  {
+   "output": "output/us.csv",
+   "output_column": "yield_10y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "yield_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/us.csv",
+   "output_column": "path_10y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "path_10y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/us.csv",
+   "output_column": "premium_10y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "premium_10y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/us.csv",
+   "output_column": "premium_2y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "premium_2y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/us.csv",
+   "output_column": "premium_5y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "premium_5y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/us.csv",
+   "output_column": "premium_30y",
+   "published": "repo:measures/term-premium/output/site_us.csv",
+   "published_column": "premium_30y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "yield_10y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "yield_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "path_10y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "path_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "premium_10y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "premium_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "premium_2y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "premium_2y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "premium_5y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "premium_5y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/de.csv",
+   "output_column": "premium_30y",
+   "published": "repo:measures/term-premium/output/site_de.csv",
+   "published_column": "premium_30y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "yield_10y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "yield_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "path_10y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "path_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "premium_10y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "premium_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "premium_2y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "premium_2y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "premium_5y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "premium_5y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/jp.csv",
+   "output_column": "premium_30y",
+   "published": "repo:measures/term-premium/output/site_jp.csv",
+   "published_column": "premium_30y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "yield_10y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "yield_10y",
+   "last_n": 250,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "path_10y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "path_10y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "premium_10y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "premium_10y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "premium_2y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "premium_2y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "premium_5y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "premium_5y",
+   "last_n": 250,
+   "tolerance": 0.003
+  },
+  {
+   "output": "output/ca.csv",
+   "output_column": "premium_30y",
+   "published": "repo:measures/term-premium/output/site_ca.csv",
+   "published_column": "premium_30y",
+   "last_n": 250,
+   "tolerance": 0.003
+  }
+ ]
+}

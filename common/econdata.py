@@ -39,6 +39,8 @@ PUBLISHED_BASE = os.environ.get(
     "ECONVITALS_PUBLISHED_BASE",
     "https://raw.githubusercontent.com/econvitals/econvitals-data/main/")
 
+SITE_BASE = os.environ.get("ECONVITALS_SITE_BASE", "https://econvitals.org/")
+
 KEY_NAMES = ("FRED_API_KEY", "BEA_API_KEY", "EIA_API_KEY", "CENSUS_API_KEY")
 
 
@@ -79,6 +81,15 @@ def _cache_path(url: str, params: dict | None) -> Path:
     return CACHE / tag
 
 
+def _redact(body: bytes, params: dict | None) -> bytes:
+    """Remove any API key from a response before it is cached or returned (BEA echoes the
+    caller's key in every response, so an unredacted cache would hold it in plain text)."""
+    for name, value in (params or {}).items():
+        if value and ("key" in name.lower() or name.lower() == "userid") and len(str(value)) >= 8:
+            body = body.replace(str(value).encode(), b"REDACTED")
+    return body
+
+
 def get(url: str, params: dict | None = None, *, binary: bool = False, tries: int = 3,
         timeout: int = 60):
     """GET with a cache, a contact User-Agent and a few polite retries."""
@@ -92,9 +103,10 @@ def get(url: str, params: dict | None = None, *, binary: bool = False, tries: in
             r = requests.get(url, params=params, timeout=timeout,
                              headers={"User-Agent": USER_AGENT})
             if r.status_code == 200:
+                body = _redact(r.content, params)
                 CACHE.mkdir(parents=True, exist_ok=True)
-                path.write_bytes(r.content)
-                return r.content if binary else r.text
+                path.write_bytes(body)
+                return body if binary else body.decode("utf-8", "replace")
             last = f"HTTP {r.status_code} from {url}"
             if r.status_code in (400, 401, 403, 404):
                 break
@@ -124,6 +136,24 @@ def fred_many(series_ids, start: str | None = None) -> pd.DataFrame:
 
 
 # ------------------------------------------------------------------------------ BEA
+def _cache_fresh(url: str, params: dict | None) -> bool:
+    path = _cache_path(url, params)
+    return path.exists() and time.time() - path.stat().st_mtime < CACHE_HOURS * 3600
+
+
+def _bea_pace() -> None:
+    """BEA allows about 100 MB of downloads a minute per key and locks the key for an hour past
+    that. A full underlying-detail table is ~75 MB, so leave 65 seconds after the previous BEA
+    download (from any script sharing this cache) before starting another."""
+    stamp = CACHE / "bea-last-download"
+    if stamp.exists():
+        wait = 65 - (time.time() - stamp.stat().st_mtime)
+        if wait > 0:
+            time.sleep(wait)
+    CACHE.mkdir(parents=True, exist_ok=True)
+    stamp.touch()
+
+
 def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
              dataset: str = "NIPA") -> pd.DataFrame:
     """A BEA NIPA (or NIUnderlyingDetail) table, long form, from the BEA API.
@@ -133,7 +163,10 @@ def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
     """
     params = {"UserID": key("BEA_API_KEY"), "method": "GetData", "datasetname": dataset,
               "TableName": table, "Frequency": frequency, "Year": year, "ResultFormat": "JSON"}
-    raw = json.loads(get("https://apps.bea.gov/api/data", params, timeout=180))
+    url = "https://apps.bea.gov/api/data"
+    if not _cache_fresh(url, params):
+        _bea_pace()
+    raw = json.loads(get(url, params, timeout=180))
     res = raw.get("BEAAPI", {}).get("Results", {})
     if isinstance(res, list):
         res = res[0]
@@ -202,7 +235,11 @@ def published(path: str) -> dict:
     local = os.environ.get("ECONVITALS_PUBLISHED_DIR")
     if local and (Path(local) / path).exists():
         return json.loads((Path(local) / path).read_text())
-    return json.loads(get(PUBLISHED_BASE + path))
+    try:
+        return json.loads(get(PUBLISHED_BASE + path))
+    except RuntimeError:
+        # A few tools keep their data beside the page rather than in the data repository.
+        return json.loads(get(SITE_BASE + path))
 
 
 def published_frame(path: str) -> pd.DataFrame:

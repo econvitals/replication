@@ -1,0 +1,121 @@
+{
+ "status": "reproduces",
+ "timeout_seconds": 600,
+ "needs_keys": [
+  "FRED_API_KEY"
+ ],
+ "compare": [
+  {
+   "output": "output/meetings.csv",
+   "output_column": "u",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "u",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "core_pce",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "core_pce",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "pce",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "pce",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "core_cpi",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "core_cpi",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "cpi",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "cpi",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "output_gap",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "output_gap",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "u_quarter_avg",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "u_quarter_avg",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "ustar_cbo",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "ustar_cbo",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "rstar_lw",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "rstar_lw",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "rstar_hlw",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "rstar_hlw",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "rate_before",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "rate_before",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "rate_after",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "rate_after",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "hybrid_gap",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "hybrid_gap",
+   "last_n": 1000,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/meetings.csv",
+   "output_column": "rule",
+   "published": "repo:measures/policy-rule-tracker/output/site_meetings.csv",
+   "published_column": "rule",
+   "last_n": 1000,
+   "tolerance": 0.001
+  }
+ ]
+}

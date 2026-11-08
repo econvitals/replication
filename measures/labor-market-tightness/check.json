@@ -1,0 +1,22 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/labor_market_tightness.csv", "output_column": "emp_prime",
+     "published": "data/labor-market-tightness.json", "published_column": "emp_prime",
+     "last_n": 400, "tolerance": 0.0001},
+    {"output": "output/labor_market_tightness.csv", "output_column": "unemp",
+     "published": "data/labor-market-tightness.json", "published_column": "unemp",
+     "last_n": 400, "tolerance": 0.0001},
+    {"output": "output/labor_market_tightness.csv", "output_column": "openings_per_unemp",
+     "published": "data/labor-market-tightness.json", "published_column": "openings_per_unemp",
+     "last_n": 400, "tolerance": 0.0001},
+    {"output": "output/labor_market_tightness.csv", "output_column": "quits",
+     "published": "data/labor-market-tightness.json", "published_column": "quits",
+     "last_n": 400, "tolerance": 0.0001},
+    {"output": "output/labor_market_tightness.csv", "output_column": "openings",
+     "published": "data/labor-market-tightness.json", "published_column": "openings",
+     "last_n": 400, "tolerance": 0.0001}
+  ]
+}

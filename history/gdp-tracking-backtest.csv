@@ -1,0 +1,15 @@
+quarter,basis,advance_estimate,reading_date,gdpnow,nyfed,average_of_two,gdpnow_miss,nyfed_miss,average_miss
+Q1 2023,back-test from Fed archives (not live),1.06,2023-04-21,2.44,1.72,2.08,1.38,0.66,1.02
+Q2 2023,back-test from Fed archives (not live),2.41,2023-07-21,2.4,1.08,1.74,-0.01,-1.33,-0.67
+Q3 2023,back-test from Fed archives (not live),4.88,2023-10-20,5.37,2.55,3.96,0.5,-2.33,-0.92
+Q4 2023,back-test from Fed archives (not live),3.28,2024-01-19,2.38,2.41,2.4,-0.9,-0.87,-0.88
+Q1 2024,back-test from Fed archives (not live),1.59,2024-04-19,2.85,2.23,2.54,1.26,0.64,0.95
+Q2 2024,back-test from Fed archives (not live),2.84,2024-07-19,2.73,2.01,2.37,-0.11,-0.83,-0.47
+Q3 2024,back-test from Fed archives (not live),2.82,2024-09-27,3.08,2.99,3.03,0.25,0.17,0.21
+Q4 2024,back-test from Fed archives (not live),2.25,2025-01-24,3.01,2.56,2.78,0.76,0.31,0.53
+Q1 2025,back-test from Fed archives (not live),-0.28,2025-04-25,-2.51,2.63,0.06,-2.23,2.91,0.34
+Q2 2025,back-test from Fed archives (not live),2.97,2025-07-25,2.38,1.68,2.03,-0.59,-1.29,-0.94
+Q3 2025,back-test from Fed archives (not live),4.34,2025-11-28,3.86,2.31,3.08,-0.49,-2.03,-1.26
+Q4 2025,back-test from Fed archives (not live),1.42,2026-02-13,3.64,2.71,3.18,2.22,1.29,1.75
+Q1 2026,back-test from Fed archives (not live),1.99,2026-04-24,1.24,2.36,1.8,-0.75,0.37,-0.19
+Q2 2026,back-test from Fed archives (not live),1.5,2026-07-24,1.68,2.82,2.25,0.18,1.32,0.75

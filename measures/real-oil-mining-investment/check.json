@@ -1,0 +1,19 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY", "BEA_API_KEY"],
+  "compare": [
+    {"output": "output/oil_mining.csv", "output_column": "q1_ann",
+     "published": "data/oil-mining-capex.json", "published_column": "q1_ann",
+     "last_n": 80, "tolerance": 0.002},
+    {"output": "output/oil_mining.csv", "output_column": "q4_yoy",
+     "published": "data/oil-mining-capex.json", "published_column": "q4_yoy",
+     "last_n": 80, "tolerance": 0.002},
+    {"output": "output/bfi_ex_oil_mining.csv", "output_column": "q1_ann",
+     "published": "data/bfi-ex-oil-mining.json", "published_column": "q1_ann",
+     "last_n": 80, "tolerance": 0.002},
+    {"output": "output/bfi_ex_oil_mining.csv", "output_column": "q4_yoy",
+     "published": "data/bfi-ex-oil-mining.json", "published_column": "q4_yoy",
+     "last_n": 80, "tolerance": 0.002}
+  ]
+}

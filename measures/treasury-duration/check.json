@@ -1,0 +1,16 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 1500,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/treasury_duration.csv", "output_column": "all_debt",
+     "published": "data/treasury-debt-duration-mbs.json", "published_column": "all_debt",
+     "last_n": 36, "tolerance": 0.0001},
+    {"output": "output/treasury_duration.csv", "output_column": "net_fed",
+     "published": "data/treasury-debt-duration-mbs.json", "published_column": "net_fed",
+     "last_n": 36, "tolerance": 0.0001},
+    {"output": "output/treasury_duration.csv", "output_column": "incl_mbs",
+     "published": "data/treasury-debt-duration-mbs.json", "published_column": "incl_mbs",
+     "last_n": 36, "tolerance": 0.0001}
+  ]
+}

@@ -1,0 +1,135 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 900,
+  "needs_keys": [],
+  "compare": [
+    {
+      "output": "output/lfpr_adjusted_all-ages.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-adjusted-all-ages.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_all-ages.csv",
+      "output_column": "adjusted",
+      "published": "data/lfpr-adjusted-all-ages.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_16-24.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-adjusted-16-24.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_16-24.csv",
+      "output_column": "adjusted",
+      "published": "data/lfpr-adjusted-16-24.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_25-54.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-adjusted-25-54.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_25-54.csv",
+      "output_column": "adjusted",
+      "published": "data/lfpr-adjusted-25-54.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_55plus.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-adjusted-55plus.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_adjusted_55plus.csv",
+      "output_column": "adjusted",
+      "published": "data/lfpr-adjusted-55plus.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_all-ages.csv",
+      "output_column": "actual",
+      "published": "data/epop-adjusted-all-ages.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_all-ages.csv",
+      "output_column": "adjusted",
+      "published": "data/epop-adjusted-all-ages.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_16-24.csv",
+      "output_column": "actual",
+      "published": "data/epop-adjusted-16-24.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_16-24.csv",
+      "output_column": "adjusted",
+      "published": "data/epop-adjusted-16-24.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_25-54.csv",
+      "output_column": "actual",
+      "published": "data/epop-adjusted-25-54.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_25-54.csv",
+      "output_column": "adjusted",
+      "published": "data/epop-adjusted-25-54.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_55plus.csv",
+      "output_column": "actual",
+      "published": "data/epop-adjusted-55plus.json",
+      "published_column": "actual",
+      "last_n": 600,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_adjusted_55plus.csv",
+      "output_column": "adjusted",
+      "published": "data/epop-adjusted-55plus.json",
+      "published_column": "adjusted",
+      "last_n": 600,
+      "tolerance": 1e-06
+    }
+  ]
+}

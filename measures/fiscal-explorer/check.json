@@ -1,0 +1,13 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 600,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/baseline.csv", "output_column": "net_interest_pct",
+     "published": "data/federal-debt-service.json", "published_column": "net_interest",
+     "last_n": 42, "tolerance": 0.0001},
+    {"output": "output/baseline.csv", "output_index": "date_dec31", "output_column": "debt_pct",
+     "published": "data/debt-gdp-cbo-vs-preferred-baseline.json", "published_column": "cbo",
+     "last_n": 30, "tolerance": 0.001}
+  ]
+}

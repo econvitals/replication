@@ -1,0 +1,100 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 900,
+  "needs_keys": [
+    "FRED_API_KEY",
+    "EIA_API_KEY"
+  ],
+  "compare": [
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "headline",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "headline",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "food",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "food",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "energy",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "energy",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core_goods",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core_goods",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core_services",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core_services",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "shelter",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "shelter",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core_services_ex_shelter",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core_services_ex_shelter",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core_ex_shelter",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core_ex_shelter",
+      "last_n": 24,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core_ex_shelter_used",
+      "published": "repo:history/cpi-tracking-backtest.csv",
+      "published_index": "target_month",
+      "published_column": "core_ex_shelter_used",
+      "last_n": 24,
+      "tolerance": 1e-06
+    }
+  ]
+}

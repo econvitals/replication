@@ -1,0 +1,74 @@
+{
+  "status": "close",
+  "timeout_seconds": 600,
+  "needs_keys": [
+    "BEA_API_KEY",
+    "FRED_API_KEY"
+  ],
+  "compare": [
+    {
+      "output": "output/median-cpi.csv",
+      "output_column": "chg_1m_ann",
+      "published": "data/median-cpi.json",
+      "published_column": "chg_1m_ann",
+      "last_n": 24,
+      "tolerance": 0.6
+    },
+    {
+      "output": "output/median-cpi.csv",
+      "output_column": "chg_3m_ann",
+      "published": "data/median-cpi.json",
+      "published_column": "chg_3m_ann",
+      "last_n": 24,
+      "tolerance": 0.25
+    },
+    {
+      "output": "output/trimmed-mean-cpi.csv",
+      "output_column": "chg_1m_ann",
+      "published": "data/trimmed-mean-cpi.json",
+      "published_column": "chg_1m_ann",
+      "last_n": 24,
+      "tolerance": 0.3
+    },
+    {
+      "output": "output/trimmed-mean-cpi.csv",
+      "output_column": "chg_3m_ann",
+      "published": "data/trimmed-mean-cpi.json",
+      "published_column": "chg_3m_ann",
+      "last_n": 24,
+      "tolerance": 0.2
+    },
+    {
+      "output": "output/median-pce.csv",
+      "output_column": "chg_1m_ann",
+      "published": "data/median-pce.json",
+      "published_column": "chg_1m_ann",
+      "last_n": 24,
+      "tolerance": 0.6
+    },
+    {
+      "output": "output/median-pce.csv",
+      "output_column": "chg_3m_ann",
+      "published": "data/median-pce.json",
+      "published_column": "chg_3m_ann",
+      "last_n": 24,
+      "tolerance": 0.2
+    },
+    {
+      "output": "output/trimmed-mean-pce.csv",
+      "output_column": "chg_1m_ann",
+      "published": "data/trimmed-mean-pce.json",
+      "published_column": "chg_1m_ann",
+      "last_n": 24,
+      "tolerance": 0.006
+    },
+    {
+      "output": "output/trimmed-mean-pce.csv",
+      "output_column": "chg_3m_ann",
+      "published": "data/trimmed-mean-pce.json",
+      "published_column": "chg_3m_ann",
+      "last_n": 24,
+      "tolerance": 0.004
+    }
+  ]
+}

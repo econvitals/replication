@@ -1,0 +1,23 @@
+{
+ "status": "reproduces",
+ "timeout_seconds": 600,
+ "needs_keys": [
+  "FRED_API_KEY",
+  "BEA_API_KEY",
+  "CENSUS_API_KEY"
+ ],
+ "compare": [
+  {"output": "output/ytd.csv","output_column": "dc","published": "data/trade-balance-data-centers-ytd.json","published_column": "value","last_n": 40,"tolerance": 0.051},
+  {"output": "output/ytd.csv","output_column": "ex_dc","published": "data/trade-balance-ex-data-centers-ytd.json","published_column": "value","last_n": 40,"tolerance": 0.051},
+  {"output": "output/ytd.csv","output_column": "goods_ex_dc","published": "data/goods-balance-ex-data-centers-ytd.json","published_column": "value","last_n": 40,"tolerance": 0.051},
+  {"output": "output/ytd.csv","output_column": "total","published": "data/trade-balance-ytd.json","published_column": "value","last_n": 40,"tolerance": 0.051},
+  {"output": "output/ytd.csv","output_column": "dc_pct_gdp","published": "data/trade-balance-data-centers-ytd-pct-gdp.json","published_column": "value","last_n": 40,"tolerance": 6e-05},
+  {"output": "output/ytd.csv","output_column": "ex_dc_pct_gdp","published": "data/trade-balance-ex-data-centers-ytd-pct-gdp.json","published_column": "value","last_n": 40,"tolerance": 6e-05},
+  {"output": "output/ytd.csv","output_column": "goods_ex_dc_pct_gdp","published": "data/goods-balance-ex-data-centers-ytd-pct-gdp.json","published_column": "value","last_n": 40,"tolerance": 6e-05},
+  {"output": "output/ytd.csv","output_column": "total_pct_gdp","published": "data/trade-balance-ytd-pct-gdp.json","published_column": "value","last_n": 40,"tolerance": 6e-05},
+  {"output": "output/imports_index.csv","output_column": "dc","published": "data/imports-data-centers-vs-other.json","published_column": "dc","last_n": 40,"tolerance": 0.0051},
+  {"output": "output/imports_index.csv","output_column": "other","published": "data/imports-data-centers-vs-other.json","published_column": "other","last_n": 40,"tolerance": 0.0051},
+  {"output": "output/change_since_2024.csv","output_column": "value","published": "data/trade-balance-change-since-2024.json","published_column": "value","last_n": 40,"tolerance": 0.051,"published_index": "label"},
+  {"output": "output/change_since_2024.csv","output_column": "value_pct_gdp","published": "data/trade-balance-change-since-2024-pct-gdp.json","published_column": "value","last_n": 40,"tolerance": 0.0051,"published_index": "label"}
+ ]
+}

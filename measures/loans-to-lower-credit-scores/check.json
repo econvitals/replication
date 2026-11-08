@@ -1,0 +1,13 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": [],
+  "compare": [
+    {"output": "output/loans_under_660.csv", "output_column": "mortgage_under660",
+     "published": "data/loans-to-lower-credit-scores.json", "published_column": "mortgage_under660",
+     "last_n": 60, "tolerance": 0.001},
+    {"output": "output/loans_under_660.csv", "output_column": "auto_under660",
+     "published": "data/loans-to-lower-credit-scores.json", "published_column": "auto_under660",
+     "last_n": 60, "tolerance": 0.001}
+  ]
+}

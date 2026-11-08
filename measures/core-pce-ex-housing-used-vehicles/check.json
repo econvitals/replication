@@ -1,0 +1,13 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 600,
+  "needs_keys": ["BEA_API_KEY"],
+  "compare": [
+    {"output": "output/core_pce_ex_housing_used.csv", "output_column": "chg_1m_ann",
+     "published": "data/core-pce-ex-housing-used.json", "published_column": "chg_1m_ann",
+     "last_n": 900, "tolerance": 0.0001},
+    {"output": "output/core_pce_ex_housing_used.csv", "output_column": "chg_3m_ann",
+     "published": "data/core-pce-ex-housing-used.json", "published_column": "chg_3m_ann",
+     "last_n": 900, "tolerance": 0.0001}
+  ]
+}

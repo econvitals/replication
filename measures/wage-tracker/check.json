@@ -1,0 +1,65 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": [
+    "FRED_API_KEY"
+  ],
+  "compare": [
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "value",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "value",
+      "last_n": 300,
+      "tolerance": 0.002
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "unadjusted",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "unadjusted",
+      "last_n": 300,
+      "tolerance": 0.002
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "ECI_wages",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "ECI_wages",
+      "last_n": 300,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "WGT_overall",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "WGT_overall",
+      "last_n": 300,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "AHE_spliced",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "AHE_spliced",
+      "last_n": 300,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "COMP_hour",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "COMP_hour",
+      "last_n": 300,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/wage_pce_equivalent.csv",
+      "output_column": "MUWE",
+      "published": "data/wage-pce-equivalent.json",
+      "published_column": "MUWE",
+      "last_n": 300,
+      "tolerance": 0.0001
+    }
+  ]
+}

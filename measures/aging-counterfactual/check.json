@@ -1,0 +1,211 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 900,
+  "needs_keys": [],
+  "compare": [
+    {
+      "output": "output/lfpr_counterfactual_2001.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-aging-counterfactual-2001.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_counterfactual_2001.csv",
+      "output_column": "hypothetical",
+      "published": "data/lfpr-aging-counterfactual-2001.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_counterfactual_2007.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-aging-counterfactual-2007.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_counterfactual_2007.csv",
+      "output_column": "hypothetical",
+      "published": "data/lfpr-aging-counterfactual-2007.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_counterfactual_2020.csv",
+      "output_column": "actual",
+      "published": "data/lfpr-aging-counterfactual-2020.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_counterfactual_2020.csv",
+      "output_column": "hypothetical",
+      "published": "data/lfpr-aging-counterfactual-2020.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2001.csv",
+      "output_column": "actual",
+      "published": "data/epop-aging-counterfactual-2001.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2001.csv",
+      "output_column": "hypothetical",
+      "published": "data/epop-aging-counterfactual-2001.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2007.csv",
+      "output_column": "actual",
+      "published": "data/epop-aging-counterfactual-2007.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2007.csv",
+      "output_column": "hypothetical",
+      "published": "data/epop-aging-counterfactual-2007.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2020.csv",
+      "output_column": "actual",
+      "published": "data/epop-aging-counterfactual-2020.json",
+      "published_column": "actual",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/epop_counterfactual_2020.csv",
+      "output_column": "hypothetical",
+      "published": "data/epop-aging-counterfactual-2020.json",
+      "published_column": "hypothetical",
+      "last_n": 400,
+      "tolerance": 1e-06
+    },
+    {
+      "output": "output/lfpr_contributions_2001.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2001.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/lfpr_contributions_2001_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2001.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/lfpr_contributions_2007.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2007.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/lfpr_contributions_2007_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2007.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/lfpr_contributions_2020.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2020.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/lfpr_contributions_2020_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/lfpr-aging-contribution-matrix-2020.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2001.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2001.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2001_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2001.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2007.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2007.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2007_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2007.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2020.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2020.json",
+      "published_index": "grp",
+      "published_column": "contribution_pp",
+      "last_n": 4,
+      "tolerance": 0.001
+    },
+    {
+      "output": "output/epop_contributions_2020_by_sex.csv",
+      "output_column": "Total",
+      "published": "data/epop-aging-contribution-matrix-2020.json",
+      "published_index": "sex",
+      "published_column": "contribution_pp",
+      "last_n": 3,
+      "tolerance": 0.001
+    }
+  ]
+}

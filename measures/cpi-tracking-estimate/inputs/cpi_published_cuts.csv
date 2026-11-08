@@ -1,0 +1,10 @@
+cut,bls_item
+headline,SA0
+core,SA0L1E
+food,SAF1
+energy,SA0E
+core_goods,SACL1E
+core_services,SASLE
+shelter,SAH1
+core_ex_shelter,SA0L12E
+core_ex_shelter_used,SA0L12E4

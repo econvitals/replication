@@ -1,0 +1,19 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 900,
+  "needs_keys": ["FRED_API_KEY", "BEA_API_KEY"],
+  "compare": [
+    {"output": "output/ecumenical_pce.csv", "output_column": "ecumenical",
+     "published": "data/underlying-inflation-pce.json", "published_column": "ecumenical",
+     "last_n": 120, "tolerance": 0.0001},
+    {"output": "output/ecumenical_pce.csv", "output_column": "core_pce_6m",
+     "published": "data/underlying-inflation-pce.json", "published_column": "core_pce_6m",
+     "last_n": 120, "tolerance": 0.0001},
+    {"output": "output/ecumenical_cpi.csv", "output_column": "ecumenical",
+     "published": "data/underlying-inflation-cpi.json", "published_column": "ecumenical",
+     "last_n": 120, "tolerance": 0.0001},
+    {"output": "output/ecumenical_cpi.csv", "output_column": "pce_equiv_core_cpi_6m",
+     "published": "data/underlying-inflation-cpi.json", "published_column": "pce_equiv_core_cpi_6m",
+     "last_n": 120, "tolerance": 0.0001}
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/real_net_worth_index.csv", "output_column": "bottom50",
+     "published": "data/real-net-worth-by-wealth-group.json", "published_column": "bottom50",
+     "last_n": 60, "tolerance": 0.001},
+    {"output": "output/real_net_worth_index.csv", "output_column": "next40",
+     "published": "data/real-net-worth-by-wealth-group.json", "published_column": "next40",
+     "last_n": 60, "tolerance": 0.001},
+    {"output": "output/real_net_worth_index.csv", "output_column": "next9",
+     "published": "data/real-net-worth-by-wealth-group.json", "published_column": "next9",
+     "last_n": 60, "tolerance": 0.001},
+    {"output": "output/real_net_worth_index.csv", "output_column": "top1",
+     "published": "data/real-net-worth-by-wealth-group.json", "published_column": "top1",
+     "last_n": 60, "tolerance": 0.001}
+  ]
+}

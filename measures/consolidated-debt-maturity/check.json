@@ -1,0 +1,13 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 300,
+  "needs_keys": [],
+  "compare": [
+    {"output": "output/debt_maturity.csv", "output_column": "gross",
+     "published": "data/debt-maturity-by-economy.json", "published_column": "gross",
+     "published_index": "country", "last_n": 18, "tolerance": 0.005},
+    {"output": "output/debt_maturity.csv", "output_column": "net_cb",
+     "published": "data/debt-maturity-by-economy.json", "published_column": "net_cb",
+     "published_index": "country", "last_n": 18, "tolerance": 0.005}
+  ]
+}

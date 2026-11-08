@@ -1,0 +1,17 @@
+# Econvitals Productivity Tracker
+
+**On econvitals.org:** the [GDP Trackers tool](https://econvitals.org/tools/gdp-trackers/), the Productivity section and its tiles. Method note: [Methods](https://econvitals.org/methods/#productivity-tracker).
+
+**What it is.** What BLS will print for output per hour in the nonfarm business sector, built the way BLS builds it. Output is BEA’s nonfarm business value added: GDP less general government, nonprofits, households including owner-occupied housing, and farms. It is the number BLS uses, so once BEA has published a quarter nothing is estimated; before that it comes from the Econvitals Composite through a regression on its history. Hours rebuild BLS’s recipe from public monthly data (all private employees times production and nonsupervisory average weekly hours, less an approximate nonprofit share of education, health and other services, plus the self-employed at work from the household survey), through a regression on BLS’s first prints. The tracker starts with two months of a quarter’s jobs data. Once BLS has printed a quarter, the tracker follows BLS’s revised estimate: BEA’s output plus Econvitals’ tracked revision to it, over the hours BLS printed. It is an Econvitals estimate, not BLS’s.
+
+**What this folder rebuilds.** `python replicate.py` (needs free `FRED_API_KEY` and `BEA_API_KEY`):
+
+1. **Output is BEA’s nonfarm business value added.** It rebuilds the growth of BEA’s quantity index for nonfarm business (NIPA table 1.3.3, line “Nonfarm”) and sets it beside BLS’s output index. On today’s data they agree to 0.004 point at most over the last ten years, and exactly for recent quarters. Writes `output/output_check.csv`.
+2. **The quarters BLS has printed**, as the tracker’s chart draws them: productivity growth at an annual rate and over four quarters, from BLS’s index. These agree with the chart’s rows to their two published decimals. Writes `output/printed.csv`.
+3. **The tracked quarter, once BLS has printed it:** BEA’s output growth, plus 1.381 times Econvitals’ tracked revision to BEA’s GDP growth (BEA has revised nonfarm business by about 1.38 times its revisions to GDP), over the hours BLS printed. The tracked GDP revision is a recorded input, read from the tool’s published data. For the third quarter of 2026: 3.666 + 1.381 × 0.1407 = 3.860 percent output growth over 0.110 percent hours growth gives 3.746 percent, which the site shows as 3.74. The 0.006 gap is rounding inside Econvitals’ calculation, which rounds the hours growth and the revision to two decimals before dividing (3.856 over 0.11 gives 3.742). Writes `output/tracker.csv`.
+
+Not rebuilt: the hours estimate used before BLS prints a quarter, which is a regression on BLS’s first prints from archived data vintages, and the output bridge from the composite used before BEA prints. Neither is long, but both are fitted on ALFRED vintages and their coefficients are refitted leaving out each quarter, which belongs in a research script rather than this one.
+
+**Data.** BEA NIPA table 1.3.3 (`B358RA`) from the BEA API; FRED `OUTNFB` (BLS output, nonfarm business, PRS85006043), `OPHNFB` (output per hour, PRS85006093) and `HOANBS` (hours worked, PRS85006033); `econvitals.org/tools/gdp-trackers/data.json` for the tracked revision and the published figures.
+
+**How close.** Not compared nightly (status “documented”): the tracker’s numbers are published only in the GDP Trackers tool’s own data file, not in the econvitals-data repository the nightly check reads. Run by hand, the pieces above agree as stated.

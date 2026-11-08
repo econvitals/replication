@@ -1,0 +1,6 @@
+{
+  "status": "documented",
+  "why_not_compared": "The bridge-equation model (ten components, each fitted on BEA's history from about forty monthly source series read through a real-time release calendar, with an in-house seasonal adjustment and four inventory books) is not rebuilt in a short standalone script. replicate.py rebuilds its first-print adjustment and prints it beside the published one; the estimate's daily published readings enter the composite tracker's check as a recorded input.",
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": []
+}

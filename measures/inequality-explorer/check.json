@@ -1,0 +1,7 @@
+{
+  "status": "documented",
+  "why_not_compared": "the tool's numbers are published only in the page's own files (econvitals.org/tools/inequality-explorer/data.json and data-full.json), which are not in the published data set this checker reads; the CBO income charts that are in it come from CBO's previous edition (2022 data). replicate.py instead compares itself with the page's files whenever it is run by hand (the nightly check does not run a documented folder): 410,310 numbers, largest difference 1e-16",
+  "needs_keys": [],
+  "timeout_seconds": 300,
+  "compare": []
+}

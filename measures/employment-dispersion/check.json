@@ -1,0 +1,10 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 600,
+  "needs_keys": [],
+  "compare": [
+    {"output": "output/employment_dispersion.csv", "output_column": "sigma",
+     "published": "data/employment-growth-sd-detailed.json", "published_column": "sigma",
+     "last_n": 500, "tolerance": 0.0001}
+  ]
+}

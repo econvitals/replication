@@ -1,0 +1,5 @@
+{
+  "status": "documented",
+  "why_not_compared": "rebuilt and verified digit for digit by its own package (verify.py) whenever the engine changes; too slow to rerun nightly",
+  "compare": []
+}

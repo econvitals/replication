@@ -1,0 +1,24 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/stance_check.csv", "output_column": "rate",
+     "published": "tools/central-bank-stance/data.json", "published_rows": "banks",
+     "published_index": "code", "published_column": "rate",
+     "last_n": 12, "tolerance": 0.0001},
+    {"output": "output/stance_check.csv", "output_column": "ytd_bps",
+     "published": "tools/central-bank-stance/data.json", "published_rows": "banks",
+     "published_index": "code", "published_column": "ytd_bps",
+     "last_n": 12, "tolerance": 0},
+    {"output": "output/stance_check.csv", "output_column": "phase_code",
+     "published": "repo:measures/policy-cycle-phase/output/site_stance.csv",
+     "published_column": "phase_code", "last_n": 12, "tolerance": 0},
+    {"output": "output/stance_check.csv", "output_column": "last_move_bps",
+     "published": "repo:measures/policy-cycle-phase/output/site_stance.csv",
+     "published_column": "last_move_bps", "last_n": 12, "tolerance": 0},
+    {"output": "output/stance_check.csv", "output_column": "last_move_date",
+     "published": "repo:measures/policy-cycle-phase/output/site_stance.csv",
+     "published_column": "last_move_date", "last_n": 12, "tolerance": 0}
+  ]
+}

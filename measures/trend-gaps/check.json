@@ -1,0 +1,73 @@
+{
+ "status": "reproduces",
+ "timeout_seconds": 300,
+ "needs_keys": [
+  "FRED_API_KEY"
+ ],
+ "compare": [
+  {
+   "output": "output/levels.csv",
+   "output_column": "value",
+   "published": "repo:measures/trend-gaps/output/site_levels.csv",
+   "published_column": "value",
+   "last_n": 5000,
+   "tolerance": 0.0001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "fit5",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "fit5",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "fit2",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "fit2",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "fit10",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "fit10",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "cycle07",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "cycle07",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "cycle01",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "cycle01",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "hp",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "hp",
+   "last_n": 20,
+   "tolerance": 0.001
+  },
+  {
+   "output": "output/gaps.csv",
+   "output_column": "cbo",
+   "published": "repo:measures/trend-gaps/output/site_gaps.csv",
+   "published_column": "cbo",
+   "last_n": 20,
+   "tolerance": 0.001
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 600,
+  "needs_keys": [],
+  "compare": [
+    {"output": "output/core_services_cpi_ex_shelter.csv", "output_column": "chg_1m_ann",
+     "published": "data/core-services-ex-shelter.json", "published_column": "chg_1m_ann",
+     "last_n": 500, "tolerance": 0.0001},
+    {"output": "output/core_services_cpi_ex_shelter.csv", "output_column": "chg_3m_ann",
+     "published": "data/core-services-ex-shelter.json", "published_column": "chg_3m_ann",
+     "last_n": 500, "tolerance": 0.0001}
+  ]
+}

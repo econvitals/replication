@@ -1,0 +1,13 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/house_price_ratios.csv", "output_column": "price_to_income",
+     "published": "data/house-prices-to-income-and-rent.json", "published_column": "price_to_income",
+     "last_n": 120, "tolerance": 0.001},
+    {"output": "output/house_price_ratios.csv", "output_column": "price_to_rent",
+     "published": "data/house-prices-to-income-and-rent.json", "published_column": "price_to_rent",
+     "last_n": 120, "tolerance": 0.001}
+  ]
+}

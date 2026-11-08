@@ -1,0 +1,46 @@
+component,bls_series,adjust_here
+Car and truck rental,CUSR0000SETA04,no
+Motor vehicle insurance,CUSR0000SETE,no
+Misc personal goods,CUSR0000SEGE,no
+Motor vehicle parts and equipment,CUSR0000SETC,no
+Medical care commodities,CUSR0000SAM1,no
+Dairy and related products,CUSR0000SEFJ,no
+Household furnishings and operation,CUSR0000SAH3,no
+Women's and girls' apparel,CUSR0000SAA2,no
+Personal care products,CUSR0000SEGB,no
+New vehicles,CUSR0000SETA01,no
+Processed fruits and vegetables,CUSR0000SEFM,no
+"Meats, poultry, fish, and eggs",CUSR0000SAF112,no
+Leased cars and trucks,CUSR0000SETA03,no
+Other food at home,CUSR0000SAF115,no
+Education,CUSR0000SAE1,no
+Alcoholic beverages,CUSR0000SAF116,no
+Used cars and trucks,CUSR0000SETA02,no
+West: Owners' equivalent rent of residences,CUUR0400SEHC,yes
+Motor vehicle fees,CUUR0000SETF,no
+"Water, sewer, and trash collection services",CUSR0000SEHG,no
+South:Owners' equivalent rent of residences,CUUR0300SEHC,yes
+Recreation,CUSR0000SAR,no
+Food away from home,CUSR0000SEFV,no
+Fresh fruits and vegetables,CUSR0000SAF1131,no
+Public transportation,CUSR0000SETG,no
+Midwest: Owners' equivalent rent of residences,CUUR0200SEHC,yes
+Men's and boys' apparel,CUSR0000SAA1,no
+Energy services,CUSR0000SEHF,no
+Rent of primary residence,CUSR0000SEHA,no
+Cereals and bakery products,CUSR0000SAF111,no
+Lodging away from home,CUSR0000SEHB,no
+Personal care services,CUUR0000SEGC,no
+Tenants' and household insurance,CUUR0000SEHD,no
+Medical care services,CUSR0000SAM2,no
+Non-alcoholic beverages and beverage materials,CUSR0000SAF114,no
+Northeast: Owners' equivalent rent of residences,CUUR0100SEHC,yes
+Footwear,CUSR0000SEAE,no
+Motor vehicle maintenance and repair,CUSR0000SETD,no
+Infants' and toddlers' apparel,CUSR0000SEAF,no
+Tobacco and smoking products,CUSR0000SEGA,no
+Communication,CUSR0000SAE2,no
+Misc Personal services,CUSR0000SEGD,no
+Watches and jewelry,CUSR0000SEAG,no
+Fuel oil and other fuels,CUSR0000SEHE,no
+Motor fuel,CUSR0000SETB,no

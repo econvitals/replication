@@ -1,0 +1,11 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 600,
+  "needs_keys": [],
+  "recorded_inputs_note": "Today's order books cannot be re-read later, so the nightly check reruns the method on the recorded inputs Kalshi keeps: each market's daily closing candle. It compares the daily history behind every card on the published site, for every closed day; the card's newest point (the live book at the minute the site was built) is not compared.",
+  "compare": [
+    {"output": "output/check_history.csv", "output_column": "v",
+     "published": "repo:measures/market-implied-expectations/output/site_history.csv",
+     "published_column": "v", "last_n": 2000, "tolerance": 0.0001}
+  ]
+}

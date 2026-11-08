@@ -1,0 +1,178 @@
+dallas_component,name,bea_line,bea_code,leaf_lines
+1,New Domestic Autos,7,DNDCRG,7
+2,New Foreign Autos,8,DNFCRG,8
+3,New Light Trucks,9,DNWTRG,10;11
+4,Used Autos,13,DNPURG,14;15;16
+5,Used Light Trucks,17,DUTRRG,18;19
+6,Tires,21,DTATRG,21
+7,Accessories & Parts,22,DPAARG,22
+8,Furniture,25,DFNRRG,25
+9,Clock/Lamp/Lighting Fixture/Other Household Decorative Items,26,DCLFRG,26
+10,Carpets & Other Floor Coverings,27,DFLRRG,27
+11,Window Coverings,28,DWCTRG,28
+12,Major Household Appliances,30,DMHARG,30
+13,Small Electric Household Appliances,31,DSEARG,31
+14,Dishes and Flatware,33,DCHNRG,33
+15,Non-Electric Cookware & Tableware,34,DNECRG,34
+16,"Tools, Hardware & Supplies",36,DHDWRG,36
+17,Outdoor Equipment & Supplies,37,DLWNRG,37
+18,Televisions,41,DTVSRG,41
+19,Other Video Equipment,42,DOVARG,42
+20,Audio Equipment,43,DAUDRG,43
+21,Prerecorded/Blank Audio Disc/Tape/Digital Files/Download,45,DRTDRG,45
+22,"Video Cassettes & Discs, Blank & Prerecorded",46,DOVERG,46
+23,Photographic Equipment,47,DCAMRG,47
+24,Personal Computers & Peripheral Equipment,49,DCPPRG,49
+25,Computer Software & Accessories,50,DCPSRG,50
+26,Calculators/Typewriters/Other Info Processing Equipment,51,DOIPRG,51
+27,"Sporting Equipment, Supplies, Guns & Ammunition",52,DSPGRG,52
+28,Motorcycles,54,DMCYRG,54
+29,Bicycles & Accessories,55,DBCYRG,55
+30,Pleasure Boats,57,DBOARG,57
+31,Pleasure Aircraft,58,DAIRRG,58
+32,Other Recreational Vehicles,59,DREVRG,59
+33,Recreational Books,60,DRBKRG,60
+34,Musical Instruments,61,DMSCRG,61
+35,Jewelry,64,DJLYRG,64
+36,Watches,65,DWTCRG,65
+37,Therapeutic Medical Equipment,67,DTMERG,67
+38,Corrective Eyeglasses & Contact Lenses,68,DEYERG,68
+39,Educational Books,69,DEBKRG,69
+40,Luggage & Similar Personal Items,70,DLUGRG,70
+41,Telephone & Facsimile Equipment,71,DTCERG,71
+42,Cereals,77,DGRARG,77
+43,Bakery Products,78,DBAKRG,78
+44,Beef and Veal,80,DBEERG,80
+45,Pork,81,DPORRG,81
+46,Other Meats,82,DMEARG,82
+47,Poultry,83,DPOURG,83
+48,Fish and Seafood,84,DFISRG,84
+49,Fresh Milk,86,DMILRG,86
+50,Processed Dairy Products,87,DDAIRG,87
+51,Eggs,88,DGGSRG,88
+52,Fats and Oils,89,DFATRG,89
+53,Fresh Fruit,91,DFRURG,91
+54,Fresh Vegetables,92,DVEGRG,92
+55,Processed Fruits & Vegetables,93,DPFVRG,93
+56,Sugar and Sweets,94,DSWERG,94
+57,"Food Products, Not Elsewhere Classified",95,DOFDRG,95
+58,"Coffee, Tea & Other Beverage Materials",97,DCTMRG,97
+59,"Mineral Waters, Soft Drinks & Vegetable Juices",98,DJNBRG,98
+60,Spirits,100,DLIQRG,100
+61,Wine,101,DWINRG,101
+62,Beer,102,DMLTRG,102
+63,Food Produced & Consumed on Farms,103,DFFDRG,103
+64,Women's & Girls' Clothing,106,DWGCRG,106
+65,Men's & Boys' Clothing,107,DMBCRG,107
+66,Children's & Infants' Clothing,108,DCICRG,108
+67,Clothing Materials,110,DCSMRG,110
+68,Standard Clothing Issued to Military Personnel,111,DMICRG,111
+69,Shoes & Other Footwear,112,DSHURG,112
+70,Gasoline & Other Motor Fuel,115,DGASRG,115
+71,Lubricants & Fluids,116,DLUBRG,116
+72,Fuel Oil,118,DOILRG,118
+73,Other Fuels,119,DLPFRG,119
+74,Prescription Drugs,123,DRXDRG,123
+75,Nonprescription Drugs,124,DNRDRG,124
+76,Other Medical Products,125,DOMPRG,125
+77,"Games, Toys & Hobbies",127,DDOLRG,127
+78,Pets & Related Products,128,DPRPRG,128
+79,"Flowers, Seeds & Potted Plants",129,DFLORG,129
+80,Film & Photographic Supplies,130,DFLMRG,130
+81,Household Cleaning Products,132,DCLERG,132
+82,Household Paper Products,133,DPAPRG,133
+83,Household Linens,134,DLINRG,134
+84,Sewing Items,135,DSEWRG,135
+85,Miscellaneous Household Products,136,DMHPRG,136
+86,Hair/Dental/Shave/Miscellaneous Personal Care Prods ex Electric Products,138,DOPHRG,138
+87,Cosmetic/Perfumes/Bath/Nail Preparations & Implements,139,DCOSRG,139
+88,Electric Appliances for Personal Care,140,DEAPRG,140
+89,Tobacco,141,DTOBRG,141
+90,Newspapers & Periodicals,143,DMAGRG,143
+91,Stationery & Miscellaneous Printed Materials,144,DSTYRG,144
+92,Tenant-Occupied Mobile Homes,155,DTMHRG,155
+93,Tenant-Occupied Stationary Homes and Landlord Durables (combined),156,IA000629,156
+95,Owner-Occupied Mobile Homes,161,DOMHRG,161
+96,Owner-Occupied Stationary Homes,162,DOSTRG,162
+97,Rental Value of Farm Dwellings,163,DFARRG,163
+98,Group Housing,164,DGRHRG,164
+99,Water Supply & Sewage Maintenance,167,DWSMRG,167
+100,Garbage & Trash Collection,168,DREFRG,168
+101,Electricity,170,DELCRG,170
+102,Natural Gas,171,DGHERG,171
+103,Physician Services,174,DPHYRG,174
+104,Dental Services,175,DDENRG,175
+105,Paramedical Services,176,DPMSRG,177;178;180;181
+106,Nonprofit Hospitals' Services to Households,184,DNPHRG,184
+107,Proprietary Hospitals,185,DFPHRG,185
+108,Government Hospitals,186,DGVHRG,186
+109,Nursing Homes,187,DNRSRG,188;189
+110,Motor Vehicle Maintenance & Repair,192,DVMRRG,192
+111,Motor Vehicle Leasing,194,DMVLRG,195;196
+112,Motor Vehicle Rental,197,DMVRRG,197
+113,Parking Fees & Tolls,198,DPFTRG,198
+114,Railway Transportation,201,DIRRRG,201
+115,Intercity Buses,203,DIBURG,203
+116,Taxicabs,204,DTAXRG,204
+117,Intercity Mass Transit,205,DIMTRG,205
+118,Other Road Transportation Service,206,DORTRG,206
+119,Air Transportation,207,DAITRG,207
+120,Water Transportation,208,DWATRG,208
+121,Membership Clubs & Participant Sports Centers,211,DMDFRG,211
+122,"Amusement Parks, Campgrounds & Related Recreational Services",212,DORSRG,212
+123,Motion Picture Theaters,214,DMOVRG,214
+124,"Live Entertainment, ex Sports",215,DLIGRG,215
+125,Spectator Sports,216,DSPERG,216
+126,Museums & Libraries,217,DMUSRG,217
+127,"Audio-Video, Photographic & Info Processing Services",218,DAVPRG,219;220;221;222;224;225
+128,Casino Gambling,227,DCASRG,227
+129,Lotteries,228,DLOTRG,228
+130,Pari-Mutuel Net Receipts,229,DPARRG,229
+131,Veterinary & Other Services for Pets,231,DVETRG,231
+132,Package Tours,232,DHOLRG,232
+133,Maintenance & Repair of Recreational Vehicles & Sports Equipment,233,DRRERG,233
+134,Elementary & Secondary School Lunches,239,DESLRG,239
+135,Higher Education School Lunches,240,DHSLRG,240
+136,Other Purchased Meals,241,DOPMRG,242;243;244
+137,Alcohol in Purchased Meals,245,DAPMRG,245
+138,Food Supplied to Civilians,247,DCFDRG,247
+139,Food Supplied to Military,248,DMFDRG,248
+140,Hotels and Motels,250,DHOTRG,250
+141,Housing at Schools,251,DSCHRG,251
+142,Commercial Banks,255,DIMCRG,
+143,Other Depository Institutions & Regulated Investment Companies,256,DIMNRG,
+144,Pension Funds,257,DPENRG,
+145,"Financial Service Charges, Fees & Commissions",258,DOFIRG,259;262;263;265;266;267;268;269
+146,Life Insurance,271,DLIFRG,271
+147,Net Household Insurance,272,DFINRG,273;274
+148,Net Health Insurance,275,DHINRG,276;277;278
+149,Net Motor Vehicle & Other Transportation Insurance,279,DTINRG,279
+150,Communication,281,DCOMRG,283;284;285;287;288;289
+151,Proprietary & Public Higher Education,292,DGEDRG,292
+152,Nonprofit Private Higher Education Services to Households,293,DPEDRG,293
+153,Elementary & Secondary Schools,295,DESCRG,295
+154,Day Care & Nursery Schools,296,DNSCRG,296
+155,Commercial & Vocational Schools,297,DVEDRG,297
+156,Legal Services,299,DGALRG,299
+157,Tax Preparation & Other Related Services,301,DTAPRG,301
+158,Employment Agency Services,302,DGENRG,302
+159,Other Personal Business Services,303,DTHERG,303
+160,Labor Organization Dues,304,DUNSRG,304
+161,Professional Association Dues,305,DAXSRG,305
+162,Funeral & Burial Services,306,DFUNRG,306
+163,Hairdressing Salons & Personal Grooming Establishments,309,DBBBRG,309
+164,Miscellaneous Personal Care Services,310,DMPCRG,310
+165,Laundry & Dry Cleaning Services,312,DDRYRG,312
+166,"Clothing Repair, Rental & Alterations",313,DLGRRG,313
+167,Repair & Hire of Footwear,314,DSCLRG,314
+168,Child Care,316,DCHCRG,316
+169,Social Assistance,317,DSCWRG,318;319;320;321;322;323
+170,Social Advocacy & Civic & Social Organizations,324,DSADRG,324
+171,Religious Organizations' Services to Households,325,DRELRG,325
+172,Sales Receipts: Foundations/Grant Making/Giving Services to Household,326,DGIVRG,326
+173,Domestic Services,328,DDMSRG,328
+174,"Moving, Storage & Freight Services",329,DMSERG,329
+175,"Repair of Furniture, Furnishings & Floor Coverings",330,DFRERG,330
+176,Repair of Household Appliances,331,DERERG,331
+177,Other Household Services,332,DMHSRG,332
+178,Final Consumption Expenditures of Nonprofit Institutions Serving Households,342,DNPIRG,342

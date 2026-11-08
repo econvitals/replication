@@ -1,0 +1,13 @@
+{
+  "status": "close",
+  "timeout_seconds": 900,
+  "needs_keys": ["BEA_API_KEY"],
+  "compare": [
+    {"output": "output/pce_tracking.csv", "output_index": "record", "output_column": "core_before_offset",
+     "published": "repo:history/pce-tracking.csv", "published_index": "record",
+     "published_column": "core_before_offset", "last_n": 24, "tolerance": 0.045},
+    {"output": "output/pce_tracking.csv", "output_index": "record", "output_column": "overall",
+     "published": "repo:history/pce-tracking.csv", "published_index": "record",
+     "published_column": "overall", "last_n": 24, "tolerance": 0.04}
+  ]
+}

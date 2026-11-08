@@ -1,0 +1,6 @@
+{
+  "status": "documented",
+  "why_not_compared": "needs IPUMS CPS microdata, which IPUMS's terms do not allow Econvitals to redistribute; the reader requests the extract described in README.md",
+  "needs_keys": [],
+  "compare": []
+}

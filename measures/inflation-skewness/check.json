@@ -1,0 +1,10 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 900,
+  "needs_keys": [],
+  "compare": [
+    {"output": "output/inflation_skewness.csv", "output_column": "skew",
+     "published": "data/cpi-inflation-skewness.json", "published_column": "skew",
+     "last_n": 600, "tolerance": 0.0001}
+  ]
+}

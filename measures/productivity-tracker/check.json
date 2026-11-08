@@ -1,0 +1,6 @@
+{
+  "status": "documented",
+  "why_not_compared": "The tracker's numbers are published only in the GDP Trackers tool's own data file (econvitals.org/tools/gdp-trackers/data.json), which the nightly check does not read; replicate.py fetches that file and prints its own comparison. Before BLS prints a quarter, hours come from a regression on BLS's first prints (archived vintages) and output from the composite through a bridge; neither is rebuilt here.",
+  "needs_keys": ["FRED_API_KEY", "BEA_API_KEY"],
+  "compare": []
+}

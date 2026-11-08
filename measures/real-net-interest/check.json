@@ -1,0 +1,13 @@
+{
+  "status": "recorded-inputs",
+  "timeout_seconds": 300,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/real_net_interest.csv", "output_column": "real_net_interest_pct",
+     "published": "data/federal-debt-service.json", "published_column": "real_net_interest",
+     "last_n": 42, "tolerance": 0.0001},
+    {"output": "output/real_net_interest.csv", "output_column": "net_interest_pct",
+     "published": "data/federal-debt-service.json", "published_column": "net_interest",
+     "last_n": 42, "tolerance": 0.0001}
+  ]
+}

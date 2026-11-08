@@ -1,0 +1,21 @@
+{
+  "status": "reproduces",
+  "scope": "The absolute half (activity and inflation against their own history). The surprise half is not compared: it needs an archive of consensus forecasts that is not public.",
+  "why_not_compared": "Surprise half: first prints against the consensus forecasts on the Nasdaq economic calendar, an undocumented feed with no public archive of past consensus values (Econvitals keeps its own), plus a non-public fallback source for the latest weeks.",
+  "timeout_seconds": 600,
+  "needs_keys": ["FRED_API_KEY"],
+  "compare": [
+    {"output": "output/absolute.csv", "output_column": "activity",
+     "published": "data/composite-activity.json", "published_column": "absolute",
+     "last_n": 1000, "tolerance": 0.0006},
+    {"output": "output/absolute.csv", "output_column": "inflation",
+     "published": "data/composite-inflation.json", "published_column": "absolute",
+     "last_n": 1000, "tolerance": 0.0006},
+    {"output": "output/absolute.csv", "output_column": "activity",
+     "published": "data/composite-vs-past.json", "published_column": "activity",
+     "last_n": 1000, "tolerance": 0.0006},
+    {"output": "output/absolute.csv", "output_column": "inflation",
+     "published": "data/composite-vs-past.json", "published_column": "inflation",
+     "last_n": 1000, "tolerance": 0.0006}
+  ]
+}
