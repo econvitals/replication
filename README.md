@@ -28,6 +28,8 @@ Shared readers for the public data sources are in `common/`.
 
 The one exception is [`simulator/`](simulator/): the Macroeconomic Simulator’s own engine, the Federal Reserve Board’s FRB/US model and data as the page’s runs were made from them, and a sample of those stored runs, with its own `requirements.txt` (Python 3.14) and a `verify.py` that rebuilds the sample, in place of `replicate.py`. It needs no network and no keys.
 
+Folders under [`posts/`](posts/) are the same kind of exception: each is the complete replication package of one of [Jason’s Occasional Posts](https://econvitals.org/posts/), with its own frozen data, `requirements.txt`, `run_all.py` and `verify.py`, which checks every number in the post. They need no network and no keys.
+
 ## What “matches” means
 
 - **Exact**: the script reproduces the published series to the site’s rounding.
@@ -78,6 +80,7 @@ The one exception is [`simulator/`](simulator/): the Macroeconomic Simulator’s
 | Composite indicators | [Econvitals Composite Activity and Inflation Indicators](measures/composite-indicators/) | Exact |
 | International trade | [Econvitals Trade Balance Excluding Data-Center Goods](measures/data-center-trade/) | Exact |
 | Analytic tools | [Macroeconomic Simulator](simulator/) | Exact; run by hand |
+| Occasional Posts | [The AI Boom’s Two Engines](posts/2026-11-09-ai-boom-two-engines/) (November 9, 2026) | Exact; run by hand |
 Not here yet: the [Fedspeak Tracker’s](https://econvitals.org/tools/fedspeak/) hawk–dove score, whose method is described on the Methods page.
 
 ## The nightly check

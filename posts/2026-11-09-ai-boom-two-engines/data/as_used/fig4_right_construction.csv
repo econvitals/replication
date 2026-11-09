@@ -1,0 +1,13 @@
+date,label,value,group
+2026-09-01,Data center,80.6,Data centers
+2026-09-01,Power,6.4,Other nonresidential
+2026-09-01,Nonresidential total,-2.9,Other nonresidential
+2026-09-01,Multi-family,-5.3,Residential
+2026-09-01,Health care,-6.7,Other nonresidential
+2026-09-01,Single family,-7.3,Residential
+2026-09-01,Lodging,-7.8,Other nonresidential
+2026-09-01,Commercial (incl. warehouses),-9.3,Other nonresidential
+2026-09-01,Educational,-12.1,Other nonresidential
+2026-09-01,Office ex-data-center,-13.1,Other nonresidential
+2026-09-01,Residential total,-13.5,Residential
+2026-09-01,Manufacturing,-22.1,Other nonresidential

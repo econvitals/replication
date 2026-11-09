@@ -37,6 +37,7 @@ DEFAULT_STATE = Path.home() / ".cache" / "econvitals-replication" / "check-state
 def folders() -> list[Path]:
     found = sorted(p.parent for p in ROOT.glob("measures/*/check.json"))
     found += sorted(p.parent for p in ROOT.glob("simulator/check.json"))
+    found += sorted(p.parent for p in ROOT.glob("posts/*/check.json"))
     return found
 
 

@@ -1,0 +1,5 @@
+{
+  "status": "documented",
+  "why_not_compared": "the post's inputs are frozen and nothing it checks changes after publication; run_all.py solves the Federal Reserve Board's FRB/US model many times (about 5 minutes with three worker processes) and ends with verify.py, which checks all 278 numbers in the post (278 PASS in a fresh environment on publication day, November 9, 2026)",
+  "compare": []
+}
