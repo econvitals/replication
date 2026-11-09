@@ -1,0 +1,1785 @@
+{
+ "built": "2026-11-09",
+ "model": "FRB/US",
+ "vintage": {
+  "pyfrbus": {
+   "url": "https://www.federalreserve.gov/econres/files/pyfrbus.zip",
+   "last_modified": "2026-02-26",
+   "bytes": 196499
+  },
+  "data": {
+   "url": "https://www.federalreserve.gov/econres/files/data_only_package.zip",
+   "last_modified": "2026-11-04",
+   "bytes": 4002255
+  },
+  "history_ends": "2026Q2"
+ },
+ "baseline": {
+  "start": "2040Q1",
+  "horizon": 40,
+  "rff": 3.201,
+  "lur": 4.197,
+  "picx4": 2.0,
+  "pic4": 2.0,
+  "rg10": 4.199,
+  "rstar": 1.2,
+  "lurnat": 4.2,
+  "pitarg": 2.0,
+  "poil": 101.616,
+  "debt": 95.577,
+  "surplus": -3.645,
+  "gov": 4.511,
+  "transfers": 15.817,
+  "taxrate": 18.436,
+  "xgap2": 0.005,
+  "rffmin": 0.125
+ },
+ "shocks": [
+  {
+   "id": "fed",
+   "label": "Federal funds rate",
+   "unit": "1 percentage point",
+   "fmt": "pp",
+   "blurb": "The Fed moves the federal funds rate away from its baseline path by the amount chosen, then the chosen rule takes over.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q1",
+     "quarters": 1
+    },
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q12",
+     "quarters": 12
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "gov",
+   "label": "Government purchases",
+   "unit": "1% of GDP",
+   "fmt": "gdp",
+   "blurb": "Federal purchases of goods and services change by the chosen share of GDP for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "tax",
+   "label": "Taxes",
+   "unit": "1% of GDP (engine: +1 = a cut)",
+   "fmt": "gdp",
+   "blurb": "The average personal income tax rate moves by enough to change revenue by the chosen share of GDP, for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": -1,
+   "default_size": -1
+  },
+  {
+   "id": "transfers",
+   "label": "Transfers to households",
+   "unit": "1% of GDP",
+   "fmt": "gdp",
+   "blurb": "Government transfer payments to households change by the chosen share of GDP for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "oil",
+   "label": "Oil prices",
+   "unit": "$25 a barrel",
+   "fmt": "oil",
+   "blurb": "The price of imported oil moves by the chosen number of dollars a barrel for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "dollar",
+   "label": "The dollar",
+   "unit": "10%",
+   "fmt": "pct10",
+   "blurb": "The real trade-weighted dollar moves by the chosen percentage for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "stocks",
+   "label": "Stock prices",
+   "unit": "10% on impact (engine: +1 = a 10% FALL)",
+   "fmt": "pct10",
+   "blurb": "The equity premium moves by enough to move stock-market wealth by the chosen percentage on impact, for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -3,
+    "max": 3,
+    "step": 0.25
+   },
+   "sizes": [
+    -3,
+    -2,
+    -1,
+    1,
+    2,
+    3
+   ],
+   "page_sign": -1,
+   "default_size": -1
+  },
+  {
+   "id": "stocks_earn",
+   "label": "Stock prices (expected earnings)",
+   "unit": "10% on impact, through expected earnings growth (engine: +1 = a 10% FALL)",
+   "fmt": "pct10",
+   "blurb": "Investors\u2019 expected growth of company earnings moves by enough to move stock-market wealth by the chosen percentage on impact, for the chosen period; unlike the required-return version, it does not shift businesses\u2019 cost of capital.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -3,
+    "max": 3,
+    "step": 0.25
+   },
+   "sizes": [
+    -3,
+    -2,
+    -1,
+    1,
+    2,
+    3
+   ],
+   "page_sign": -1,
+   "default_size": -1,
+   "variant_of": "stocks"
+  },
+  {
+   "id": "termprem",
+   "label": "Long-term rates",
+   "unit": "1 point on the term premium",
+   "fmt": "pp",
+   "blurb": "The 10-year Treasury term premium moves by the chosen amount for the chosen period; a fall is what a bond-buying program does.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "mfp",
+   "label": "Productivity",
+   "unit": "1%",
+   "fmt": "pct1",
+   "blurb": "One year: the level of multifactor productivity moves by the chosen percentage, once and for all (the Board\u2019s standard supply shock). Longer: productivity GROWTH is faster or slower by that many points a year for that long; permanent means for the whole horizon.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "realloc",
+   "label": "Labor market reallocation",
+   "unit": "1 point on the natural rate of unemployment",
+   "fmt": "pp",
+   "blurb": "The natural rate of unemployment moves by the chosen amount for the chosen period: when workers moving between jobs and industries take longer to match, potential output is lower and wages respond to a smaller gap.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "tariff",
+   "label": "Tariffs",
+   "unit": "a 10% tariff on non-oil imports",
+   "fmt": "tariff",
+   "blurb": "A tariff on non-oil imports at the chosen rate for the chosen period: the duties go to the Treasury, consumers pay half of them through prices over about seven months, businesses pay half the duty on imported equipment, company profits absorb the rest, and the tariff-inclusive price holds imports down.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "immig",
+   "label": "Immigration",
+   "unit": "1% of the working-age population (engine: +1 = 1% SMALLER)",
+   "fmt": "pop",
+   "blurb": "The working-age population is larger or smaller by the chosen percentage (1 percent is about 3 million people) for the chosen period, so the labor force and potential output move with it.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": -1,
+   "default_size": -1
+  },
+  {
+   "id": "expect",
+   "label": "Inflation expectations",
+   "unit": "1 point on long-run expected inflation",
+   "fmt": "pp",
+   "blurb": "Long-run expected inflation (the 10-year expectation in the Survey of Professional Forecasters, which anchors price setting in the model) moves by the chosen amount for the chosen period.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "credit",
+   "label": "Credit spreads",
+   "unit": "1 point on corporate bond spreads",
+   "fmt": "pp",
+   "blurb": "The risk premium on BBB corporate bonds moves by the chosen amount for the chosen period; a widening is a financial-stress shock that raises business borrowing costs and the equity premium with it.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1
+  },
+  {
+   "id": "invest",
+   "label": "Business investment",
+   "unit": "1% of GDP, none of it imported",
+   "fmt": "gdp",
+   "blurb": "Business investment changes by the chosen share of GDP for the chosen period, with the share of the equipment that is imported set separately; the new capital is not counted as adding to productive capacity.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1,
+   "imported": 0.0
+  },
+  {
+   "id": "investimp",
+   "label": "Business investment (all imported)",
+   "unit": "1% of GDP, all of it imported",
+   "fmt": "gdp",
+   "blurb": "The business-investment shock with all of the equipment imported; the page mixes it with the all-domestic run.",
+   "fiscal": true,
+   "durations": [
+    {
+     "id": "q4",
+     "quarters": 4
+    },
+    {
+     "id": "q8",
+     "quarters": 8
+    },
+    {
+     "id": "q16",
+     "quarters": 16
+    },
+    {
+     "id": "perm",
+     "quarters": null
+    }
+   ],
+   "default_dur": "q4",
+   "fed_options": [
+    "hold4",
+    "hold8",
+    "hold12",
+    "inertial",
+    "balanced",
+    "taylor93",
+    "firstdiff"
+   ],
+   "slider": {
+    "min": -2,
+    "max": 2,
+    "step": 0.25
+   },
+   "sizes": [
+    -2,
+    -1,
+    1,
+    2
+   ],
+   "page_sign": 1,
+   "default_size": 1,
+   "hidden": true,
+   "mix_of": "invest",
+   "imported": 1.0
+  }
+ ],
+ "sizes": [
+  -3,
+  -2,
+  -1,
+  1,
+  2,
+  3
+ ],
+ "fed": [
+  {
+   "id": "hold4",
+   "label": "Holds the rate for 1 year",
+   "short": "Holds 1 year"
+  },
+  {
+   "id": "hold8",
+   "label": "Holds the rate for 2 years",
+   "short": "Holds 2 years"
+  },
+  {
+   "id": "hold12",
+   "label": "Holds the rate for 3 years",
+   "short": "Holds 3 years"
+  },
+  {
+   "id": "inertial",
+   "label": "Inertial rule (FRB/US\u2019s own rule)",
+   "short": "Inertial rule"
+  },
+  {
+   "id": "balanced",
+   "label": "Balanced-approach rule",
+   "short": "Balanced approach"
+  },
+  {
+   "id": "taylor93",
+   "label": "Taylor (1993) rule",
+   "short": "Taylor (1993)"
+  },
+  {
+   "id": "firstdiff",
+   "label": "First-difference rule",
+   "short": "First difference"
+  }
+ ],
+ "exp": [
+  {
+   "id": "var",
+   "label": "Backward-looking (VAR), the Board\u2019s default",
+   "short": "Backward-looking"
+  },
+  {
+   "id": "mce",
+   "label": "Forward-looking (model-consistent in financial markets and wage-price setting)",
+   "short": "Forward-looking"
+  }
+ ],
+ "elb": [
+  {
+   "id": "no",
+   "label": "Normal times",
+   "short": "Normal times"
+  },
+  {
+   "id": "yes",
+   "label": "At the lower bound: the Fed can raise but not cut",
+   "short": "At the lower bound"
+  }
+ ],
+ "fiscal": [
+  {
+   "id": "fixed",
+   "label": "Taxes fixed: the shock is deficit-financed and nothing pays for it within the horizon",
+   "short": "Taxes fixed"
+  },
+  {
+   "id": "debt",
+   "label": "The Board\u2019s debt rule: the personal tax rate rises to stabilize the debt ratio",
+   "short": "Debt rule"
+  }
+ ],
+ "vars": [
+  {
+   "id": "xgdp",
+   "label": "Real GDP",
+   "kind": "pct",
+   "group": "top"
+  },
+  {
+   "id": "lur",
+   "label": "Unemployment rate",
+   "kind": "pp",
+   "group": "top"
+  },
+  {
+   "id": "picx4",
+   "label": "Core PCE inflation (4-quarter)",
+   "kind": "pp",
+   "group": "top"
+  },
+  {
+   "id": "rff",
+   "label": "Federal funds rate",
+   "kind": "pp",
+   "group": "top"
+  },
+  {
+   "id": "xgap2",
+   "label": "Output gap",
+   "kind": "pp",
+   "group": "activity"
+  },
+  {
+   "id": "ecnia",
+   "label": "Consumer spending",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "ebfi",
+   "label": "Business investment",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "eh",
+   "label": "Residential investment",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "ex",
+   "label": "Exports",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "em",
+   "label": "Imports",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "xgdpt",
+   "label": "Potential GDP",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
+   "id": "leh",
+   "label": "Employment",
+   "kind": "pct",
+   "group": "labor"
+  },
+  {
+   "id": "lfpr",
+   "label": "Labor force participation rate",
+   "kind": "pp",
+   "group": "labor"
+  },
+  {
+   "id": "realwage",
+   "label": "Real compensation per hour",
+   "kind": "pct",
+   "group": "labor"
+  },
+  {
+   "id": "pic4",
+   "label": "PCE inflation (4-quarter)",
+   "kind": "pp",
+   "group": "prices"
+  },
+  {
+   "id": "picxfe",
+   "label": "Core PCE inflation (quarterly, annualized)",
+   "kind": "pp",
+   "group": "prices"
+  },
+  {
+   "id": "ptr",
+   "label": "Long-run expected inflation",
+   "kind": "pp",
+   "group": "prices"
+  },
+  {
+   "id": "poil",
+   "label": "Oil price",
+   "kind": "usd",
+   "group": "prices"
+  },
+  {
+   "id": "rg10",
+   "label": "10-year Treasury yield",
+   "kind": "pp",
+   "group": "rates"
+  },
+  {
+   "id": "rg10p",
+   "label": "10-year term premium",
+   "kind": "pp",
+   "group": "rates"
+  },
+  {
+   "id": "rrff",
+   "label": "Real federal funds rate",
+   "kind": "pp",
+   "group": "rates"
+  },
+  {
+   "id": "rme",
+   "label": "Mortgage rate",
+   "kind": "pp",
+   "group": "rates"
+  },
+  {
+   "id": "rbbb",
+   "label": "BBB corporate bond yield",
+   "kind": "pp",
+   "group": "rates"
+  },
+  {
+   "id": "wpsn",
+   "label": "Stock market wealth",
+   "kind": "pct",
+   "group": "assets"
+  },
+  {
+   "id": "phouse",
+   "label": "House prices",
+   "kind": "pct",
+   "group": "assets"
+  },
+  {
+   "id": "fpxr",
+   "label": "Real value of the dollar",
+   "kind": "pct",
+   "group": "assets"
+  },
+  {
+   "id": "gov",
+   "label": "Federal purchases",
+   "kind": "gdp",
+   "group": "fiscal"
+  },
+  {
+   "id": "transfers",
+   "label": "Government transfers",
+   "kind": "gdp",
+   "group": "fiscal"
+  },
+  {
+   "id": "taxrate",
+   "label": "Personal tax rate",
+   "kind": "pp",
+   "group": "fiscal"
+  },
+  {
+   "id": "surplus",
+   "label": "Federal budget balance",
+   "kind": "gdp",
+   "group": "fiscal"
+  },
+  {
+   "id": "debt",
+   "label": "Federal debt held by the public",
+   "kind": "gdp",
+   "group": "fiscal"
+  },
+  {
+   "id": "curacct",
+   "label": "Current account balance",
+   "kind": "gdp",
+   "group": "fiscal"
+  }
+ ],
+ "top": [
+  "xgdp",
+  "lur",
+  "picx4",
+  "rff"
+ ],
+ "calibration": {
+  "reqp_per_10pct": 0.4154,
+  "check_drop_at_0.4": -9.63,
+  "zdivgr_per_10pct": -0.42144,
+  "check_earn_drop": -10.0
+ },
+ "unavailable": [
+  {
+   "shock": "fed",
+   "exp": "mce",
+   "dur": "perm",
+   "why": "Under forward-looking expectations a permanent rate peg has no unique answer: with the rate fixed forever, nothing pins down expected inflation (the textbook indeterminacy result), and the model\u2019s answer flips sign with the financing assumption. The permanent Fed shock is backward-looking only."
+  }
+ ],
+ "stats": {
+  "credit_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 965626
+  },
+  "credit_mce_no_fixed": {
+   "runs": 106,
+   "failed": 6,
+   "bytes": 912291
+  },
+  "credit_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 907677
+  },
+  "credit_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 962652
+  },
+  "credit_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 962323
+  },
+  "credit_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 952955
+  },
+  "credit_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957034
+  },
+  "dollar_mce_no_debt": {
+   "runs": 86,
+   "failed": 26,
+   "bytes": 738798
+  },
+  "dollar_mce_no_fixed": {
+   "runs": 90,
+   "failed": 22,
+   "bytes": 771690
+  },
+  "dollar_mce_yes_fixed": {
+   "runs": 79,
+   "failed": 33,
+   "bytes": 688794
+  },
+  "dollar_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 961115
+  },
+  "dollar_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 960616
+  },
+  "dollar_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957215
+  },
+  "dollar_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 959204
+  },
+  "expect_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 954195
+  },
+  "expect_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953917
+  },
+  "expect_mce_yes_fixed": {
+   "runs": 100,
+   "failed": 12,
+   "bytes": 858219
+  },
+  "expect_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957184
+  },
+  "expect_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 956672
+  },
+  "expect_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953062
+  },
+  "expect_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 958286
+  },
+  "fed_mce_no_debt": {
+   "runs": 64,
+   "failed": 0,
+   "bytes": 551928
+  },
+  "fed_mce_no_fixed": {
+   "runs": 64,
+   "failed": 0,
+   "bytes": 551996
+  },
+  "fed_mce_yes_fixed": {
+   "runs": 58,
+   "failed": 6,
+   "bytes": 422435
+  },
+  "fed_var_no_debt": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 692417
+  },
+  "fed_var_no_fixed": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 690349
+  },
+  "fed_var_yes_debt": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 594086
+  },
+  "fed_var_yes_fixed": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 595060
+  },
+  "gov_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968815
+  },
+  "gov_mce_no_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 905284
+  },
+  "gov_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 913469
+  },
+  "gov_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967447
+  },
+  "gov_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967134
+  },
+  "gov_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 961724
+  },
+  "gov_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 965607
+  },
+  "immig_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968150
+  },
+  "immig_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967204
+  },
+  "immig_mce_yes_fixed": {
+   "runs": 77,
+   "failed": 35,
+   "bytes": 675498
+  },
+  "immig_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967738
+  },
+  "immig_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 965984
+  },
+  "immig_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 959675
+  },
+  "immig_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 964187
+  },
+  "invest_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968552
+  },
+  "invest_mce_no_fixed": {
+   "runs": 106,
+   "failed": 6,
+   "bytes": 915333
+  },
+  "invest_mce_yes_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 908361
+  },
+  "invest_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968900
+  },
+  "invest_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967028
+  },
+  "invest_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 964307
+  },
+  "invest_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968127
+  },
+  "investimp_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 960170
+  },
+  "investimp_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 960111
+  },
+  "investimp_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 912533
+  },
+  "investimp_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957969
+  },
+  "investimp_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957489
+  },
+  "investimp_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 950319
+  },
+  "investimp_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 950377
+  },
+  "mfp_mce_no_debt": {
+   "runs": 95,
+   "failed": 17,
+   "bytes": 825263
+  },
+  "mfp_mce_no_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 903509
+  },
+  "mfp_mce_yes_fixed": {
+   "runs": 92,
+   "failed": 20,
+   "bytes": 799990
+  },
+  "mfp_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 978405
+  },
+  "mfp_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 978462
+  },
+  "mfp_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967354
+  },
+  "mfp_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968678
+  },
+  "oil_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953727
+  },
+  "oil_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 954102
+  },
+  "oil_mce_yes_fixed": {
+   "runs": 71,
+   "failed": 41,
+   "bytes": 608296
+  },
+  "oil_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 954854
+  },
+  "oil_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953152
+  },
+  "oil_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 944688
+  },
+  "oil_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 948312
+  },
+  "realloc_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 964162
+  },
+  "realloc_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 963297
+  },
+  "realloc_mce_yes_fixed": {
+   "runs": 90,
+   "failed": 22,
+   "bytes": 780763
+  },
+  "realloc_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 961969
+  },
+  "realloc_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 962438
+  },
+  "realloc_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 958095
+  },
+  "realloc_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 961334
+  },
+  "stocks_earn_mce_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1440798
+  },
+  "stocks_earn_mce_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1440436
+  },
+  "stocks_earn_mce_yes_fixed": {
+   "runs": 134,
+   "failed": 34,
+   "bytes": 1165246
+  },
+  "stocks_earn_var_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1433665
+  },
+  "stocks_earn_var_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1432288
+  },
+  "stocks_earn_var_yes_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1422056
+  },
+  "stocks_earn_var_yes_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1427566
+  },
+  "stocks_mce_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1442582
+  },
+  "stocks_mce_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1442297
+  },
+  "stocks_mce_yes_fixed": {
+   "runs": 161,
+   "failed": 7,
+   "bytes": 1387379
+  },
+  "stocks_var_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1438552
+  },
+  "stocks_var_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1437496
+  },
+  "stocks_var_yes_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1423211
+  },
+  "stocks_var_yes_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1429087
+  },
+  "tariff_mce_no_debt": {
+   "runs": 98,
+   "failed": 14,
+   "bytes": 849985
+  },
+  "tariff_mce_no_fixed": {
+   "runs": 107,
+   "failed": 5,
+   "bytes": 926142
+  },
+  "tariff_mce_yes_fixed": {
+   "runs": 82,
+   "failed": 30,
+   "bytes": 724367
+  },
+  "tariff_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 972257
+  },
+  "tariff_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 969964
+  },
+  "tariff_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 970007
+  },
+  "tariff_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 972293
+  },
+  "tax_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 961383
+  },
+  "tax_mce_no_fixed": {
+   "runs": 106,
+   "failed": 6,
+   "bytes": 911059
+  },
+  "tax_mce_yes_fixed": {
+   "runs": 109,
+   "failed": 3,
+   "bytes": 941657
+  },
+  "tax_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 960954
+  },
+  "tax_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 962444
+  },
+  "tax_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 959520
+  },
+  "tax_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 959973
+  },
+  "termprem_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953758
+  },
+  "termprem_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 952919
+  },
+  "termprem_mce_yes_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 898143
+  },
+  "termprem_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 954370
+  },
+  "termprem_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 953205
+  },
+  "termprem_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 956752
+  },
+  "termprem_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 956333
+  },
+  "transfers_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 963047
+  },
+  "transfers_mce_no_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 902351
+  },
+  "transfers_mce_yes_fixed": {
+   "runs": 102,
+   "failed": 10,
+   "bytes": 881882
+  },
+  "transfers_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 962026
+  },
+  "transfers_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 963458
+  },
+  "transfers_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 957557
+  },
+  "transfers_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 960351
+  }
+ },
+ "dropped": {
+  "mce_yes_debt": "forward-looking runs at the lower bound under the Board's debt rule: only 86 of 680 converged (build of 2026-10-27), so the nine files are not shipped and the page greys the setting out"
+ },
+ "counts": {
+  "presolved": 13426,
+  "unsolved": 414,
+  "library_solves_logged": 25918,
+  "library_solves_before_log": 13800,
+  "library_solves_total_approx": 39718,
+  "note": "Pre-solved = stored runs; unsolved = combinations attempted that did not converge. Solves are counted by the engine since 2026-10-31; the earlier 13,800 is an estimate reconstructed from that week's builds."
+ }
+}

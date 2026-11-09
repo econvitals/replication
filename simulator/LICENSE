@@ -1,0 +1,9 @@
+The code and data in this folder are part of github.com/econvitals/replication and, like the rest of that
+repository, dedicated to the public domain under Creative Commons CC0 1.0 Universal (the LICENSE file at the
+repository's root has the full text): the code in engine/ and verify.py, the stored results in expected/ (Econvitals'
+own work) and the CSV in inputs/.
+
+Not covered, and not subject to copyright: the bundled FRB/US code and model (fed/pyfrbus/) and data
+(fed/data_only_package/) were written and prepared by U.S. Government employees on official time and are in the public
+domain; see fed/pyfrbus/LICENSE. The data package's README notes that one history series in it, the Baa corporate bond
+yield, is Moody's, from Bloomberg Finance LP. SOURCES.md gives the source of every other number.

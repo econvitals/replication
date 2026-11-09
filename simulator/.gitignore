@@ -1,0 +1,7 @@
+# made when the engine or verify.py runs here
+data/
+output/
+fed/model_invest.xml
+engine/solve_log.json
+engine/build.log
+.venv/

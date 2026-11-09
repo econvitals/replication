@@ -1,0 +1,13 @@
+{
+  "pyfrbus": {
+    "url": "https://www.federalreserve.gov/econres/files/pyfrbus.zip",
+    "last_modified": "2026-02-26",
+    "bytes": 196499
+  },
+  "data": {
+    "url": "https://www.federalreserve.gov/econres/files/data_only_package.zip",
+    "last_modified": "2026-11-04",
+    "bytes": 4002255
+  },
+  "history_ends": "2026Q2"
+}

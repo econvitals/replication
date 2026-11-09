@@ -1,0 +1,9 @@
+parameter,value,where_in_code,meaning
+unit_tariff_rate,0.1,build.py: TARIFF,the tariff rate a size of 1 means (on non-oil imports)
+consumer_pass_through,0.5,tariff.py: PASS_THROUGH,share of the duties paid by consumers through consumer prices
+pass_through_timing_quarter_0,0.25,tariff.py: LAG_WEIGHTS,share of a quarter's duties reaching consumer prices 0 quarter(s) later
+pass_through_timing_quarter_1,0.45,tariff.py: LAG_WEIGHTS,share of a quarter's duties reaching consumer prices 1 quarter(s) later
+pass_through_timing_quarter_2,0.3,tariff.py: LAG_WEIGHTS,share of a quarter's duties reaching consumer prices 2 quarter(s) later
+capital_goods_share,0.29,tariff.py: CAPITAL_SHARE,capital goods' share of the duties
+equipment_pass_through,0.5,tariff.py: EQUIPMENT_PASS_THROUGH,share of the duty on capital goods paid by businesses buying equipment
+profit_share,0.355,tariff.py: PROFIT_SHARE,"the rest, out of company profits (1 - consumer pass-through - equipment pass-through x capital goods share)"

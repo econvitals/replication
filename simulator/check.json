@@ -1,5 +1,5 @@
 {
   "status": "documented",
-  "why_not_compared": "rebuilt and verified digit for digit by its own package (verify.py) whenever the engine changes; too slow to rerun nightly",
+  "why_not_compared": "rebuilding the bundled sample means solving the Federal Reserve Board's FRB/US model 240 times (verify.py, about half an hour with three worker processes), and the stored runs change only when the engine does; the folder is re-exported and verify.py rerun in a clean environment, with the network blocked, whenever that happens",
   "compare": []
 }
