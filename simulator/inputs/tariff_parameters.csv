@@ -1,5 +1,6 @@
 parameter,value,where_in_code,meaning
-unit_tariff_rate,0.1,build.py: TARIFF,the tariff rate a size of 1 means (on non-oil imports)
+unit_tariff_rate,0.1,build.py: TARIFF,the tariff rate a size of 1 means (on non-oil goods imports)
+goods_share,0.78,build.py: GOODS_SHARE,"goods' share of non-oil imports of goods and services (the model's emon), which scales the duty base to goods only"
 consumer_pass_through,0.5,tariff.py: PASS_THROUGH,share of the duties paid by consumers through consumer prices
 pass_through_timing_quarter_0,0.25,tariff.py: LAG_WEIGHTS,share of a quarter's duties reaching consumer prices 0 quarter(s) later
 pass_through_timing_quarter_1,0.45,tariff.py: LAG_WEIGHTS,share of a quarter's duties reaching consumer prices 1 quarter(s) later

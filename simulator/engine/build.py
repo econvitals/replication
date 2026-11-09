@@ -144,10 +144,10 @@ SHOCKS = {
                     durs=DURS, default_dur="q4", fed_options=FED_OPTIONS,
                     slider=dict(min=-2, max=2, step=0.25), fmt="pp",
                     blurb="The natural rate of unemployment moves by the chosen amount for the chosen period: when workers moving between jobs and industries take longer to match, potential output is lower and wages respond to a smaller gap."),
-    "tariff": dict(label="Tariffs", unit="a 10% tariff on non-oil imports", exog=[], fiscal=False,
+    "tariff": dict(label="Tariffs", unit="a 10% tariff on non-oil goods imports", exog=[], fiscal=False,
                    durs=DURS, default_dur="q4", fed_options=FED_OPTIONS,
                    slider=dict(min=-2, max=2, step=0.25), fmt="tariff",
-                   blurb="A tariff on non-oil imports at the chosen rate for the chosen period: the duties go to the Treasury, consumers pay half of them through prices over about seven months, businesses pay half the duty on imported equipment, company profits absorb the rest, and the tariff-inclusive price holds imports down."),
+                   blurb="A tariff on imported goods other than oil at the chosen rate for the chosen period: the duties go to the Treasury, consumers pay half of them through prices over about seven months, businesses pay half the duty on imported equipment, company profits absorb the rest, and the tariff-inclusive price holds imports down."),
     "immig": dict(label="Immigration", unit="1% of the working-age population (engine: +1 = 1% SMALLER)", exog=[], fiscal=False,
                   durs=DURS, default_dur="q4", fed_options=FED_OPTIONS, page_sign=-1, default_size=-1,
                   slider=dict(min=-2, max=2, step=0.25), fmt="pop",
@@ -176,6 +176,16 @@ SHOCKS = {
                       blurb="The business-investment shock with all of the equipment imported; the page mixes it with the all-domestic run."),
 }
 TARIFF = 0.10            # the unit tariff rate
+# The tariff is on GOODS only (2026-11-09: "Yes, goods only").
+# FRB/US's duty base, `emon`, is non-oil imports of goods AND services, so the duty is scaled by goods' share of it:
+# E = TARIFF x size x GOODS_SHARE x baseline emon. GOODS_SHARE = non-petroleum goods imports / (non-petroleum goods +
+# services imports), BEA NIPA Table 4.2.5B (LastRevised October 29, 2026; read 2026-11-09), 2024, the last full year
+# before the 2025 tariffs and the year CAPITAL_SHARE in tariff.py is read for: imports of nonpetroleum goods (A187RC)
+# $3,011.8 billion / ($3,011.8 + imports of services (B656RC) $835.0 billion) = 0.783 (2025: 3,133.1 / 4,048.9 = 0.774).
+# Their sum is FRB/US's emon for 2024 in the Board's data package to the decimal ($3,846.8 billion). Duty base at the
+# 2040Q1 baseline: 1.11 percent of GDP for a 10 percent tariff (1.43 before, when services were taxed too). The tariff
+# construction itself, tariff.channels() and its parameters, is unchanged.
+GOODS_SHARE = 0.78
 NEW_SHOCKS = ("realloc", "tariff", "immig", "expect", "credit")
 
 # ---- what is stored for every run -------------------------------------------------------------------
@@ -420,15 +430,16 @@ def apply_shock(shock, frame, wa, size, dur, fed, calib, end=None, exp="var"):
             s.loc[q0:q1, "lurnat"] = wa.loc[q0:q1, "lurnat"].values + size * 1.0
         elif shock == "tariff":
             # The tariff construction in tariff.py (tariff.channels; 2026-11-08: companies bear half the duty; the
-            # long run negative). E = the duty, the tariff rate x baseline non-oil imports ($bn a year), while the tariff is
-            # in force: federal customs receipts; consumers pay half through prices on the Fed staff's ~7-month schedule;
+            # long run negative). E = the duty, the tariff rate x baseline non-oil GOODS imports ($bn a year; emon x
+            # GOODS_SHARE, since emon includes services — 2026-11-09), while the tariff is in force: federal customs
+            # receipts; consumers pay half through prices on the Fed staff's ~7-month schedule;
             # businesses buying equipment pay half the duty on capital goods (29% of it) through the price of investment,
             # which is also held on its own path; profits absorb the rest; the tariff-inclusive price holds imports down.
             # The import price pmo is NOT moved (it is measured before duties; moving it counts the duty twice).
             import tariff as RT
             last = end if end is not None else q1 + 8
             e = pd.Series(0.0, index=pd.period_range(q0, last))
-            e.loc[q0:q1] = size * TARIFF * wa.loc[q0:q1, "emon"].values
+            e.loc[q0:q1] = size * TARIFF * GOODS_SHARE * wa.loc[q0:q1, "emon"].values
             RT.channels(s, wa, e, sign=+1, forward=(exp == "mce"))
         elif shock == "immig":
             s.loc[q0:q1, "n16"] = wa.loc[q0:q1, "n16"].values * (1 - size * 0.01)
@@ -695,6 +706,7 @@ def main():
         log(f"{len(tasks) - len(kept)} configurations already built, {len(kept)} to run ({sum(len(t['only']) for t in kept)} runs)")
         tasks = kept
     done = 0
+    config_errors = []        # configurations that could not even be set up: none of their runs was attempted
     with mp.Pool(args.workers) as pool:
         for r in pool.imap_unordered(config_task, tasks):
             done += 1
@@ -703,6 +715,9 @@ def main():
             fk = file_key(t["shock"], t["exp"], t["elb"], t["fiscal"])
             body = load_file(fk)
             body["runs"].update(r["runs"])
+            # A run that failed THIS time loses any result an earlier build stored under its key: under --force a run that
+            # used to solve and now does not would otherwise keep its stale result beside the new failure (fixed 2026-11-09).
+            for k, _ in r["failed"]: body["runs"].pop(k, None)
             failed = {k: e for k, e in body["failed"]}
             for k, e in r["failed"]: failed[k] = e
             for k in r["runs"]: failed.pop(k, None)
@@ -711,6 +726,8 @@ def main():
             log(f"[{done}/{len(tasks)}] {t['shock']} {t['rule']} {t['exp']} elb={t['elb']} fiscal={t['fiscal']}: {len(r['runs'])} runs, {len(r['failed'])} failed, {r['secs']:.0f}s -> runs/{fk}.json")
             for k, e in r["failed"][:3]:
                 log(f"    failed {k}: {e}")
+            if any(k == "config" for k, _ in r["failed"]):
+                config_errors.append(fk)
     for path in sorted((OUT / "runs").glob("*.json")):          # every file's counts, built now or earlier
         fk = path.stem
         if fk not in stats:
@@ -725,6 +742,11 @@ def main():
 
     record_solves(tally, args)
     log(f"build done in {(time.time()-t0)/60:.1f} min ({tally['library']} library solves)")
+    if config_errors:
+        # a set-up error is a bug, not a run that did not solve: nothing was re-run, so whatever those files held
+        # before (stale results under --force) is still there. Say so loudly and fail the command.
+        log(f"ERROR: {len(config_errors)} configuration(s) failed before any run, their earlier runs were kept: {sorted(set(config_errors))}")
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()

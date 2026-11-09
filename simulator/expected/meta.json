@@ -583,9 +583,9 @@
   {
    "id": "tariff",
    "label": "Tariffs",
-   "unit": "a 10% tariff on non-oil imports",
+   "unit": "a 10% tariff on non-oil goods imports",
    "fmt": "tariff",
-   "blurb": "A tariff on non-oil imports at the chosen rate for the chosen period: the duties go to the Treasury, consumers pay half of them through prices over about seven months, businesses pay half the duty on imported equipment, company profits absorb the rest, and the tariff-inclusive price holds imports down.",
+   "blurb": "A tariff on imported goods other than oil at the chosen rate for the chosen period: the duties go to the Treasury, consumers pay half of them through prices over about seven months, businesses pay half the duty on imported equipment, company profits absorb the rest, and the tariff-inclusive price holds imports down.",
    "fiscal": true,
    "durations": [
     {
@@ -1175,6 +1175,41 @@
   }
  ],
  "stats": {
+  "tariff_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 968242
+  },
+  "tariff_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 970101
+  },
+  "tariff_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 970687
+  },
+  "tariff_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 967649
+  },
+  "tariff_mce_no_fixed": {
+   "runs": 111,
+   "failed": 1,
+   "bytes": 958725
+  },
+  "tariff_mce_no_debt": {
+   "runs": 100,
+   "failed": 12,
+   "bytes": 865301
+  },
+  "tariff_mce_yes_fixed": {
+   "runs": 92,
+   "failed": 20,
+   "bytes": 808616
+  },
   "credit_mce_no_debt": {
    "runs": 112,
    "failed": 0,
@@ -1630,41 +1665,6 @@
    "failed": 0,
    "bytes": 1429087
   },
-  "tariff_mce_no_debt": {
-   "runs": 98,
-   "failed": 14,
-   "bytes": 849985
-  },
-  "tariff_mce_no_fixed": {
-   "runs": 107,
-   "failed": 5,
-   "bytes": 926142
-  },
-  "tariff_mce_yes_fixed": {
-   "runs": 82,
-   "failed": 30,
-   "bytes": 724367
-  },
-  "tariff_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 972257
-  },
-  "tariff_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 969964
-  },
-  "tariff_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 970007
-  },
-  "tariff_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 972293
-  },
   "tax_mce_no_debt": {
    "runs": 112,
    "failed": 0,
@@ -1775,11 +1775,11 @@
   "mce_yes_debt": "forward-looking runs at the lower bound under the Board's debt rule: only 86 of 680 converged (build of 2026-10-27), so the nine files are not shipped and the page greys the setting out"
  },
  "counts": {
-  "presolved": 13426,
-  "unsolved": 414,
-  "library_solves_logged": 25918,
+  "presolved": 13442,
+  "unsolved": 398,
+  "library_solves_logged": 26860,
   "library_solves_before_log": 13800,
-  "library_solves_total_approx": 39718,
+  "library_solves_total_approx": 40660,
   "note": "Pre-solved = stored runs; unsolved = combinations attempted that did not converge. Solves are counted by the engine since 2026-10-31; the earlier 13,800 is an estimate reconstructed from that week's builds."
  }
 }

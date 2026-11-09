@@ -127,16 +127,22 @@ def tasks_for(files, picks, calib, B, by="rule"):
 
 def compare_dir(other, tol, files):
     """--compare: a library rebuilt with engine/build.py (other/runs/*.json) against expected/, run by run (the runs
-    expected/ holds; a rebuilt run expected/ does not hold is not compared)."""
+    expected/ holds; a rebuilt run expected/ does not hold is not compared). A stored run with no rebuilt counterpart,
+    including every run of a file that was not rebuilt at all, is counted, named and listed in the report as MISSING."""
     rows, nfail, nmissing = [], 0, 0
     for fk, body in files.items():
         path = other / "runs" / f"{fk}.json"
         if not path.exists():
+            nmissing += len(body["runs"])
+            print(f"MISSING  {fk}: no rebuilt file {path.name}, so its {len(body['runs'])} stored runs are not compared")
+            rows += [dict(check="run", file=fk, key=k, status="MISSING", max_abs_diff="", where="no rebuilt file", seconds="")
+                     for k in body["runs"]]
             continue
         mine = json.loads(path.read_text())
         for k, want in body["runs"].items():
             if k not in mine["runs"]:
                 nmissing += 1
+                rows.append(dict(check="run", file=fk, key=k, status="MISSING", max_abs_diff="", where="not in the rebuilt file", seconds=""))
                 continue
             d, where = worst_diff(mine["runs"][k], want)
             ok = d <= tol + 1e-9
@@ -189,7 +195,7 @@ def main():
         print(f"\nverify --compare {args.compare}: {npass} runs PASS, {nfail} FAIL; {nmissing} stored runs not in {args.compare} (not rebuilt yet)")
         last_digit_note(rows)
         write_report(rows)
-        sys.exit(1 if nfail or not rows else 0)
+        sys.exit(1 if nfail or not npass else 0)      # nothing compared is not a pass
 
     # 1. the stock-price calibrations, rerun
     t1 = time.time()
