@@ -1,6 +1,6 @@
 # Macroeconomic Simulator
 
-**On econvitals.org:** the [Macroeconomic Simulator](https://econvitals.org/lab/frbus-simulator/): policy and economic shocks run through the Federal Reserve Board’s own FRB/US model, with the size, the length, the Fed’s response, the way the shock is paid for and the way expectations are formed chosen by the reader.
+**On econvitals.org:** the [Macroeconomic Simulator](https://econvitals.org/tools/macro-simulator/): policy and economic shocks run through the Federal Reserve Board’s own FRB/US model, with the size, the length, the Fed’s response, the way the shock is paid for and the way expectations are formed chosen by the reader.
 
 **What it is.** FRB/US is the large-scale model of the U.S. economy the Federal Reserve Board’s staff has used since 1996 and publishes with Python code. On the page a reader picks one of fifteen shocks (among them the federal funds rate, government purchases, taxes, oil prices, tariffs and stock prices) and sees the response of 32 variables over ten years, each as a difference from a baseline. The page runs no model: every number it shows comes from **13,442 runs solved in advance** and stored in 119 files, which the page scales, interpolates between sizes and, when shocks are combined, adds, all in normal times only; at the lower bound it shows only runs stored at exactly the size chosen. This folder holds the engine that made those runs, the Board’s model and data exactly as they were used, and a check that rebuilds a sample of them. `METHOD.md` describes how the runs are made.
 
