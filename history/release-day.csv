@@ -8,3 +8,5 @@ record,measure,target_month,bank,estimate_1m_ann,estimate_shown_at,last_estimate
 2026-09 median-pce,median-pce,2026-09,Cleveland Fed,3.0034,2026-10-29T08:39-04:00,3.0034,3.0034,2026-10-30T10:11-04:00,0.0
 2026-09 trimmed-mean-cpi,trimmed-mean-cpi,2026-09,Cleveland Fed,3.53,2026-10-14T08:49-04:00,3.53,3.53,2026-10-14T11:10-04:00,0.0
 2026-09 trimmed-mean-pce,trimmed-mean-pce,2026-09,Dallas Fed,2.8405,2026-10-29T08:39-04:00,2.8405,2.84,2026-10-29T21:40-04:00,0.0005
+2026-10 median-cpi,median-cpi,2026-10,Cleveland Fed,3.4853,2026-11-10T08:43-05:00,3.4853,3.665,2026-11-10T16:37-05:00,-0.1797
+2026-10 trimmed-mean-cpi,trimmed-mean-cpi,2026-10,Cleveland Fed,4.5177,2026-11-10T08:49-05:00,4.5177,4.5189,2026-11-10T16:37-05:00,-0.0012
