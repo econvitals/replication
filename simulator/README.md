@@ -2,7 +2,7 @@
 
 **On econvitals.org:** the [Macroeconomic Simulator](https://econvitals.org/tools/macro-simulator/): policy and economic shocks run through the Federal Reserve Board’s own FRB/US model, with the size, the length, the Fed’s response, the way the shock is paid for and the way expectations are formed chosen by the reader.
 
-**What it is.** FRB/US is the large-scale model of the U.S. economy the Federal Reserve Board’s staff has used since 1996 and publishes with Python code. On the page a reader picks one of fifteen shocks (among them the federal funds rate, government purchases, taxes, oil prices, tariffs and stock prices) and sees the response of 32 variables over ten years, each as a difference from a baseline. The page runs no model: every number it shows comes from **13,442 runs solved in advance** and stored in 119 files, which the page scales, interpolates between sizes and, when shocks are combined, adds, all in normal times only; at the lower bound it shows only runs stored at exactly the size chosen. This folder holds the engine that made those runs, the Board’s model and data exactly as they were used, and a check that rebuilds a sample of them. `METHOD.md` describes how the runs are made.
+**What it is.** FRB/US is the large-scale model of the U.S. economy the Federal Reserve Board’s staff has used since 1996 and publishes with Python code. On the page a reader picks one of fifteen shocks (among them the federal funds rate, government purchases, taxes, oil prices, tariffs and stock prices) and sees the response of 32 variables over ten years, each as a difference from a baseline. The page runs no model: every number it shows comes from **13,437 runs solved in advance** and stored in 119 files, which the page scales, interpolates between sizes and, when shocks are combined, adds, all in normal times only; at the lower bound it shows only runs stored at exactly the size chosen. This folder holds the engine that made those runs, the Board’s model and data exactly as they were used, and a check that rebuilds a sample of them. `METHOD.md` describes how the runs are made.
 
 FRB/US is the Federal Reserve Board staff’s model. The simulations here are Econvitals’, not the Federal Reserve’s, and the Federal Reserve has not reviewed or endorsed them.
 
@@ -38,7 +38,7 @@ expected/          the page’s own numbers
   runs/              119 files, one per shock x expectations x lower bound x financing, each with a sample of its runs
 ```
 
-**The sample.** The page’s library (13,442 runs, built November 9, 2026) is too large to keep here. `expected/runs/` holds every one of its files with **240 of its runs: two from every file**, plus the two `scenario.py --selftest` reads, so the sample covers every shock (both stock-price versions, both business-investment runs and the tariff among them) under every combination of expectations, lower bound and financing the page offers; within each shock the files take turns through the Fed responses, lengths and sizes stored for it. Each file’s `stored_runs` says how many runs the page’s copy holds, and its `failed` lists every run of that file that did not solve. `engine/build.py` rebuilds the whole library (below).
+**The sample.** The page’s library (13,437 runs, built November 12, 2026) is too large to keep here. `expected/runs/` holds every one of its files with **240 of its runs: two from every file**, plus the two `scenario.py --selftest` reads, so the sample covers every shock (both stock-price versions, both business-investment runs and the tariff among them) under every combination of expectations, lower bound and financing the page offers; within each shock the files take turns through the Fed responses, lengths and sizes stored for it. Each file’s `stored_runs` says how many runs the page’s copy holds, and its `failed` lists every run of that file that did not solve. `engine/build.py` rebuilds the whole library (below).
 
 ## Run it
 
@@ -126,10 +126,10 @@ A bare `python engine/build.py` runs the three in that order. `build.py` uses ev
 | Backward-looking | Normal times | Taxes fixed | 1,984 | 0 |
 | Backward-looking | Normal times | Debt rule | 1,984 | 0 |
 | Backward-looking | At the lower bound | Taxes fixed | 1,984 | 0 |
-| Backward-looking | At the lower bound | Debt rule | 1,984 | 0 |
+| Backward-looking | At the lower bound | Debt rule | 1,980 | 4 |
 | Forward-looking | Normal times | Taxes fixed | 1,905 | 63 |
 | Forward-looking | Normal times | Debt rule | 1,913 | 55 |
-| Forward-looking | At the lower bound | Taxes fixed | 1,688 | 280 |
+| Forward-looking | At the lower bound | Taxes fixed | 1,687 | 281 |
 
 Forward-looking expectations at the lower bound with the Board’s debt rule are not built (see “Caveats”).
 
@@ -145,7 +145,7 @@ Measured on an eight-core Apple M1, in a fresh environment with the network swit
 
 **Forward-looking runs are numerically fussy.** A forward-looking run solves a 200-quarter nonlinear system by Newton’s method, starting from the baseline. On a different processor, BLAS library or package version, the last digits can move, and a run near the edge of convergence can converge on one machine and not on another. The backward-looking runs are robust. If a forward-looking run misses on your machine, check first that you installed the exact versions in `requirements.txt`.
 
-**Some runs did not solve, and they are listed.** Every backward-looking run solved. 398 forward-looking runs did not converge within 40 iterations and are listed, with the solver’s message, under `failed` in their files; the page says when a combination did not solve. `verify.py` does not attempt them. Forward-looking expectations at the lower bound with the Board’s debt rule are not built at all: in an early build only 86 of 680 such runs converged. Nor is a permanent Fed move under forward-looking expectations, which has no unique answer.
+**Some runs did not solve, and they are listed.** Every backward-looking run solved. 403 forward-looking runs did not converge within 40 iterations and are listed, with the solver’s message, under `failed` in their files; the page says when a combination did not solve. `verify.py` does not attempt them. Forward-looking expectations at the lower bound with the Board’s debt rule are not built at all: in an early build only 86 of 680 such runs converged. Nor is a permanent Fed move under forward-looking expectations, which has no unique answer.
 
 **The 200-quarter horizon.** Forward-looking runs are solved over 200 quarters (50 years) and the first 41 are stored, with the policy rule’s neutral real rate learning from the real funds rate (`drstar = 1`). A permanent shock stays in force to the end of the solution, so agents never see it end. Solved over 300 quarters instead, a sample of permanent shocks (government purchases, productivity growth, the tariff, credit spreads and expected earnings, under the balanced-approach rule, with taxes fixed and with the debt rule) moved real GDP, unemployment, core inflation and the funds rate by at most 0.05 and the 10-year yield by at most 0.08 over the 41 stored quarters; stock-market wealth moved by up to 1.6 percent of its level, and housing and business investment by a few tenths, most for shocks that never settle (productivity growth faster forever, a permanent deficit with taxes fixed). The page says so; treat those variables in permanent forward-looking runs as approximate.
 

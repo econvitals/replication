@@ -195,6 +195,7 @@ VARS = [
     ("lur", "Unemployment rate", "pp", "top"),
     ("picx4", "Core PCE inflation (4-quarter)", "pp", "top"),
     ("rff", "Federal funds rate", "pp", "top"),
+    ("xgdpn", "Nominal GDP", "pct", "activity"),      # added 2026-11-11, at a reader's request
     ("xgap2", "Output gap", "pp", "activity"),
     ("ecnia", "Consumer spending", "pct", "activity"),
     ("ebfi", "Business investment", "pct", "activity"),
@@ -207,6 +208,7 @@ VARS = [
     ("realwage", "Real compensation per hour", "pct", "labor"),
     ("pic4", "PCE inflation (4-quarter)", "pp", "prices"),
     ("picxfe", "Core PCE inflation (quarterly, annualized)", "pp", "prices"),
+    ("pgdp", "GDP price index", "pct", "prices"),      # added 2026-11-11, with nominal GDP
     ("ptr", "Long-run expected inflation", "pp", "prices"),
     ("poil", "Oil price", "usd", "prices"),
     ("rg10", "10-year Treasury yield", "pp", "rates"),
@@ -356,6 +358,7 @@ def deviations(sim, wa, s, n):
         elif v == "gov": x = gdp("egfen")
         elif v == "transfers": x = gdp("gtn")
         elif v == "taxrate": x = 100 * pp("trp")
+        elif v == "lfpr": x = 100 * pp("lfpr")    # FRB/US holds lfpr as a fraction (0.618); before 2026-11-11 it was stored unscaled
         elif v == "surplus": x = gdp("gfsrpn")
         elif v == "debt": x = gdp("gfdbtnp")
         elif v == "curacct": x = gdp("fcbn")
@@ -739,6 +742,9 @@ def main():
         if prev.get("dropped"): meta["dropped"] = prev["dropped"]
     (OUT / "meta.json").write_text(json.dumps(meta, indent=1) + "\n")
     log("wrote meta.json")
+    import current_baseline           # the Board's baseline from the current quarter, which the page's levels sit on
+    cb = current_baseline.write(OUT)
+    log(f"wrote current.json (shock hits {cb['start']}, follows the {cb['sep']} SEP)")
 
     record_solves(tally, args)
     log(f"build done in {(time.time()-t0)/60:.1f} min ({tally['library']} library solves)")

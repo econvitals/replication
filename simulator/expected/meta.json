@@ -1,5 +1,5 @@
 {
- "built": "2026-11-09",
+ "built": "2026-11-12",
  "model": "FRB/US",
  "vintage": {
   "pyfrbus": {
@@ -986,6 +986,12 @@
    "group": "top"
   },
   {
+   "id": "xgdpn",
+   "label": "Nominal GDP",
+   "kind": "pct",
+   "group": "activity"
+  },
+  {
    "id": "xgap2",
    "label": "Output gap",
    "kind": "pp",
@@ -1055,6 +1061,12 @@
    "id": "picxfe",
    "label": "Core PCE inflation (quarterly, annualized)",
    "kind": "pp",
+   "group": "prices"
+  },
+  {
+   "id": "pgdp",
+   "label": "GDP price index",
+   "kind": "pct",
    "group": "prices"
   },
   {
@@ -1175,611 +1187,611 @@
   }
  ],
  "stats": {
-  "tariff_var_no_fixed": {
-   "runs": 112,
+  "fed_mce_no_fixed": {
+   "runs": 64,
    "failed": 0,
-   "bytes": 968242
-  },
-  "tariff_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 970101
-  },
-  "tariff_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 970687
-  },
-  "tariff_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967649
-  },
-  "tariff_mce_no_fixed": {
-   "runs": 111,
-   "failed": 1,
-   "bytes": 958725
-  },
-  "tariff_mce_no_debt": {
-   "runs": 100,
-   "failed": 12,
-   "bytes": 865301
-  },
-  "tariff_mce_yes_fixed": {
-   "runs": 92,
-   "failed": 20,
-   "bytes": 808616
-  },
-  "credit_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 965626
-  },
-  "credit_mce_no_fixed": {
-   "runs": 106,
-   "failed": 6,
-   "bytes": 912291
-  },
-  "credit_mce_yes_fixed": {
-   "runs": 105,
-   "failed": 7,
-   "bytes": 907677
-  },
-  "credit_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 962652
-  },
-  "credit_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 962323
-  },
-  "credit_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 952955
-  },
-  "credit_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 957034
-  },
-  "dollar_mce_no_debt": {
-   "runs": 86,
-   "failed": 26,
-   "bytes": 738798
-  },
-  "dollar_mce_no_fixed": {
-   "runs": 90,
-   "failed": 22,
-   "bytes": 771690
-  },
-  "dollar_mce_yes_fixed": {
-   "runs": 79,
-   "failed": 33,
-   "bytes": 688794
-  },
-  "dollar_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 961115
-  },
-  "dollar_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 960616
-  },
-  "dollar_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 957215
-  },
-  "dollar_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 959204
-  },
-  "expect_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 954195
-  },
-  "expect_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953917
-  },
-  "expect_mce_yes_fixed": {
-   "runs": 100,
-   "failed": 12,
-   "bytes": 858219
-  },
-  "expect_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 957184
-  },
-  "expect_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 956672
-  },
-  "expect_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953062
-  },
-  "expect_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 958286
+   "bytes": 590241
   },
   "fed_mce_no_debt": {
    "runs": 64,
    "failed": 0,
-   "bytes": 551928
-  },
-  "fed_mce_no_fixed": {
-   "runs": 64,
-   "failed": 0,
-   "bytes": 551996
-  },
-  "fed_mce_yes_fixed": {
-   "runs": 58,
-   "failed": 6,
-   "bytes": 422435
-  },
-  "fed_var_no_debt": {
-   "runs": 80,
-   "failed": 0,
-   "bytes": 692417
-  },
-  "fed_var_no_fixed": {
-   "runs": 80,
-   "failed": 0,
-   "bytes": 690349
-  },
-  "fed_var_yes_debt": {
-   "runs": 80,
-   "failed": 0,
-   "bytes": 594086
-  },
-  "fed_var_yes_fixed": {
-   "runs": 80,
-   "failed": 0,
-   "bytes": 595060
+   "bytes": 589810
   },
   "gov_mce_no_debt": {
    "runs": 112,
    "failed": 0,
-   "bytes": 968815
+   "bytes": 1035560
   },
   "gov_mce_no_fixed": {
    "runs": 105,
    "failed": 7,
-   "bytes": 905284
-  },
-  "gov_mce_yes_fixed": {
-   "runs": 105,
-   "failed": 7,
-   "bytes": 913469
-  },
-  "gov_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967447
-  },
-  "gov_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967134
-  },
-  "gov_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 961724
-  },
-  "gov_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 965607
-  },
-  "immig_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 968150
-  },
-  "immig_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967204
-  },
-  "immig_mce_yes_fixed": {
-   "runs": 77,
-   "failed": 35,
-   "bytes": 675498
-  },
-  "immig_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967738
-  },
-  "immig_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 965984
-  },
-  "immig_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 959675
-  },
-  "immig_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 964187
-  },
-  "invest_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 968552
-  },
-  "invest_mce_no_fixed": {
-   "runs": 106,
-   "failed": 6,
-   "bytes": 915333
-  },
-  "invest_mce_yes_fixed": {
-   "runs": 104,
-   "failed": 8,
-   "bytes": 908361
-  },
-  "invest_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 968900
-  },
-  "invest_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967028
-  },
-  "invest_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 964307
-  },
-  "invest_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 968127
-  },
-  "investimp_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 960170
-  },
-  "investimp_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 960111
-  },
-  "investimp_mce_yes_fixed": {
-   "runs": 105,
-   "failed": 7,
-   "bytes": 912533
-  },
-  "investimp_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 957969
-  },
-  "investimp_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 957489
-  },
-  "investimp_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 950319
-  },
-  "investimp_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 950377
-  },
-  "mfp_mce_no_debt": {
-   "runs": 95,
-   "failed": 17,
-   "bytes": 825263
-  },
-  "mfp_mce_no_fixed": {
-   "runs": 104,
-   "failed": 8,
-   "bytes": 903509
-  },
-  "mfp_mce_yes_fixed": {
-   "runs": 92,
-   "failed": 20,
-   "bytes": 799990
-  },
-  "mfp_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 978405
-  },
-  "mfp_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 978462
-  },
-  "mfp_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 967354
-  },
-  "mfp_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 968678
-  },
-  "oil_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953727
-  },
-  "oil_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 954102
-  },
-  "oil_mce_yes_fixed": {
-   "runs": 71,
-   "failed": 41,
-   "bytes": 608296
-  },
-  "oil_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 954854
-  },
-  "oil_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953152
-  },
-  "oil_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 944688
-  },
-  "oil_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 948312
-  },
-  "realloc_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 964162
-  },
-  "realloc_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 963297
-  },
-  "realloc_mce_yes_fixed": {
-   "runs": 90,
-   "failed": 22,
-   "bytes": 780763
-  },
-  "realloc_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 961969
-  },
-  "realloc_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 962438
-  },
-  "realloc_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 958095
-  },
-  "realloc_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 961334
-  },
-  "stocks_earn_mce_no_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1440798
-  },
-  "stocks_earn_mce_no_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1440436
-  },
-  "stocks_earn_mce_yes_fixed": {
-   "runs": 134,
-   "failed": 34,
-   "bytes": 1165246
-  },
-  "stocks_earn_var_no_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1433665
-  },
-  "stocks_earn_var_no_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1432288
-  },
-  "stocks_earn_var_yes_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1422056
-  },
-  "stocks_earn_var_yes_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1427566
-  },
-  "stocks_mce_no_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1442582
-  },
-  "stocks_mce_no_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1442297
-  },
-  "stocks_mce_yes_fixed": {
-   "runs": 161,
-   "failed": 7,
-   "bytes": 1387379
-  },
-  "stocks_var_no_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1438552
-  },
-  "stocks_var_no_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1437496
-  },
-  "stocks_var_yes_debt": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1423211
-  },
-  "stocks_var_yes_fixed": {
-   "runs": 168,
-   "failed": 0,
-   "bytes": 1429087
-  },
-  "tax_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 961383
+   "bytes": 967891
   },
   "tax_mce_no_fixed": {
    "runs": 106,
    "failed": 6,
-   "bytes": 911059
+   "bytes": 975936
   },
-  "tax_mce_yes_fixed": {
-   "runs": 109,
-   "failed": 3,
-   "bytes": 941657
-  },
-  "tax_var_no_debt": {
+  "tax_mce_no_debt": {
    "runs": 112,
    "failed": 0,
-   "bytes": 960954
-  },
-  "tax_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 962444
-  },
-  "tax_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 959520
-  },
-  "tax_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 959973
-  },
-  "termprem_mce_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953758
-  },
-  "termprem_mce_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 952919
-  },
-  "termprem_mce_yes_fixed": {
-   "runs": 104,
-   "failed": 8,
-   "bytes": 898143
-  },
-  "termprem_var_no_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 954370
-  },
-  "termprem_var_no_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 953205
-  },
-  "termprem_var_yes_debt": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 956752
-  },
-  "termprem_var_yes_fixed": {
-   "runs": 112,
-   "failed": 0,
-   "bytes": 956333
+   "bytes": 1030373
   },
   "transfers_mce_no_debt": {
    "runs": 112,
    "failed": 0,
-   "bytes": 963047
+   "bytes": 1031694
   },
   "transfers_mce_no_fixed": {
    "runs": 105,
    "failed": 7,
-   "bytes": 902351
+   "bytes": 966575
+  },
+  "oil_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1023013
+  },
+  "oil_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1022927
+  },
+  "dollar_mce_no_fixed": {
+   "runs": 90,
+   "failed": 22,
+   "bytes": 825981
+  },
+  "dollar_mce_no_debt": {
+   "runs": 86,
+   "failed": 26,
+   "bytes": 790421
+  },
+  "stocks_mce_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1545419
+  },
+  "stocks_mce_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1545292
+  },
+  "stocks_earn_mce_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1543898
+  },
+  "stocks_earn_mce_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1544040
+  },
+  "termprem_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1021292
+  },
+  "termprem_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1021889
+  },
+  "mfp_mce_no_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 965709
+  },
+  "mfp_mce_no_debt": {
+   "runs": 95,
+   "failed": 17,
+   "bytes": 881069
+  },
+  "realloc_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1030080
+  },
+  "realloc_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1031170
+  },
+  "tariff_mce_no_fixed": {
+   "runs": 111,
+   "failed": 1,
+   "bytes": 1026299
+  },
+  "tariff_mce_no_debt": {
+   "runs": 100,
+   "failed": 12,
+   "bytes": 924730
+  },
+  "immig_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1035441
+  },
+  "immig_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1036384
+  },
+  "expect_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1022149
+  },
+  "expect_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1022410
+  },
+  "credit_mce_no_fixed": {
+   "runs": 106,
+   "failed": 6,
+   "bytes": 976222
+  },
+  "credit_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1032896
+  },
+  "invest_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1035088
+  },
+  "invest_mce_no_fixed": {
+   "runs": 106,
+   "failed": 6,
+   "bytes": 978470
+  },
+  "investimp_mce_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1027186
+  },
+  "investimp_mce_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1027237
+  },
+  "fed_mce_yes_fixed": {
+   "runs": 58,
+   "failed": 6,
+   "bytes": 451475
+  },
+  "gov_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 977024
+  },
+  "tax_mce_yes_fixed": {
+   "runs": 109,
+   "failed": 3,
+   "bytes": 1007046
   },
   "transfers_mce_yes_fixed": {
    "runs": 102,
    "failed": 10,
-   "bytes": 881882
+   "bytes": 942724
+  },
+  "oil_mce_yes_fixed": {
+   "runs": 71,
+   "failed": 41,
+   "bytes": 652101
+  },
+  "dollar_mce_yes_fixed": {
+   "runs": 79,
+   "failed": 33,
+   "bytes": 736398
+  },
+  "stocks_mce_yes_fixed": {
+   "runs": 161,
+   "failed": 7,
+   "bytes": 1485012
+  },
+  "stocks_earn_mce_yes_fixed": {
+   "runs": 134,
+   "failed": 34,
+   "bytes": 1247033
+  },
+  "termprem_mce_yes_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 962412
+  },
+  "mfp_mce_yes_fixed": {
+   "runs": 91,
+   "failed": 21,
+   "bytes": 847020
+  },
+  "realloc_mce_yes_fixed": {
+   "runs": 90,
+   "failed": 22,
+   "bytes": 835361
+  },
+  "tariff_mce_yes_fixed": {
+   "runs": 92,
+   "failed": 20,
+   "bytes": 865824
+  },
+  "immig_mce_yes_fixed": {
+   "runs": 77,
+   "failed": 35,
+   "bytes": 723171
+  },
+  "expect_mce_yes_fixed": {
+   "runs": 100,
+   "failed": 12,
+   "bytes": 918328
+  },
+  "credit_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 970644
+  },
+  "invest_mce_yes_fixed": {
+   "runs": 104,
+   "failed": 8,
+   "bytes": 970720
+  },
+  "investimp_mce_yes_fixed": {
+   "runs": 105,
+   "failed": 7,
+   "bytes": 976137
+  },
+  "credit_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1027596
+  },
+  "credit_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1028031
+  },
+  "credit_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1016156
+  },
+  "credit_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1021508
+  },
+  "dollar_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026648
+  },
+  "dollar_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026769
+  },
+  "dollar_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1021173
+  },
+  "dollar_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1024491
+  },
+  "expect_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1023672
+  },
+  "expect_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1023553
+  },
+  "expect_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1018062
+  },
+  "expect_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1024602
+  },
+  "fed_var_no_debt": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 738500
+  },
+  "fed_var_no_fixed": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 736786
+  },
+  "fed_var_yes_debt": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 632029
+  },
+  "fed_var_yes_fixed": {
+   "runs": 80,
+   "failed": 0,
+   "bytes": 633917
+  },
+  "gov_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1033739
+  },
+  "gov_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1033432
+  },
+  "gov_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026581
+  },
+  "gov_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1031419
+  },
+  "immig_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1034998
+  },
+  "immig_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1033517
+  },
+  "immig_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026159
+  },
+  "immig_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1032698
+  },
+  "invest_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1034566
+  },
+  "invest_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1033272
+  },
+  "invest_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1027933
+  },
+  "invest_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1033628
+  },
+  "investimp_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026016
+  },
+  "investimp_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1025648
+  },
+  "investimp_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1018648
+  },
+  "investimp_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1018965
+  },
+  "mfp_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1043588
+  },
+  "mfp_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1044174
+  },
+  "mfp_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1032167
+  },
+  "mfp_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1034165
+  },
+  "oil_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1024314
+  },
+  "oil_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1022078
+  },
+  "oil_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1014372
+  },
+  "oil_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1018158
+  },
+  "realloc_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1028985
+  },
+  "realloc_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1029582
+  },
+  "realloc_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1026119
+  },
+  "realloc_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1029728
+  },
+  "stocks_earn_var_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1535246
+  },
+  "stocks_earn_var_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1534145
+  },
+  "stocks_earn_var_yes_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1522301
+  },
+  "stocks_earn_var_yes_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1529183
+  },
+  "stocks_var_no_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1539165
+  },
+  "stocks_var_no_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1538559
+  },
+  "stocks_var_yes_debt": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1521269
+  },
+  "stocks_var_yes_fixed": {
+   "runs": 168,
+   "failed": 0,
+   "bytes": 1528827
+  },
+  "tariff_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1035607
+  },
+  "tariff_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1035474
+  },
+  "tariff_var_yes_debt": {
+   "runs": 108,
+   "failed": 4,
+   "bytes": 995251
+  },
+  "tariff_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1037932
+  },
+  "tax_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1029850
+  },
+  "tax_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1030579
+  },
+  "tax_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1029144
+  },
+  "tax_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1027219
+  },
+  "termprem_var_no_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1021307
+  },
+  "termprem_var_no_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1020861
+  },
+  "termprem_var_yes_debt": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1022100
+  },
+  "termprem_var_yes_fixed": {
+   "runs": 112,
+   "failed": 0,
+   "bytes": 1023388
   },
   "transfers_var_no_debt": {
    "runs": 112,
    "failed": 0,
-   "bytes": 962026
+   "bytes": 1030676
   },
   "transfers_var_no_fixed": {
    "runs": 112,
    "failed": 0,
-   "bytes": 963458
+   "bytes": 1031021
   },
   "transfers_var_yes_debt": {
    "runs": 112,
    "failed": 0,
-   "bytes": 957557
+   "bytes": 1026000
   },
   "transfers_var_yes_fixed": {
    "runs": 112,
    "failed": 0,
-   "bytes": 960351
+   "bytes": 1026871
   }
  },
  "dropped": {
   "mce_yes_debt": "forward-looking runs at the lower bound under the Board's debt rule: only 86 of 680 converged (build of 2026-10-27), so the nine files are not shipped and the page greys the setting out"
  },
  "counts": {
-  "presolved": 13442,
-  "unsolved": 398,
-  "library_solves_logged": 26860,
+  "presolved": 13437,
+  "unsolved": 403,
+  "library_solves_logged": 41138,
   "library_solves_before_log": 13800,
-  "library_solves_total_approx": 40660,
+  "library_solves_total_approx": 54938,
   "note": "Pre-solved = stored runs; unsolved = combinations attempted that did not converge. Solves are counted by the engine since 2026-10-31; the earlier 13,800 is an estimate reconstructed from that week's builds."
  }
 }
