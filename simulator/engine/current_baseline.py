@@ -23,7 +23,7 @@ import time
 
 import pandas as pd
 
-from build import FED, H, OUT, VARS, data
+from build import FED, H, OUT, START, VARS, data
 
 PRE = 4                          # quarters stored before the shock (growth over a year needs four)
 SEP_MONTHS = (3, 6, 9, 12)       # the SEP rounds; each is published around the 17th of its month
@@ -70,6 +70,20 @@ def paths(start):
     return out
 
 
+def stock_wealth(history_ends):
+    """Household stock-market wealth relative to GDP in the last quarter of history and at the runs' baseline quarter
+    (START, 2040Q1), and their ratio. The page's "Household stock wealth: today's" switch (2026-11-15, the
+    default) multiplies the household-wealth channel of the two stock-price shocks by `factor`: FRB/US spending responds
+    to DOLLARS of wealth, so a 10 percent fall from 2.3 times GDP does about 1.75 times the damage of the same fall from
+    the 1.3 times GDP the 2040 baseline holds. Read by the page (app.js)."""
+    d = data()
+    ratio = lambda q: float(d.loc[q, "wpsn"] / d.loc[q, "xgdpn"])
+    today = pd.Period(history_ends, freq="Q")
+    t, b = ratio(today), ratio(START)
+    return {"today_q": str(today), "today": round(t, 4), "baseline_q": str(START), "baseline": round(b, 4),
+            "factor": round(t / b, 4)}
+
+
 def write(out_dir=OUT):
     vintage = json.loads((FED / "VINTAGE.json").read_text()) if (FED / "VINTAGE.json").exists() else {}
     package_date = (vintage.get("data") or {}).get("last_modified")
@@ -79,6 +93,8 @@ def write(out_dir=OUT):
             "sep": sep_round(package_date)[0] if package_date else None,
             "sep_through": sep_round(package_date)[1] if package_date else None, "sep_vars": SEP_VARS,
             "written": time.strftime("%Y-%m-%d"), "values": paths(start)}
+    if vintage.get("history_ends"):
+        body["stock_wealth"] = stock_wealth(vintage["history_ends"])
     (out_dir / "current.json").write_text(json.dumps(body, separators=(",", ":")) + "\n")
     return body
 
@@ -89,4 +105,5 @@ if __name__ == "__main__":
     b = write(Path(os.environ["FRBUS_OUT"]) if os.environ.get("FRBUS_OUT") else OUT)
     v = b["values"]
     print(f"current.json: shock hits {b['start']}, package {b['package_date']} (follows the {b['sep']} SEP); "
-          f"core PCE {v['picx4'][PRE]}, unemployment {v['lur'][PRE]}, funds rate {v['rff'][PRE]}")
+          f"core PCE {v['picx4'][PRE]}, unemployment {v['lur'][PRE]}, funds rate {v['rff'][PRE]}; "
+          f"stock wealth {b.get('stock_wealth')}")
