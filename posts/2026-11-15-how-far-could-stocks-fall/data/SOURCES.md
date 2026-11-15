@@ -1,0 +1,17 @@
+# Public data in this package
+
+Each file is frozen as used for the post. `refresh/fetch_public.py` re-downloads the ones that can be fetched by script.
+
+| File | What | Source | As of |
+|:---:|:---:|:---:|:---:|
+| `french_factors_daily.csv` | Daily market excess return (Mkt-RF) and the risk-free rate (RF), percent, all NYSE, AMEX and Nasdaq stocks, value-weighted (CRSP), July 1926 to September 30, 2026 | Kenneth R. French Data Library, “Fama/French 3 Factors [Daily]” (mba.tuck.dartmouth.edu/pages/faculty/ken.french/data_library.html), file as downloaded; © Eugene F. Fama and Kenneth R. French, reproduced with attribution | built from the September 2026 CRSP database; downloaded October 26, 2026 |
+| `shiller_monthly.csv` | S&P Composite price, dividends, earnings, CPI and the cyclically adjusted price-earnings ratio (CAPE), monthly from 1871 | Robert J. Shiller, “U.S. Stock Markets 1871–Present and CAPE Ratio” (`ie_data.xls`, shillerdata.com), columns P, D, E, CPI and CAPE | through October 2026; downloaded November 15, 2026 |
+| `shiller_dividend_yield_as_used.csv` | The S&P Composite’s dividend yield (D/P), monthly, used to take dividends out of French’s total return | Shiller’s `ie_data.xls` as downloaded for the post on November 14, 2026 — an earlier copy whose dividends run to June 2024; later months use the June 2024 yield, as in the post | through June 2024 |
+| `fred_gdp.csv` | Nominal GDP, quarterly, seasonally adjusted annual rate, billions | Bureau of Economic Analysis, via FRED (series GDP) | through 2026Q3; downloaded November 15, 2026 (unchanged from the post’s November 14 pull) |
+| `fred_cpatax.csv` | Corporate profits after tax with inventory valuation and capital consumption adjustments, quarterly, billions | Bureau of Economic Analysis, via FRED (series CPATAX) | through 2026Q2 |
+| `fred_dfii10.csv` | 10-year Treasury inflation-indexed (TIPS) yield, daily, percent | Federal Reserve Board H.15, via FRED (series DFII10) | through November 12, 2026 |
+| `minneapolis_fed_sp12m.csv` | Option-implied probability distribution of the S&P 500 twelve months ahead, weekly; `prDec` = probability of a decline of 20 percent or more | Federal Reserve Bank of Minneapolis, Market-Based Probabilities (`mpd_stats.csv`, minneapolisfed.org/banking/mpd), rows for the market `sp12m` | January 2007 to October 28, 2026 |
+| `sec_revenue.csv` | Quarterly and annual revenue of Nvidia, Alphabet and Microsoft from 2021 | SEC EDGAR XBRL company facts (data.sec.gov/api/xbrl/companyfacts/), tags `RevenueFromContractWithCustomerExcludingAssessedTax` and `Revenues` | filings through November 13, 2026 |
+| `sec_tesla_shares_outstanding.csv` | Tesla’s shares outstanding from each filing’s cover page | SEC EDGAR XBRL (`dei:EntityCommonStockSharesOutstanding`, CIK 0001318605) | filings through October 22, 2026 |
+| `sec_2000_net_income.csv` | Net income over the last four quarters reported by March 24, 2000, for six of Table 1’s 2000 companies, $ millions | the companies’ 10-K and 10-Q filings of 1999–2000 on EDGAR (each row names its filings); Nortel Networks, a Canadian filer, has none there | — |
+| `z1_household_equities.csv` | Households’ and nonprofits’ directly and indirectly held corporate equities, quarterly, $ millions | Federal Reserve, Financial Accounts of the United States (Z.1), table S1M.e.b (formerly B.101.e), series LM153064475 | through 2026Q2 (the September 2026 release) |

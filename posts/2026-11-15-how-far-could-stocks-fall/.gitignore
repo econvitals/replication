@@ -1,0 +1,9 @@
+output/
+data_refreshed/
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
+# licensed inputs are never committed: only the README in licensed/ is tracked
+licensed/*
+!licensed/README.md

@@ -1,0 +1,5 @@
+{
+  "status": "documented",
+  "why_not_compared": "the post's inputs are frozen and nothing it checks changes after publication; the package is partial (licensed inputs are not included, see licensed/README.md), and run_all.py ends with verify.py, which checks the post's numbers: 60 PASS and 95 SKIPPED on the public data alone, 155 PASS of 155 with the licensed inputs used for the post (November 15, 2026)",
+  "compare": []
+}
