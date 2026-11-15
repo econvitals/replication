@@ -71,17 +71,25 @@ def paths(start):
 
 
 def stock_wealth(history_ends):
-    """Household stock-market wealth relative to GDP in the last quarter of history and at the runs' baseline quarter
-    (START, 2040Q1), and their ratio. The page's "Household stock wealth: today's" switch (2026-11-15, the
-    default) multiplies the household-wealth channel of the two stock-price shocks by `factor`: FRB/US spending responds
-    to DOLLARS of wealth, so a 10 percent fall from 2.3 times GDP does about 1.75 times the damage of the same fall from
-    the 1.3 times GDP the 2040 baseline holds. Read by the page (app.js)."""
+    """Household stock-market wealth in the last quarter of history and at the runs' baseline quarter (START, 2040Q1):
+    relative to GDP (`today`, `baseline`, for the words) and as a share of all household wealth, stocks plus everything
+    else (`share_today`, `share_baseline`). The page's "Household stock wealth: today's" switch (2026-11-15, the
+    default) multiplies the household-wealth channel of the two stock-price shocks by `factor` = the ratio of the SHARES.
+    FRB/US consumption's target moves with log(wpo + wps), total household wealth (`qec`, coefficient y_qec(4)), so a
+    given percentage move in stock prices moves spending in proportion to stocks' share of that total, not to stocks
+    relative to GDP: 0.377 in 2026Q2 against 0.281 at 2040Q1, a factor of 1.34 (the GDP ratio, 2.27 / 1.30 = 1.75, was
+    used for a few hours on 2026-11-15 and overstated it). Checked in the full model: a 30 percent fall from 2027 with
+    stock wealth held at 2.27 and at 1.30 times GDP moved consumption 1.48 times as much, as the shares predict (1.49),
+    not the GDP ratio (1.75). The exact ratio for a 30 percent move is 1.33-1.36; the page scales linearly. Read by the
+    page (app.js) and by tools outside the page."""
     d = data()
     ratio = lambda q: float(d.loc[q, "wpsn"] / d.loc[q, "xgdpn"])
+    share = lambda q: float(d.loc[q, "wpsn"] / (d.loc[q, "wpsn"] + d.loc[q, "wpon"]))
     today = pd.Period(history_ends, freq="Q")
-    t, b = ratio(today), ratio(START)
-    return {"today_q": str(today), "today": round(t, 4), "baseline_q": str(START), "baseline": round(b, 4),
-            "factor": round(t / b, 4)}
+    st, sb = share(today), share(START)
+    return {"today_q": str(today), "today": round(ratio(today), 4), "baseline_q": str(START),
+            "baseline": round(ratio(START), 4), "share_today": round(st, 4), "share_baseline": round(sb, 4),
+            "factor": round(st / sb, 4)}
 
 
 def write(out_dir=OUT):
