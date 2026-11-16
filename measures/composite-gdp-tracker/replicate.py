@@ -7,8 +7,10 @@ Fed models shown beside its track record.
 The composite blends four trackers of the quarter in progress with weights fixed by how many days
 remain until BEA's advance estimate. This script fetches the two public Fed models itself:
   GDPNow             the Atlanta Fed's workbook (TrackingHistory for the quarter in progress,
-                     TrackingArchives for earlier quarters, TrackRecord for its record);
-  NY Fed Nowcast     the New York Fed Staff Nowcast workbook ("Forecasts By Quarter").
+                     TrackingArchives for earlier quarters and their release dates, TrackRecord
+                     for the advance estimates);
+  NY Fed Nowcast     the New York Fed Staff Nowcast workbook ("Forecasts By Quarter", with any
+                     reading only "Forecasts By Horizon" carries yet).
 The other two legs are RECORDED inputs, read from Econvitals' published daily history:
   Street median      the median of Wall Street tracking estimates, from bank research notes that
                      are not public; only the value the site published is used;
@@ -72,7 +74,8 @@ for d, v in zip(hist[0][2:], gdp_row[2:]):
         gdpnow.setdefault(current, {})[day(d)] = float(v)
 
 nyfed = {}                                          # {quarter: {forecast date: nowcast}}
-by_q = sheet(get(NYFED, binary=True), "Forecasts By Quarter")
+ny_book = get(NYFED, binary=True)
+by_q = sheet(ny_book, "Forecasts By Quarter")
 head = next(i for i, r in enumerate(by_q) if r[0] == "Forecast Date")
 for r in by_q[head + 1:]:
     if r[0] is None:
@@ -80,6 +83,28 @@ for r in by_q[head + 1:]:
     for q, v in zip(by_q[head][1:], r[1:]):
         if q and isinstance(v, (int, float)):
             nyfed.setdefault(label(q), {})[day(r[0])] = float(v)
+# The By-Quarter sheet can lag: after BEA's advance estimate of 2026Q3 it had no 2026Q4 column
+# until November 6, while the By-Horizon sheet already carried the fourth quarter's readings in
+# its next-quarter column. Fill any date the By-Quarter sheet lacks from the By-Horizon sheet
+# (the two agree wherever both have a reading).
+def shift(q: str, k: int) -> str:
+    y, n = int(q[-4:]), int(q[1])
+    i = y * 4 + n - 1 + k
+    return f"Q{i % 4 + 1} {i // 4}"
+
+
+by_h = sheet(ny_book, "Forecasts By Horizon")
+head = next(i for i, r in enumerate(by_h) if r[0] == "Forecast date")
+cols = {c: j for j, c in enumerate(by_h[head]) if c}
+for r in by_h[head + 1:]:
+    if r[0] is None or not r[cols["Reference quarter"]]:
+        continue
+    ref = label(str(r[cols["Reference quarter"]]).replace(":", ""))
+    for cap, k in (("Backcast (previous quarter)", -1), ("Nowcast (current quarter)", 0),
+                   ("Forecast (next quarter)", 1)):
+        v = r[cols[cap]] if cap in cols else None
+        if isinstance(v, (int, float)):
+            nyfed.setdefault(shift(ref, k), {}).setdefault(day(r[0]), float(v))
 
 
 # ---------------------------------------------------------------- the weighting rule
@@ -146,10 +171,12 @@ save(composite, HERE, "composite")
 
 # ---------------------------------------------------------------- the back-test
 # GDPNow and the NY Fed on the NY Fed's last Friday before each advance estimate, 2023 on, and
-# their plain average, against the advance estimate. The published back-test takes the advance
-# estimates and their dates from Atlanta's TrackRecord sheet, so this does too; where that sheet's
-# date disagrees with BEA's actual release date (which the TrackingArchives sheet carries), the
-# row says so and gives the average on the right date as well.
+# their plain average, against the advance estimate, for the quarters released before the live
+# record began on October 18, 2026 (later quarters are scored live). The advance estimates come
+# from Atlanta's TrackRecord sheet and their release dates from its TrackingArchives sheet:
+# TrackRecord dates the third quarters of 2024 and 2026 September 30, the quarter's last day,
+# where BEA published on October 30, 2024 and October 29, 2026.
+LIVE_RECORD_START = "2026-10-18"
 release_on = {}
 pcol = arch[0].index("Publication Date of Advance Estimate")
 for r in arch[1:]:
@@ -168,21 +195,16 @@ bt = []
 for r in sheet(atl, "TrackRecord")[1:]:
     if r[0] is None or not isinstance(r[2], (int, float)) or r[0].year < 2023:
         continue
-    q, advance, release = label(r[0]), float(r[2]), day(r[3])
+    q, advance = label(r[0]), float(r[2])
+    release = release_on.get(q) or day(r[3])
+    if release >= LIVE_RECORD_START:
+        continue
     got = last_friday_readings(q, release)
     if not got:
         continue
     as_of, g, n = got
-    row = {"quarter": q, "advance": advance, "release_date_used": release, "as_of": as_of,
-           "gdpnow": g, "nyfed": n, "average": (g + n) / 2, "average_miss": (g + n) / 2 - advance}
-    true = release_on.get(q)
-    if true and true != release and last_friday_readings(q, true):
-        t_as_of, t_g, t_n = last_friday_readings(q, true)
-        row.update(note=f"TrackRecord dates the advance estimate {release}; BEA released it {true}",
-                   as_of_on_release_date=t_as_of, average_on_release_date=(t_g + t_n) / 2)
-        print(f"note: {q}: {row['note']}; on the right date the average is "
-              f"{row['average_on_release_date']:.2f}, not {row['average']:.2f}.")
-    bt.append(row)
+    bt.append({"quarter": q, "advance": advance, "release_date": release, "as_of": as_of,
+               "gdpnow": g, "nyfed": n, "average": (g + n) / 2, "average_miss": (g + n) / 2 - advance})
 backtest = pd.DataFrame(bt).iloc[::-1].set_index("quarter")
 save(backtest, HERE, "backtest")
 
