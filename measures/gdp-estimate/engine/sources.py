@@ -14,14 +14,17 @@ The doors (in this public copy, public_doors.py says where each reads):
   * **BLS** — the price indexes that turn nominal sources into real ones, and payrolls and hours,
     from FRED's copies of BLS's series.
   * **Census international trade, HS** — nonmonetary gold (7108 + 7115), to strip from goods trade.
-  * **FRED** — only where no agency API serves the figure: Census's public construction spending
-    (EITS carries the private categories only, seasonally adjusted).
+  * **FRED** — the failure-only fallback for public construction spending (`FRED_FALLBACK`), read
+    only when Census's spreadsheet cannot be; the two are the same series.
   * **Census international trade, end use** — capital goods except automotive (end-use 2),
     imports and exports, NSA, for the equipment component's commodity flow (imported computers
     and chips are equipment investment; `components.py` seasonally adjusts them).
-  * The doors "exhibit" (the trade report's Exhibit 1) and "c30" (Census's construction-spending
-    detail spreadsheets) serve Econvitals' tracking of BEA's later estimates of a quarter, which this
-    folder does not include; the estimate never reads them.
+  * **Census construction spending, spreadsheets** (door "c30") — the release's own time-series
+    spreadsheets; the estimate reads one column, total public construction (`pubsatime`), which the
+    economic-indicators API does not carry seasonally adjusted.
+  * The door "exhibit" (the trade report's Exhibit 1) and the other "c30" columns (`privsatime`,
+    `slsatime`) serve Econvitals' tracking of BEA's later estimates of a quarter, which this folder
+    does not include; the estimate never reads them.
 
 Everything monthly is seasonally adjusted and in the agency's own units (Census $ millions,
 BEA $ billions at annual rates, BLS index levels). Nothing here converts units — `components.py`
@@ -106,10 +109,10 @@ MONTHLY = {
     "cpi_goods_ex_food_energy": ("bls", "CUSR0000SACL1E"),     # commodities less food and energy
     "cpi_food_home":       ("bls", "CUSR0000SAF11"),
     "cpi_gasoline":        ("bls", "CUSR0000SETB01"),
-    # government (BLS payrolls; public construction from FRED, see the doors above)
+    # government (BLS payrolls; public construction from Census's own spreadsheet, see the doors above)
     "emp_state":           ("bls", "CES9092000001"),
     "emp_local":           ("bls", "CES9093000001"),
-    "construction_public": ("fred", "TLPBLCONS"),
+    "construction_public": ("c30", ("pubsatime", "Total")),
     "hours_services":      ("bls", "CES0800000016"),           # aggregate weekly hours, private service-providing
     # hours for Econvitals' productivity tracker: BLS's recipe from public series
     "hours_all_emp":       ("bls", "CES0500000001"),           # all employees, total private
@@ -127,6 +130,11 @@ MONTHLY = {
     "export_prices":       ("bls", "EIUIQ"),
     "import_prices_capital": ("bls", "EIUIR2"),              # capital goods except automotive
 }
+#: a source whose publisher read failed -> the FRED copy of the same series, read instead (and said so).
+#: Proven value-equal before it was listed: TLPBLCONS against pubsatime's "Total Public Construction",
+#: 405 of 405 months identical, 1993-01..2026-09, max |diff| 0 (2026-11-15). Never the first door.
+FRED_FALLBACK = {"construction_public": "TLPBLCONS"}
+
 #: monthly sources from the Census international-trade API rather than a catalog door
 INTLTRADE = ("gold_exports", "gold_imports", "capgoods_imports", "capgoods_exports")
 
@@ -212,6 +220,23 @@ def _fred_series(door: str, addr: str) -> pd.Series:
         s = providers.series(addr)
     obs = [o for o in s.obs if o.v is not None]
     return pd.Series([float(o.v) for o in obs], index=[pd.Period(o.d, freq="M") for o in obs], name=addr, dtype=float)
+
+
+def _publisher_or_fred(name: str, fetch) -> pd.Series:
+    """`fetch()` — the publisher's own door — or, only when that raises and `name` has a proven FRED
+    copy (FRED_FALLBACK), the FRED copy, with `.attrs["fallback"]` saying so. The number served is the
+    same one, but `refresh()` still reports the source as failed (an "ERR" naming the fallback), so a
+    publisher door that breaks is red the same day instead of quietly turning into FRED for good."""
+    try:
+        return fetch()
+    except Exception as e:  # noqa: BLE001
+        sid = FRED_FALLBACK.get(name)
+        if not sid:
+            raise
+        s = _fred_series("fred", sid)
+        s.attrs["fallback"] = (f"the publisher's read failed ({type(e).__name__}: {str(e)[:80]}); "
+                               f"served FRED {sid}, the same series")
+        return s
 
 
 def _census_series(addr: tuple, refresh: bool = False) -> pd.Series:
@@ -370,9 +395,11 @@ def refresh(bls_too: bool = True, names=None) -> dict:
     for n, (door, a) in MONTHLY.items():
         if door in ("fred", "provider", "c30", "exhibit") and pick(n):
             try:
-                s = _c30(a) if door == "c30" else _exhibit(a) if door == "exhibit" else _fred_series(door, a)
+                s = _publisher_or_fred(n, lambda: _c30(a) if door == "c30" else _exhibit(a) if door == "exhibit"
+                                       else _fred_series(door, a))
                 _save_cache(n, {str(k): v for k, v in s.items()})
-                latest[n] = str(s.index[-1]) if len(s) else None
+                latest[n] = f"ERR {s.attrs['fallback']}" if s.attrs.get("fallback") else (
+                    str(s.index[-1]) if len(s) else None)
             except Exception as e:  # noqa: BLE001
                 latest[n] = f"ERR {type(e).__name__}: {str(e)[:80]}"
     bls = {n: a for n, (door, a) in MONTHLY.items() if door == "bls" and pick(n)}
@@ -424,11 +451,11 @@ def monthly(name: str) -> pd.Series:
         d = _load_cache(name)
         if d is None:
             door, a = MONTHLY[name]
-            s = {"bea": lambda: _bea_series(a), "census": lambda: _census_series(a),
-                 "bls": lambda: _bls_levels([a])[a],
-                 "fred": lambda: _fred_series("fred", a),
-                 "provider": lambda: _fred_series("provider", a),
-                 "c30": lambda: _c30(a), "exhibit": lambda: _exhibit(a)}[door]()
+            s = _publisher_or_fred(name, {"bea": lambda: _bea_series(a), "census": lambda: _census_series(a),
+                                          "bls": lambda: _bls_levels([a])[a],
+                                          "fred": lambda: _fred_series("fred", a),
+                                          "provider": lambda: _fred_series("provider", a),
+                                          "c30": lambda: _c30(a), "exhibit": lambda: _exhibit(a)}[door])
             _save_cache(name, {str(k): v for k, v in s.items()})
             d = {str(k): v for k, v in s.items()}
         _MEM[name] = _to_series(d, "M")
