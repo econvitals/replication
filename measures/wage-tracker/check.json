@@ -11,7 +11,7 @@
       "published": "data/wage-pce-equivalent.json",
       "published_column": "value",
       "last_n": 300,
-      "tolerance": 0.002
+      "tolerance": 0.0001
     },
     {
       "output": "output/wage_pce_equivalent.csv",
@@ -19,7 +19,7 @@
       "published": "data/wage-pce-equivalent.json",
       "published_column": "unadjusted",
       "last_n": 300,
-      "tolerance": 0.002
+      "tolerance": 0.0001
     },
     {
       "output": "output/wage_pce_equivalent.csv",

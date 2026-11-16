@@ -11,8 +11,8 @@ much faster productivity has grown since 2019 than it did in 2007-2019:
   2. Each gauge minus its own average gap to PCE inflation over 2007-2019, so all five read as
      "the PCE inflation rate this pace of wage growth would have meant in 2007-2019."
   3. A weighted average of whichever gauges are available that month, with weights equal to one
-     over each gauge's variance since 2007 (the steadier gauges count more). The line ends at the
-     latest month that has a monthly gauge.
+     over each gauge's variance since 2007, taken over its own prints (the steadier gauges count
+     more). The line ends at the latest month that has a monthly gauge.
   4. From 2022 Q1 on, minus (trend productivity growth - its 2007-2019 pace), where trend growth
      is the annualized growth of output per hour from 2019 Q4 to that quarter and the 2007-2019
      pace is 2006 Q4 to 2019 Q4. The adjustment is zero before 2022.
@@ -68,10 +68,12 @@ pce = yoy(fred("PCEPI")).reindex(MONTHS)        # PCE price index, 12-month chan
 gap = gauges.sub(pce, axis=0).loc["2007-01-01":"2019-12-01"].mean()
 norm = gauges - gap
 
-# 3. Inverse-variance weighted average over the gauges present each month. As on the site, the
-#    variance runs from 2007 to the current calendar month, carried-forward quarterly values
-#    included, so the weights drift slightly as months pass (see README, "How close").
-w = 1 / norm.loc["2007-01-01":].std() ** 2
+# 3. Inverse-variance weighted average over the gauges present each month. Each gauge's variance
+#    is taken over its own prints since 2007: a quarterly gauge on its quarter-end months only,
+#    never the months it is carried forward, so the weights change only when a gauge prints.
+printed = {k: quarterly_on_months(quarterly[k], carry=0).notna() if k in quarterly
+           else gauges[k].notna() for k in gauges}
+w = 1 / pd.Series({k: norm[k].where(printed[k]).loc["2007-01-01":].std() for k in gauges}) ** 2
 composite = norm.mul(w).sum(axis=1, min_count=1) / norm.notna().mul(w).sum(axis=1)
 composite = composite.where(norm[["WGT_overall", "AHE_spliced"]].notna().any(axis=1))
 
@@ -92,8 +94,7 @@ out = pd.DataFrame({"value": composite - adj, "unadjusted": composite})
 for k in gauges:
     dot = norm[k] - adj
     if k in quarterly:
-        printed = quarterly_on_months(quarterly[k], carry=0).notna()
-        dot = dot.where(printed)
+        dot = dot.where(printed[k])
     out[k] = dot
 out["productivity_adjustment"] = adj
 out = out.dropna(subset=["value"]).loc["2007-01-01":]

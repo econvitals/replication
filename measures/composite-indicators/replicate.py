@@ -11,9 +11,13 @@ to the year before, divide by the typical spread (1.4826 x the median absolute d
 Friday's index is a weighted average of the readings dated up to 185 days earlier, each weighted
 by its theme weight times exp(-age / 45 days), so a fresh reading dominates and an old one fades.
 
-Econvitals rebuilds the index on Friday mornings. Its FRED inputs are the ones posted through the
-day before, so a report released that Friday at 8:30 (the jobs report, say) enters the following
-week; this script reads FRED as of that Thursday to match. Michigan's tables come direct.
+Changes are taken by calendar date. There is no October 2025 core CPI (BLS did not collect it in
+the shutdown), so a reading whose 12-month base would be October 2025 (October 2026) uses the
+geometric average of September and November 2025 instead, as Econvitals does.
+
+Econvitals rebuilds the index on Friday mornings, once FRED has posted that morning's releases
+(by about noon Eastern). This script reads FRED as it stood on the latest Friday whose rebuild is
+done, counting a Friday from 1 p.m. Eastern (FRED keeps every past vintage). Michigan's tables come direct.
 """
 import csv
 import io
@@ -29,9 +33,13 @@ sys.path.insert(0, str(HERE.parents[1]))
 from common.econdata import get, key, save  # noqa: E402
 
 START, TAU, CAP_DAYS, CLIP, MIN_OBS = 2013, 45.0, 185, 4.0, 8
-TODAY = pd.Timestamp.now(tz="America/New_York").tz_localize(None).normalize()
+NOW = pd.Timestamp.now(tz="America/New_York").tz_localize(None)
+TODAY = NOW.normalize()
 FRIDAY = TODAY - pd.DateOffset(days=(TODAY.weekday() - 4) % 7)    # the latest Friday, today if one
-ASOF = (FRIDAY - pd.DateOffset(days=1)).strftime("%Y-%m-%d")      # FRED as it stood the day before
+if FRIDAY == TODAY and NOW.hour < 13:                             # ...but not before its rebuild
+    FRIDAY -= pd.DateOffset(days=7)
+ASOF = FRIDAY.strftime("%Y-%m-%d")                                # FRED as it stood that Friday
+HOLE, BEFORE, AFTER = (pd.Timestamp(d) for d in ("2025-10-01", "2025-09-01", "2025-11-01"))
 
 # id: (axis, theme, sign, source, transform). Sources are FRED ids, "a-b-c" for a difference, or
 # ("sca", file, column) for the University of Michigan's Surveys of Consumers tables.
@@ -78,6 +86,22 @@ def michigan(filename: str, column: str) -> pd.Series:
     return pd.Series(rows).sort_index()
 
 
+def earlier(s: pd.Series, months: int) -> pd.Series:
+    """Each observation's value `months` calendar months before, matched by date (blank where that
+    month is missing), so a gap in the data never stretches a change over a longer span."""
+    return s.shift(freq=pd.DateOffset(months=months)).reindex(s.index)
+
+
+def year_ago(s: pd.Series) -> pd.Series:
+    """The 12-month base. October 2025 was not collected (the shutdown), so where a reading's base
+    would be that month, the base is the geometric average of September and November 2025."""
+    base = earlier(s, 12)
+    target = HOLE + pd.DateOffset(years=1)
+    if HOLE not in s.index and BEFORE in s.index and AFTER in s.index and target in s.index:
+        base[target] = (s[BEFORE] * s[AFTER]) ** 0.5
+    return base
+
+
 def reading(source, transform: str) -> pd.Series:
     if isinstance(source, tuple):
         return michigan(source[1], source[2])
@@ -85,11 +109,9 @@ def reading(source, transform: str) -> pd.Series:
     s = fred_asof(first)
     for m in minus:
         s = (s - fred_asof(m)).dropna()
-    # Changes step through the observations as published, as Econvitals' build does. With no
-    # October 2025 core CPI, its "12-month" change spans 13 months from November 2025 through
-    # October 2026; kept, to match the site (see the README).
-    return {"level": s, "diff": s.diff(), "pct": 100 * s.pct_change(),
-            "yoy": 100 * (s / s.shift(12) - 1)}[transform].dropna()
+    step = int(pd.Series(s.index.year * 12 + s.index.month).diff().mode()[0])  # 1 monthly, 3 quarterly
+    return {"level": s, "diff": s - earlier(s, step), "pct": 100 * (s / earlier(s, step) - 1),
+            "yoy": 100 * (s / year_ago(s) - 1)}[transform].dropna()
 
 
 def standardized(s: pd.Series, sign: int) -> pd.Series:
