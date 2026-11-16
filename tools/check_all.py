@@ -8,7 +8,10 @@ Each folder's `check.json` says which output column must match which published s
 many recent dates, and within what tolerance. A folder whose `status` is "documented" has no
 runnable comparison (for example, it needs microdata the reader must request themselves); it is
 reported as NOT COMPARED, never as a pass. A `published` path that starts with "repo:" names a
-CSV in this repository (a track record under history/) instead of a file on econvitals.org.
+CSV in this repository (a track record under history/) instead of a file on econvitals.org;
+`published_where` ({"column": "value", ...}) keeps only that CSV's rows that match, for a track
+record with several rows per month (for example, only the last estimate made before the release),
+and `from` ("YYYY-MM[-DD]") starts the comparison at that date.
 
 A series whose spec says `"may_be_empty": true` is one the script can rebuild only some of the time
 (a tracked quarter after BLS has printed it; the day's estimate when no report has printed since the
@@ -84,6 +87,8 @@ def published_series(spec: dict) -> pd.Series:
     if spec["published"].startswith("repo:"):
         # A CSV kept in this repository, e.g. "repo:history/pce-tracking.csv" (a track record).
         df = pd.read_csv(ROOT / spec["published"][5:], dtype=str)
+        for col, want in (spec.get("published_where") or {}).items():
+            df = df[df[col] == str(want)]
         index = spec.get("published_index") or df.columns[0]
         s = pd.Series(pd.to_numeric(df[spec["published_column"]], errors="coerce").values,
                       index=df[index].map(_norm))
@@ -114,6 +119,8 @@ def compare(folder: Path, spec: dict) -> dict:
     ours, theirs = output_series(folder, spec), published_series(spec)
     common = [k for k in theirs.index if k in ours.index]
     common.sort()
+    if spec.get("from"):       # compare only from this date on (e.g. after a seasonal revision)
+        common = [k for k in common if k >= _norm(spec["from"])]
     n = int(spec.get("last_n", 24))
     tol = float(spec.get("tolerance", 0.01))
     label = f"{spec['output_column']} vs {spec['published']}:{spec['published_column']}"

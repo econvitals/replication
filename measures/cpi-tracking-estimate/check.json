@@ -95,6 +95,16 @@
       "published_column": "core_ex_shelter_used",
       "last_n": 24,
       "tolerance": 1e-06
+    },
+    {
+      "output": "output/cpi_tracking.csv",
+      "output_column": "core",
+      "published": "repo:history/cpi-tracking.csv",
+      "published_where": {"last_before_release": "yes"},
+      "published_index": "target_month",
+      "published_column": "core",
+      "last_n": 24,
+      "tolerance": 1e-06
     }
   ]
 }
