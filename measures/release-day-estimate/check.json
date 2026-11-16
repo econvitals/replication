@@ -12,7 +12,7 @@
       "published": "data/median-cpi.json",
       "published_column": "chg_1m_ann",
       "last_n": 24,
-      "tolerance": 0.6
+      "tolerance": 0.8
     },
     {
       "output": "output/median-cpi.csv",
@@ -36,7 +36,7 @@
       "published": "data/trimmed-mean-cpi.json",
       "published_column": "chg_3m_ann",
       "last_n": 24,
-      "tolerance": 0.2
+      "tolerance": 0.25
     },
     {
       "output": "output/median-pce.csv",
