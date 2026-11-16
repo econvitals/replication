@@ -10,6 +10,12 @@ runnable comparison (for example, it needs microdata the reader must request the
 reported as NOT COMPARED, never as a pass. A `published` path that starts with "repo:" names a
 CSV in this repository (a track record under history/) instead of a file on econvitals.org.
 
+A series whose spec says `"may_be_empty": true` is one the script can rebuild only some of the time
+(a tracked quarter after BLS has printed it; the day's estimate when no report has printed since the
+site's last update). When the script writes no row for it, that series is reported as compared on
+nothing today (`empty_why` says why), not as a pass and not as a mismatch; a folder whose every series
+is like that tonight is NOT COMPARED TODAY. Rows written but matching no published date still fail.
+
 Exit code: 0 when every compared series matches; 1 when any series does not match, or a script
 has failed on two runs in a row (one failure is retried and remembered, since publishers' servers
 do go down for an hour).
@@ -111,6 +117,9 @@ def compare(folder: Path, spec: dict) -> dict:
     n = int(spec.get("last_n", 24))
     tol = float(spec.get("tolerance", 0.01))
     label = f"{spec['output_column']} vs {spec['published']}:{spec['published_column']}"
+    if not common and spec.get("may_be_empty") and not len(ours):
+        return {"series": label, "ok": True, "empty": True,
+                "why": spec.get("empty_why", "the script wrote nothing to compare today")}
     if not common:
         return {"series": label, "ok": False, "why": "no dates in common",
                 "ours_latest": max(ours.index) if len(ours) else None,
@@ -181,15 +190,17 @@ def main() -> int:
         except Exception as exc:  # a missing column or file is a mismatch, not a crash
             rec["series"] = [{"ok": False, "why": f"{type(exc).__name__}: {exc}"}]
         good = all(s["ok"] for s in rec["series"])
-        rec["result"] = "MATCHES" if good else "DOES NOT MATCH"
+        idle = good and all(s.get("empty") for s in rec["series"])
+        rec["result"] = "NOT COMPARED TODAY" if idle else "MATCHES" if good else "DOES NOT MATCH"
         alarm = alarm or not good
         results.append(rec)
-        mark = "ok" if good else "XX"
+        mark = "--" if idle else "ok" if good else "XX"
         print(f"  {mark}   {f.name}: {rec['result']}")
         for s in rec["series"]:
             if not s["ok"] or len(rec["series"]) == 1:
-                detail = s.get("why") or (f"max diff {s['max_abs_diff']} over {s['compared']} "
-                                          f"dates (tolerance {s['tolerance']})")
+                detail = (f"nothing to compare today: {s['why']}" if s.get("empty") else s.get("why")
+                          or (f"max diff {s['max_abs_diff']} over {s['compared']} "
+                              f"dates (tolerance {s['tolerance']})"))
                 print(f"         {s.get('series', '')}: {detail}")
 
     state_path.parent.mkdir(parents=True, exist_ok=True)

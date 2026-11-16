@@ -1,6 +1,19 @@
 {
-  "status": "documented",
-  "why_not_compared": "The tracker's numbers are published only in the GDP Trackers tool's own data file (econvitals.org/tools/gdp-trackers/data.json), which the nightly check does not read; replicate.py fetches that file and prints its own comparison. Before BLS prints a quarter, hours come from a regression on BLS's first prints (archived vintages) and output from the composite through a bridge; neither is rebuilt here.",
+  "status": "recorded-inputs",
+  "timeout_seconds": 600,
   "needs_keys": ["FRED_API_KEY", "BEA_API_KEY"],
-  "compare": []
+  "recorded_inputs": "Econvitals' tracked revision to BEA's GDP growth (gdp_revision_tracked.change_in_gdp), read from the GDP Trackers tool's published data. The hours estimate used before BLS prints a quarter, and the output bridge used before BEA prints it, are not rebuilt (see the README).",
+  "compare": [
+    {"output": "output/printed.csv", "output_column": "printed",
+     "published": "tools/gdp-trackers/data.json", "published_rows": "productivity.chart_quarters",
+     "published_index": "date", "published_column": "printed", "last_n": 11, "tolerance": 0.0051},
+    {"output": "output/printed.csv", "output_column": "four_quarter",
+     "published": "tools/gdp-trackers/data.json", "published_rows": "productivity.chart_quarters",
+     "published_index": "date", "published_column": "four_quarter", "last_n": 11, "tolerance": 0.0051},
+    {"output": "output/tracker.csv", "output_index": "quarter", "output_column": "compared",
+     "published": "tools/gdp-trackers/data.json", "published_rows": "productivity.quarters",
+     "published_index": "quarter", "published_column": "value", "last_n": 2, "tolerance": 0.0001,
+     "may_be_empty": true,
+     "empty_why": "no quarter on the page is past BLS's preliminary estimate, the only stage this script rebuilds (or its record predates full precision)"}
+  ]
 }

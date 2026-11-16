@@ -15,6 +15,10 @@ econvitals.org/tools/gdp-trackers/ (the Productivity section) that are arithmeti
    input, read from the tracker's published data. Before BLS prints a quarter, the tracker's hours
    come from a regression of BLS's first prints on payroll-survey and household-survey data,
    which this script does not rebuild (see the README).
+
+The nightly check compares 2 with the page's chart and 3 with the page's tracked value. Records
+dated before FULL_PRECISION_FROM are rebuilt and printed but not compared: until then Econvitals
+rounded hours and the revision to two decimals inside its calculation (see the README).
 """
 import json
 import sys
@@ -28,6 +32,7 @@ from common.econdata import bea_wide, fred, get, save  # noqa: E402
 
 OUTPUT_ON_GDP_REVISION = 1.381     # Econvitals' fitted multiple: nonfarm business revision / GDP's
 PAGE = "https://econvitals.org/tools/gdp-trackers/data.json"
+FULL_PRECISION_FROM = "2026-11-16"  # the first record worked at full precision and stored to 4 decimals
 
 
 def annualized(level: pd.Series) -> pd.Series:
@@ -57,18 +62,23 @@ page = json.loads(get(PAGE))["productivity"]
 rows = []
 for rec in page["quarters"]:
     q = pd.Period(rec["quarter"], "Q")
-    row = {"quarter": rec["quarter_label"], "stage": rec["stage"], "published": rec["value"]}
+    row = {"quarter": rec["quarter"], "label": rec["quarter_label"], "as_of": rec["as_of"],
+           "stage": rec["stage"], "published": rec["value"]}
     if rec["stage"] == "bls_printed" and q in hours.index and q in bea_nfb.index:
         tracked = (rec.get("gdp_revision_tracked") or {}).get("change_in_gdp", 0.0)
         out_g = annualized(bea_nfb)[q] + OUTPUT_ON_GDP_REVISION * tracked
         hours_g = annualized(hours)[q]
+        rebuilt = 100 * ((1 + out_g / 100) / (1 + hours_g / 100) - 1)
         row.update(bea_output=annualized(bea_nfb)[q], tracked_gdp_revision=tracked,
-                   output=out_g, bls_hours=hours_g,
-                   rebuilt=100 * ((1 + out_g / 100) / (1 + hours_g / 100) - 1))
+                   output=out_g, bls_hours=hours_g, rebuilt=rebuilt,
+                   compared=rebuilt if rec["as_of"] >= FULL_PRECISION_FROM else None)
     rows.append(row)
-tracker = pd.DataFrame(rows)
-if len(tracker):
-    save(tracker.set_index("quarter"), HERE, "tracker")
+# Written every run with every column (empty when nothing is standing), so the nightly check reads
+# "nothing to compare today" rather than a stale or missing file.
+COLUMNS = ["quarter", "label", "as_of", "stage", "published", "bea_output", "tracked_gdp_revision",
+           "output", "bls_hours", "rebuilt", "compared"]
+tracker = pd.DataFrame(rows, columns=COLUMNS)
+save(tracker.set_index("quarter"), HERE, "tracker")
 
 print("Output growth, BEA nonfarm business vs BLS (percent, annual rate):")
 print(check.tail(4).round(3).to_string())
@@ -76,6 +86,8 @@ print(f"Largest gap over the last 40 quarters: {check['difference'].tail(40).abs
 print("Productivity as BLS printed it:")
 print(printed.tail(4).round(2).to_string(), "\n")
 print("The tracked quarter on the page:")
-print(tracker.round(3).to_string(index=False) if len(tracker) else "(none standing)")
-if len(tracker) and "rebuilt" not in tracker:
+print(tracker.round(4).to_string(index=False) if len(tracker) else "(none standing)")
+if len(tracker) and tracker["rebuilt"].isna().all():
     print("This stage takes its hours from the payroll/household-survey regression (not rebuilt).")
+elif len(tracker) and tracker["compared"].isna().any():
+    print(f"A record dated before {FULL_PRECISION_FROM} rounded inside its calculation: printed, not compared.")
