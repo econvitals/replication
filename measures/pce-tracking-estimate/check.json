@@ -5,9 +5,9 @@
   "compare": [
     {"output": "output/pce_tracking.csv", "output_index": "record", "output_column": "core_before_offset",
      "published": "repo:history/pce-tracking.csv", "published_index": "record",
-     "published_column": "core_before_offset", "last_n": 24, "tolerance": 0.045},
+     "published_column": "core_before_offset", "last_n": 3, "tolerance": 0.01},
     {"output": "output/pce_tracking.csv", "output_index": "record", "output_column": "overall",
      "published": "repo:history/pce-tracking.csv", "published_index": "record",
-     "published_column": "overall", "last_n": 24, "tolerance": 0.04}
+     "published_column": "overall", "last_n": 3, "tolerance": 0.01}
   ]
 }

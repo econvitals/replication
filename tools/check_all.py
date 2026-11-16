@@ -50,13 +50,23 @@ def folders() -> list[Path]:
     return found
 
 
-def run_script(folder: Path, timeout: int) -> tuple[bool, str]:
+def script_env(folder: Path, only_for: dict[str, dict[str, str]]) -> dict[str, str]:
+    """The environment for one folder's script. A variable given with --script-env reaches only
+    the folder it names: every other script runs without it, even if it is set here."""
+    env = os.environ.copy()
+    for name in {k for v in only_for.values() for k in v}:
+        env.pop(name, None)
+    env.update(only_for.get(folder.name, {}))
+    return env
+
+
+def run_script(folder: Path, timeout: int, only_for: dict | None = None) -> tuple[bool, str]:
     script = folder / "replicate.py"
     if not script.exists():
         return False, "no replicate.py"
     try:
         p = subprocess.run([sys.executable, str(script)], cwd=folder, capture_output=True,
-                           text=True, timeout=timeout, env=os.environ.copy())
+                           text=True, timeout=timeout, env=script_env(folder, only_for or {}))
     except subprocess.TimeoutExpired:
         return False, f"timed out after {timeout}s"
     if p.returncode != 0:
@@ -150,6 +160,9 @@ def main() -> int:
     ap.add_argument("--state", default=str(DEFAULT_STATE),
                     help="remembers failures between runs (one failure is not an alarm)")
     ap.add_argument("--marker", help="touch this file when the run finishes")
+    ap.add_argument("--script-env", action="append", default=[], metavar="FOLDER:NAME=VALUE",
+                    help="set NAME=VALUE for that folder's script only (e.g. "
+                         "pce-tracking-estimate:X13PATH=/opt/x13); repeatable")
     args = ap.parse_args()
 
     if args.keys_file:
@@ -158,6 +171,13 @@ def main() -> int:
         os.environ["ECONVITALS_PUBLISHED_DIR"] = os.path.expanduser(args.published_dir)
     econdata._load_keys_file()
 
+    only_for: dict[str, dict[str, str]] = {}
+    for item in args.script_env:
+        folder, _, pair = item.partition(":")
+        name, eq, value = pair.partition("=")
+        if not (folder and name and eq):
+            ap.error(f"--script-env {item!r}: expected FOLDER:NAME=VALUE")
+        only_for.setdefault(folder, {})[name] = value
     todo = [f for f in folders() if not args.only or f.name in args.only]
     if args.list:
         for f in todo:
@@ -178,10 +198,10 @@ def main() -> int:
             print(f"  --   {f.name}: not compared ({rec['why']})")
             continue
         t0 = time.time()
-        ok, err = run_script(f, int(c.get("timeout_seconds", 900)))
+        ok, err = run_script(f, int(c.get("timeout_seconds", 900)), only_for)
         if not ok:
             time.sleep(20)
-            ok, err = run_script(f, int(c.get("timeout_seconds", 900)))
+            ok, err = run_script(f, int(c.get("timeout_seconds", 900)), only_for)
         rec["seconds"] = round(time.time() - t0, 1)
         if not ok:
             fails = state.get(f.name, 0) + 1
