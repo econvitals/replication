@@ -45,12 +45,13 @@ Three conventions worth knowing. Fiscal years run October–September from 1977 
 
 **How close.** Reproduces the Explorer exactly: every dollar figure matches the copy built into the live page to within $1 million (858 figures; the page rounds to $1 million), and the fiscal gap and the rate-dial path agree with the page’s own engine to a millionth of a percentage point. The script makes that comparison on every run that can reach econvitals.org, and fails if any figure differs by more than $2 million while the page carries the same build date.
 
-The nightly check compares two published series, the tightest that holds given each file’s rounding:
+The nightly check compares three published series, the tightest that holds given each file’s rounding:
 
 - net interest as a percent of GDP, 1995–2036, against the published Federal Debt Service series (the same numbers as the net interest chart on the Fiscal page), within 0.0001 point (that file rounds to four decimals);
-- debt as a percent of GDP, 2027–2056, against the CBO line of the published debt chart, within 0.001 point (three decimals).
+- debt as a percent of GDP, 1940–2056, against the CBO line of the published debt chart (“Debt Held by the Public”), within 0.001 point (three decimals);
+- the deficit as a percent of GDP, 1901–2026, against the published chart of the federal deficit since 1901, within 0.0002 point (four decimals, plus the $1 million by which nine deficits between 1962 and 1993 differ; see “Gaps”).
 
-Why only those: the Explorer’s full data set lives inside its page, not in the published data repository the nightly check reads. Two other published fiscal charts — the history on that debt chart and the deficit since 1901 — were drawn before BEA’s September 2026 GDP revision and before fiscal 2026 closed, so for 2021–2026 they differ from the Explorer (debt by up to 0.6 point of GDP in 2026); those years are left out of the comparison rather than covered by a looser tolerance.
+The Explorer’s full data set lives inside its page, not in the published data repository the nightly check reads, so these three charts stand in for it. The debt and deficit charts are fixed exhibits rebuilt by hand; until November 15, 2026 they predated BEA’s September 2026 GDP revision and fiscal 2026’s close, and the check now covers every year they share with this rebuild, so an Explorer rebuild that leaves them behind shows up here.
 
 **Gaps.** Debt held by the public for 1930–1939 is not rebuilt: the Explorer takes those ten debt-to-GDP ratios from an extended OMB series carried by a commercial data service, while OMB’s own Table 7.1 starts in 1940, so this replication starts debt there. Econvitals keeps the ten earlier figures on the page deliberately, as the best available estimates for the 1930s. Nine deficits between 1962 and 1993 differ by $1 million, because the page takes them from OMB’s printed balance and CBO rounds them the other way.
 

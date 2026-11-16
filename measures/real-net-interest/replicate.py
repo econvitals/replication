@@ -65,6 +65,7 @@ out = pd.DataFrame({"net_interest": ni.loc[years], "debt_end_of_prior_year": pri
                     "gdp": gdp.loc[years]})
 out["net_interest_pct"] = 100 * out["net_interest"] / out["gdp"]
 out["real_net_interest_pct"] = 100 * out["real_net_interest"] / out["gdp"]
+out.insert(0, "date_dec31", [f"{y}-12-31" for y in years])   # the CBO-vs-preferred chart's dating
 out.index = pd.to_datetime([f"{y}-01-01" for y in years])
 out.index.name = "date"
 save(out, HERE, "real_net_interest")

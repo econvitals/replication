@@ -8,6 +8,9 @@
      "last_n": 42, "tolerance": 0.0001},
     {"output": "output/baseline.csv", "output_index": "date_dec31", "output_column": "debt_pct",
      "published": "data/debt-gdp-cbo-vs-preferred-baseline.json", "published_column": "cbo",
-     "last_n": 30, "tolerance": 0.001}
+     "last_n": 117, "tolerance": 0.001},
+    {"output": "output/baseline.csv", "output_column": "deficit_pct",
+     "published": "data/deficit-gdp-history.json", "published_column": "value",
+     "last_n": 126, "tolerance": 0.0002}
   ]
 }
