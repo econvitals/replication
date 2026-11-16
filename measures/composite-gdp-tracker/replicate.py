@@ -15,7 +15,7 @@ The other two legs are RECORDED inputs, read from Econvitals' published daily hi
   Street median      the median of Wall Street tracking estimates, from bank research notes that
                      are not public; only the value the site published is used;
   Econvitals est.    the Current-Quarter GDP Estimate, as published each day (measures/
-                     gdp-estimate explains why the model itself is not rebuilt here).
+                     gdp-estimate reruns the model itself, on the data of the day it runs).
 So are three facts about each day's snapshot: the days left to the advance estimate, which legs
 were present, and the date of each Fed model's latest reading when the snapshot was taken.
 """

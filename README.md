@@ -51,7 +51,7 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Inflation tracking | [Econvitals CPI Tracking Estimate](measures/cpi-tracking-estimate/) | Exact |
 | Inflation tracking | [Econvitals PCE Tracking Estimate](measures/pce-tracking-estimate/) | Close, within a stated tolerance |
 | GDP tracking | [Econvitals Composite GDP Tracker](measures/composite-gdp-tracker/) | Exact, with some recorded inputs |
-| GDP tracking | [Econvitals Current-Quarter GDP Estimate](measures/gdp-estimate/) | Run by hand |
+| GDP tracking | [Econvitals Current-Quarter GDP Estimate](measures/gdp-estimate/) | Exact, with some recorded inputs |
 | GDP tracking | [Econvitals Productivity Tracker](measures/productivity-tracker/) | Exact, with some recorded inputs |
 | Wages | [Real Wage Growth](measures/real-wage-growth/) | Exact |
 | Wages | [Econvitals Underlying Unit Labor Costs](measures/wage-tracker/) | Exact |
