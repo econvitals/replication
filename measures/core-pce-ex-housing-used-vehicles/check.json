@@ -1,6 +1,6 @@
 {
   "status": "reproduces",
-  "timeout_seconds": 600,
+  "timeout_seconds": 900,
   "needs_keys": ["BEA_API_KEY"],
   "compare": [
     {"output": "output/core_pce_ex_housing_used.csv", "output_column": "chg_1m_ann",

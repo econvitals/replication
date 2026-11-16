@@ -141,13 +141,14 @@ def _cache_fresh(url: str, params: dict | None) -> bool:
     return path.exists() and time.time() - path.stat().st_mtime < CACHE_HOURS * 3600
 
 
-def _bea_pace() -> None:
+def _bea_pace(seconds: float = 65) -> None:
     """BEA allows about 100 MB of downloads a minute per key and locks the key for an hour past
     that. A full underlying-detail table is ~75 MB, so leave 65 seconds after the previous BEA
-    download (from any script sharing this cache) before starting another."""
+    download (from any script sharing this cache) before starting another; a decade of one
+    (~11 MB) needs only `seconds`=12."""
     stamp = CACHE / "bea-last-download"
     if stamp.exists():
-        wait = 65 - (time.time() - stamp.stat().st_mtime)
+        wait = seconds - (time.time() - stamp.stat().st_mtime)
         if wait > 0:
             time.sleep(wait)
     CACHE.mkdir(parents=True, exist_ok=True)
@@ -155,23 +156,33 @@ def _bea_pace() -> None:
 
 
 def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
-             dataset: str = "NIPA") -> pd.DataFrame:
+             dataset: str = "NIPA", _pace: float = 65) -> pd.DataFrame:
     """A BEA NIPA (or NIUnderlyingDetail) table, long form, from the BEA API.
 
     Columns: line (int), code (BEA series code), label, date (Timestamp), value (float).
     `table` is BEA's TableName, e.g. "T20804" or "U20404".
+
+    Since November 2026 BEA answers Year=ALL on the underlying-detail tables with an empty
+    response (no Results, no Error), so those are asked for a decade at a time from 1959.
     """
+    if year == "ALL" and dataset == "NIUnderlyingDetail":
+        last = pd.Timestamp.today().year
+        decades = [",".join(str(y) for y in range(a, min(a + 10, last + 1)))
+                   for a in range(1959, last + 1, 10)]
+        return pd.concat([bea_nipa(table, frequency, years, dataset, _pace=12)
+                          for years in decades], ignore_index=True)
     params = {"UserID": key("BEA_API_KEY"), "method": "GetData", "datasetname": dataset,
               "TableName": table, "Frequency": frequency, "Year": year, "ResultFormat": "JSON"}
     url = "https://apps.bea.gov/api/data"
     if not _cache_fresh(url, params):
-        _bea_pace()
+        _bea_pace(_pace)
     raw = json.loads(get(url, params, timeout=180))
     res = raw.get("BEAAPI", {}).get("Results", {})
     if isinstance(res, list):
         res = res[0]
     rows = res.get("Data")
     if not rows:
+        _cache_path(url, params).unlink(missing_ok=True)    # never keep an empty answer
         raise RuntimeError(f"BEA {table}: {res.get('Error', raw)}")
     df = pd.DataFrame(rows)
 
