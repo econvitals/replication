@@ -1,0 +1,99 @@
+{
+  "status": "reproduces",
+  "timeout_seconds": 600,
+  "needs_keys": [
+    "CENSUS_API_KEY"
+  ],
+  "compare": [
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "real_total",
+      "published": "data/real-retail-sales.json",
+      "published_column": "real_total",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.06
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "price_total",
+      "published": "data/real-retail-sales.json",
+      "published_column": "price_total",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "real_ex_autos",
+      "published": "data/real-retail-sales.json",
+      "published_column": "real_ex_autos",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.06
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "price_ex_autos",
+      "published": "data/real-retail-sales.json",
+      "published_column": "price_ex_autos",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "real_ex_autos_gas",
+      "published": "data/real-retail-sales.json",
+      "published_column": "real_ex_autos_gas",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.06
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "price_ex_autos_gas",
+      "published": "data/real-retail-sales.json",
+      "published_column": "price_ex_autos_gas",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "real_ex_food_services",
+      "published": "data/real-retail-sales.json",
+      "published_column": "real_ex_food_services",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.06
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "price_ex_food_services",
+      "published": "data/real-retail-sales.json",
+      "published_column": "price_ex_food_services",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.0001
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "real_control",
+      "published": "data/real-retail-sales.json",
+      "published_column": "real_control",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.06
+    },
+    {
+      "output": "output/real_retail.csv",
+      "output_column": "price_control",
+      "published": "data/real-retail-sales.json",
+      "published_column": "price_control",
+      "last_n": 420,
+      "at_least": 400,
+      "tolerance": 0.0001
+    }
+  ]
+}

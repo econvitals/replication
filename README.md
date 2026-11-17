@@ -10,7 +10,7 @@ Everything here is free to use for any purpose (CC0). Corrections and questions:
 
 1. Download the repository (green **Code › Download ZIP** on GitHub, or `git clone`).
 2. Install Python 3.11 or later and the few packages the scripts use: `pip install -r requirements.txt`.
-3. Get the free keys the scripts you want need, and set them as environment variables: `FRED_API_KEY` ([FRED](https://fred.stlouisfed.org/docs/api/api_key.html)), `BEA_API_KEY` ([BEA](https://apps.bea.gov/API/signup/)), `EIA_API_KEY` ([EIA](https://www.eia.gov/opendata/register.php)) and, for one script, `CENSUS_API_KEY` ([Census](https://api.census.gov/data/key_signup.html)). Each folder’s README says which it needs.
+3. Get the free keys the scripts you want need, and set them as environment variables: `FRED_API_KEY` ([FRED](https://fred.stlouisfed.org/docs/api/api_key.html)), `BEA_API_KEY` ([BEA](https://apps.bea.gov/API/signup/)), `EIA_API_KEY` ([EIA](https://www.eia.gov/opendata/register.php)) and, for two scripts, `CENSUS_API_KEY` ([Census](https://api.census.gov/data/key_signup.html)). Each folder’s README says which it needs.
 4. Run a measure: `python measures/real-wage-growth/replicate.py`. Results go to that folder’s `output/`.
 5. Check everything against the live site: `python tools/check_all.py`.
 
@@ -62,6 +62,7 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Demographics | [Labor Market by Group](measures/labor-market-by-group/) | Run by hand |
 | GDP components | [Real National Income](measures/real-national-income/) | Exact |
 | GDP components | [Real Oil and Mining Investment](measures/real-oil-mining-investment/) | Exact |
+| GDP components | [Real Retail Sales](measures/real-retail-sales/) | Exact |
 | Household finance | [House Prices Relative to Income and Rent](measures/house-prices-to-income-and-rent/) | Exact |
 | Household finance | [Household Leverage by Wealth Group](measures/leverage-by-wealth-group/) | Exact |
 | Household finance | [Loans to Lower Credit Scores](measures/loans-to-lower-credit-scores/) | Exact |
