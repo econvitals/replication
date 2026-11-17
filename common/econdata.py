@@ -155,6 +155,10 @@ def _bea_pace(seconds: float = 65) -> None:
     stamp.touch()
 
 
+class BeaNoData(RuntimeError):
+    """BEA has no data for the years asked (as opposed to any other failure)."""
+
+
 def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
              dataset: str = "NIPA", _pace: float = 65) -> pd.DataFrame:
     """A BEA NIPA (or NIUnderlyingDetail) table, long form, from the BEA API.
@@ -163,14 +167,24 @@ def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
     `table` is BEA's TableName, e.g. "T20804" or "U20404".
 
     Since November 2026 BEA answers Year=ALL on the underlying-detail tables with an empty
-    response (no Results, no Error), so those are asked for a decade at a time from 1959.
+    response (no Results, no Error), so those are asked for a decade at a time from 1959. BEA
+    refuses a decade that falls wholly outside a table ("No data exists for the Year/Frequencies
+    passed", for a table that starts after 1959 or ends before today), so such a decade is skipped;
+    a table with no decade at all is still an error.
     """
     if year == "ALL" and dataset == "NIUnderlyingDetail":
         last = pd.Timestamp.today().year
         decades = [",".join(str(y) for y in range(a, min(a + 10, last + 1)))
                    for a in range(1959, last + 1, 10)]
-        return pd.concat([bea_nipa(table, frequency, years, dataset, _pace=12)
-                          for years in decades], ignore_index=True)
+        parts = []
+        for years in decades:
+            try:
+                parts.append(bea_nipa(table, frequency, years, dataset, _pace=12))
+            except BeaNoData:
+                continue
+        if not parts:
+            raise RuntimeError(f"BEA {table}: no data in any year since 1959")
+        return pd.concat(parts, ignore_index=True)
     params = {"UserID": key("BEA_API_KEY"), "method": "GetData", "datasetname": dataset,
               "TableName": table, "Frequency": frequency, "Year": year, "ResultFormat": "JSON"}
     url = "https://apps.bea.gov/api/data"
@@ -183,7 +197,10 @@ def bea_nipa(table: str, frequency: str = "M", year: str = "ALL",
     rows = res.get("Data")
     if not rows:
         _cache_path(url, params).unlink(missing_ok=True)    # never keep an empty answer
-        raise RuntimeError(f"BEA {table}: {res.get('Error', raw)}")
+        err = res.get("Error", raw)
+        if "No data exists" in str(err):
+            raise BeaNoData(f"BEA {table}: no data for {year}")
+        raise RuntimeError(f"BEA {table}: {err}")
     df = pd.DataFrame(rows)
 
     def when(p: str) -> pd.Timestamp:

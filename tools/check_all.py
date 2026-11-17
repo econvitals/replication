@@ -13,6 +13,14 @@ CSV in this repository (a track record under history/) instead of a file on econ
 record with several rows per month (for example, only the last estimate made before the release),
 and `from` ("YYYY-MM[-DD]") starts the comparison at that date.
 
+Two ways to read a data file that is not a list of dated rows (a tool's own nested data file):
+`published_glob` ("paths.*.*.g.*") takes every value at that path, each `*` matching every key of an
+object or every item of a list (an item named by its "k" field when it has one, else its position),
+and names each value by its matches joined with "|" ("gdp|1953|n10"); `published_fields` names the
+columns of rows that are plain lists, and `published_index` may then be a list of fields, joined with
+"|" the same way. `at_least` (a count) fails a comparison that finds fewer values in common, so a
+script that quietly stopped writing rows cannot pass by matching nothing.
+
 A series whose spec says `"may_be_empty": true` is one the script can rebuild only some of the time
 (a tracked quarter after BLS has printed it; the day's estimate when no report has printed since the
 site's last update). When the script writes no row for it, that series is reported as compared on
@@ -93,6 +101,29 @@ def _dig(obj, dotted: str | None):
     return obj
 
 
+def _glob(obj, parts: list[str], names: tuple = ()):
+    """(names, value) for every value at a dotted path whose `*` parts match every key or item."""
+    if not parts:
+        yield names, obj
+        return
+    head, rest = parts[0], parts[1:]
+    if head == "*":
+        if isinstance(obj, dict):
+            items = obj.items()
+        elif isinstance(obj, list):
+            items = ((x.get("k", i) if isinstance(x, dict) else i, x) for i, x in enumerate(obj))
+        else:
+            return
+        for name, sub in items:
+            yield from _glob(sub, rest, names + (str(name),))
+        return
+    try:
+        sub = obj[int(head)] if isinstance(obj, list) else obj[head]
+    except (KeyError, IndexError, ValueError, TypeError):
+        return
+    yield from _glob(sub, rest, names)
+
+
 def published_series(spec: dict) -> pd.Series:
     if spec["published"].startswith("repo:"):
         # A CSV kept in this repository, e.g. "repo:history/pce-tracking.csv" (a track record).
@@ -104,14 +135,25 @@ def published_series(spec: dict) -> pd.Series:
                       index=df[index].map(_norm))
         return s.dropna()
     d = econdata.published(spec["published"])
-    rows = _dig(d, spec.get("published_rows") or "data")
-    index = spec.get("published_index") or (d.get("date_col") if isinstance(d, dict) else None) or "date"
-    col = spec["published_column"]
     out = {}
+    if spec.get("published_glob"):
+        for names, v in _glob(d, spec["published_glob"].split(".")):
+            if v is not None and not isinstance(v, (bool, dict, list)):
+                try:
+                    out[_norm("|".join(names))] = float(v)
+                except (TypeError, ValueError):
+                    continue
+        return pd.Series(out, dtype=float)
+    rows = _dig(d, spec.get("published_rows") or "data")
+    if spec.get("published_fields"):
+        rows = [dict(zip(spec["published_fields"], r)) for r in rows]
+    index = spec.get("published_index") or (d.get("date_col") if isinstance(d, dict) else None) or "date"
+    fields = index if isinstance(index, list) else [index]
+    col = spec["published_column"]
     for r in rows:
-        if index in r and col in r and r[col] is not None:
+        if all(f in r for f in fields) and col in r and r[col] is not None:
             try:
-                out[_norm(r[index])] = float(r[col])
+                out[_norm("|".join(str(r[f]) for f in fields))] = float(r[col])
             except (TypeError, ValueError):
                 continue
     return pd.Series(out, dtype=float)
@@ -133,7 +175,7 @@ def compare(folder: Path, spec: dict) -> dict:
         common = [k for k in common if k >= _norm(spec["from"])]
     n = int(spec.get("last_n", 24))
     tol = float(spec.get("tolerance", 0.01))
-    label = f"{spec['output_column']} vs {spec['published']}:{spec['published_column']}"
+    label = f"{spec['output_column']} vs {spec['published']}:{spec.get('published_column') or spec.get('published_glob')}"
     if not common and spec.get("may_be_empty") and not len(ours):
         return {"series": label, "ok": True, "empty": True,
                 "why": spec.get("empty_why", "the script wrote nothing to compare today")}
@@ -142,6 +184,9 @@ def compare(folder: Path, spec: dict) -> dict:
                 "ours_latest": max(ours.index) if len(ours) else None,
                 "published_latest": max(theirs.index) if len(theirs) else None}
     window = common[-n:]
+    if len(window) < int(spec.get("at_least", 0)):
+        return {"series": label, "ok": False, "compared": len(window),
+                "why": f"only {len(window)} values in common, fewer than the {spec['at_least']} expected"}
     diff = (ours[window] - theirs[window]).abs()
     worst = diff.idxmax()
     ok = bool(diff.max() <= tol + 1e-12)
