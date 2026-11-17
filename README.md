@@ -60,9 +60,9 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Demographics | [Age-Adjusted Labor Market Rates](measures/age-adjusted-labor-rates/) | Exact |
 | Demographics | [Aging Counterfactual](measures/aging-counterfactual/) | Exact |
 | Demographics | [Labor Market by Group](measures/labor-market-by-group/) | Run by hand |
-| GDP components | [Real National Income](measures/real-national-income/) | Exact |
-| GDP components | [Real Oil and Mining Investment](measures/real-oil-mining-investment/) | Exact |
-| GDP components | [Real Retail Sales](measures/real-retail-sales/) | Exact |
+| Inflation-adjusted series | [Real National Income](measures/real-national-income/) | Exact |
+| Inflation-adjusted series | [Real Oil and Mining Investment](measures/real-oil-mining-investment/) | Exact |
+| Inflation-adjusted series | [Real Retail Sales](measures/real-retail-sales/) | Exact |
 | Household finance | [House Prices Relative to Income and Rent](measures/house-prices-to-income-and-rent/) | Exact |
 | Household finance | [Household Leverage by Wealth Group](measures/leverage-by-wealth-group/) | Exact |
 | Household finance | [Loans to Lower Credit Scores](measures/loans-to-lower-credit-scores/) | Exact |
