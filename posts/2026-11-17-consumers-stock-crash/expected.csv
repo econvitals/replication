@@ -1,0 +1,520 @@
+id,where,quote,metric,expected,tol,lo,hi,needs,note
+P001,text,spending only about 1 cent of every dollar the market has gone up,mpc_stock_recent_cents,1,0.5,,,,"Headline: cents of extra annual spending per dollar of recent stock gains (back-of-envelope, FRB/US and adjusted consumption function all point to ~1); approximate"
+P002,text,The baseline is a 25 percent decline in the market,scenario_fall_baseline_pct,25,0.5,,,,INPUT: scenario size chosen by the author (justified in Part 2); not computed
+P003,text,market pricing puts the probability of a decline of this magnitude sustained through the end of 2027 at less than 10 percent,mkt_prob_25pct_decline_through_2027,,,,10,,CITED: market (options) pricing; upper bound only (less than 10 percent)
+P004,text,A bad case is a 35 percent decline,scenario_fall_bad_pct,35,0.5,,,,INPUT: scenario size chosen by the author; not computed
+P005,text,market pricing puts it at about 2 percent,mkt_prob_50pct_decline,2,0.5,,,,CITED: market (options) pricing probability of the 50 percent severe case
+P006,text,is a 50 percent decline,scenario_fall_severe_pct,50,0.5,,,,INPUT: scenario size chosen by the author; not computed
+P007,text,reduce economic growth by about 0.6 percentage point over the next year according to my preferred specification,gdp_growth_hit_25pct_1cent,0.6,0.05,,,,"Preferred case: 1-cent rule, 25 percent fall, cut in GDP growth over next year (pp); = Table 1 / Table A20 0.56"
+P008,text,The magnitude could be as large as 3.4 percentage points,gdp_growth_hit_50pct_3cent,3.4,0.05,,,,"Worst cell of Table 1: 3-cent rule, 50 percent fall, pp of GDP growth; = Table A20 3.36"
+P009,text,Stock market declines called 17 of the last 9 recessions,declines_20pct_since1946_count,17,0.5,,,,"Section heading. Count of peak-to-trough declines of 20 percent or more in all listed U.S. stocks (French/CRSP, ex dividends) since 1946 = bars in Figure 1"
+P010,text,Stock market declines called 17 of the last 9 recessions,recessions_with_decline_since1946_count,9,0.5,,,,Section heading. Number of NBER recessions since 1946 accompanied by a 20 percent decline (blue bars in Figure 1; 1980 and 1981-82 counted once)
+P011,text,the stock market “predicted nine out of the last five recessions.”,samuelson_quip_declines,9,0.5,,,,CITED: Paul Samuelson quip
+P012,text,the stock market “predicted nine out of the last five recessions.”,samuelson_quip_recessions,5,0.5,,,,CITED: Paul Samuelson quip
+P013,text,The current tally is 17 of the last 9 since 1946,declines_20pct_since1946_count,17,0.5,,,,See heading row; declines of 20 percent or more since 1946
+P014,text,The current tally is 17 of the last 9 since 1946,recessions_with_decline_since1946_count,9,0.5,,,,Recessions since 1946 that came with a 20 percent decline
+P015,text,Stock declines also missed three recessions,recessions_without_decline_since1946_count,3,0.5,,,,"NBER recessions since 1946 with no 20 percent decline (12 postwar recessions, 1980 and 1981-82 treated as one in Figure 1 so check definition)"
+P016,text,"the 20.5 percent fall in the S&P 500 on October 19, 1987",sp500_fall_oct19_1987_pct,20.5,0.05,,,,CITED: one-day S&P 500 fall on Black Monday (historical fact)
+P017,text,"In the year following that decline, real GDP grew 3.8 percent",gdp_growth_year_after_oct1987,3.8,0.05,,,,"Real GDP growth over the four quarters after the October 1987 crash (likely 1987Q4 to 1988Q4, or 1987Q3 to 1988Q3), current-vintage BEA data"
+P018,text,and real consumer spending grew 4.6 percent,pce_growth_year_after_oct1987,4.6,0.05,,,,"Real PCE growth over the four quarters after the October 1987 crash (same window as GDP row), current-vintage BEA data"
+P019,text,the market had risen nearly 40 percent earlier in the year,stock_rise_1987_before_crash_pct,,,35,40,licensed/sp500_daily.csv,"""Nearly 40"": stock market rise from the start of 1987 to the August 1987 peak, just under 40 percent"
+P020,text,the correlation between real changes in stock prices and house prices over a year has been just 0.16,corr_real_stock_house_4q_since1976,0.16,0.005,,,licensed/sp500_daily.csv,"Correlation of four-quarter (or annual) real changes in stock prices and house prices, sample since 1976 (FHFA house prices likely); real = deflated by consumer prices"
+P021,text,nominal house prices fell in only one of the ten big stock declines since 1980,declines_since1980_nominal_house_fall_count,1,0.5,,,,"Of the Figure 1 declines since 1980, number in which nominal house prices (FHFA all-transactions) fell from stock peak to trough: only 2007-09"
+P022,text,only one of the ten big stock declines since 1980 shown in Figure 1,declines_since1980_count,10,0.5,,,,Number of Figure 1 declines starting in 1980 or later (1980-82 through 2021-22)
+P023,text,with the market falling by half,stock_decline_2000_02_pct,,,-55,-45,,"Approximate (""by half""): peak-to-trough fall in all U.S. stocks 2000-02; Figure 1 prints -50.9; signed as a change"
+P024,text,real business investment fell for eight straight quarters,businv_consecutive_decline_quarters_2001,8,0.5,,,,"Consecutive quarterly declines in real nonresidential fixed investment around 2001 (2001Q1-2002Q4), current-vintage BEA data"
+P025,text,dropping 12 percent from the end of 2000 to the end of 2002,businv_growth_2000q4_2002q4_pct,-12,0.5,,,,"Printed as ""dropping 12 percent""; recorded as growth -12. Real nonresidential fixed investment 2000Q4 to 2002Q4, current-vintage BEA data"
+P026,text,during its worst four quarters it still grew 1.8 percent,pce_min_4q_growth_2000_2002_pct,1.8,0.05,,,,"Lowest four-quarter real PCE growth around the 2001 recession, current-vintage BEA data"
+P027,text,accounting for only 21 percent of the shortfall in output growth,pce_share_of_gdp_shortfall_2001_pct,21,0.5,,,,"Consumer spending shortfall as share of GDP growth shortfall, 2001 recession (peak-to-trough growth vs prior-10-year pace; Recession Explorer method)"
+P028,text,compared with 44 percent in the median of the other postwar recessions,pce_share_of_gdp_shortfall_median_other_pct,44,0.5,,,,Median across other postwar recessions since 1950 (1980 and 1981-82 combined) of PCE share of GDP growth shortfall
+P029,text,only 0.5 percentage point,pce_contrib_shortfall_2001_pp,-0.5,0.05,,,,"Text states drag as 0.5 pp; recorded signed as the shortfall in PCE contribution to real GDP growth, peak to trough, vs prior-10-year pace (Figure 2 prints -0.5)"
+P030,text,compared with a median drag of 2.0 points in the other recessions,pce_contrib_shortfall_median_other_pp,-2.0,0.05,,,,Text states drag as 2.0 points; recorded signed. Median of the other nine bars in Figure 2
+P031,text,it forecast 3 percent growth in 2001,greenbook_dec2000_pce_2001,3,0.5,,,,"Fed staff Greenbook (Dec 13, 2000) forecast of real PCE growth 2000Q4-2001Q4; Figure 3 prints 3.0"
+P032,text,and spending grew 2.5 percent according to the latest data,pce_growth_2000q4_2001q4_current,2.5,0.05,,,,"Actual real PCE growth 2000Q4 to 2001Q4, latest (current) vintage, not first published"
+P033,text,It expected business investment to grow 7.1 percent,greenbook_dec2000_businv_2001,7.1,0.05,,,,Greenbook Dec 2000 forecast of real business fixed investment growth 2000Q4-2001Q4
+P034,text,instead it fell 6.9 percent,businv_growth_2000q4_2001q4_current,-6.9,0.05,,,,"Printed ""fell 6.9 percent""; recorded as growth -6.9. Real nonresidential fixed investment 2000Q4-2001Q4, current vintage"
+P035,text,unemployment rose from 3.9 percent at the end of 2000,unemp_rate_end2000,3.9,0.05,,,,"Unemployment rate, December 2000 (or 2000Q4)"
+P036,text,to 5.7 percent a year later,unemp_rate_end2001,5.7,0.05,,,,"Unemployment rate, December 2001 (or 2001Q4)"
+P037,text,the Fed cut interest rates from 6.5 percent,fed_funds_target_start2001,6.5,0.05,,,,Federal funds target rate at start of 2001 (historical fact)
+P038,text,to 1.75 percent,fed_funds_target_end2001,1.75,0.005,,,,Federal funds target rate at end of 2001 (historical fact)
+P039,text,from an average of 65 percent of GDP from 1952 to 1995,us_stock_mktval_gdp_avg_1952_1995,65,0.5,,,,"All U.S. corporate equities (Financial Accounts, incl. privately held, ex fund shares) / nominal GDP, average 1952-1995"
+P040,text,to 187 percent at the peak of the dot-com bubble in early 2000,us_stock_mktval_gdp_2000q1,187,0.5,,,,All U.S. corporate equities / GDP at the 2000 peak (2000Q1)
+P041,text,to a record 286 percent in the middle of 2026,us_stock_mktval_gdp_2026q2,286,0.5,,,,"All U.S. corporate equities / GDP, 2026Q2 (record high)"
+P042,text,from 8 percent in 2000,foreign_share_us_equity_2000,8,0.5,,,,"Rest-of-world holdings as share of U.S. corporate equities, 2000 (Financial Accounts)"
+P043,text,to 24 percent in 2026,foreign_share_us_equity_2026,24,0.5,,,,"Rest-of-world share of U.S. corporate equities, 2026 (latest quarter, 2026Q2)"
+P044,text,rising from 137 percent of GDP,hh_stock_gdp_2000q1,137,0.5,,,,"Household and nonprofit equities held directly and indirectly (B.101.e) / GDP, 2000Q1"
+P045,text,to 227 percent of GDP,hh_stock_gdp_2026q2,227,0.5,,,,"Household and nonprofit directly and indirectly held equities / GDP, 2026Q2"
+P046,text,Mickey Levy estimates that about one-third of the revenues of S&P 500 companies come from abroad,sp500_foreign_revenue_share_pct,,,30,37,,"CITED: Mickey Levy; ""about one-third"" (percent)"
+P047,text,about 57 percent of GDP if foreign shares fell as much as U.S. ones,hh_stock_loss_25pct_gdp_pct,57,0.5,,,,"Household stock wealth (incl. foreign shares) x 25 percent / GDP, latest quarter"
+P048,text,compared with the 61 percent households actually lost from early 2000 to late 2002,hh_stock_loss_2000q1_2002q3_gdp_pct,61,0.5,,,,"Fall in household directly+indirectly held equities, 2000Q1 to 2002Q3 ($6.1 trillion per comment), / GDP at the start (2000Q1)"
+P049,text,…But households have spent only about 1 cent of every dollar of their recent stock gains,mpc_stock_recent_cents,1,0.5,,,,Section heading; approximate
+P050,text,increased their spending by about 3 cents for every $1 increase in their stock wealth,mpc_stock_literature_cents,3,0.5,,,,"CITED: literature (e.g., Chodorow-Reich, Nenov and Simsek 3.2 cents)"
+P051,text,people have spent something more like 1 cent of every dollar of their gains,mpc_stock_recent_cents,1,0.5,,,,"Approximate; ""and possibly even less"""
+P052,text,the top 0.1 percent of households owned 25 percent of the stock and mutual funds,top01_share_stocks_funds_2026q2_pct,25,0.5,,,,"Distributional Financial Accounts, mid-2026 (2026Q2): top 0.1 percent share of corporate equities and mutual fund shares (outside 401(k)s and pensions)"
+P053,text,up from 15 percent in 1989,top01_share_stocks_funds_1989_pct,15,0.5,,,,"DFA, top 0.1 percent share of equities and mutual funds, 1989 (DFA start, 1989Q3)"
+P054,text,and the top 10 percent owned 88 percent,top10_share_stocks_funds_2026q2_pct,88,0.5,,,,"DFA, top 10 percent share of equities and mutual funds, 2026Q2"
+P055,text,the wealth of the 10 richest Americans in fall 2026 is $2.5 trillion higher than it was in fall 2019,forbes_top10_wealth_gain_2019_2026_tn,2.5,0.05,,,,"Forbes: combined net worth of the 10 richest Americans, fall 2026 minus fall 2019, $ trillion (author computation from Forbes lists)"
+P056,text,increase their annual consumption expenditures by $7 billion each,forbes_top10_3cent_spend_each_bn,7,1,,,,3 percent x ($2.5 trillion / 10) = $7.5 billion; printed as $7 billion (truncated or computed from unrounded gain)
+P057,text,(which is 3 percent of their average wealth gain),forbes_top10_rule_pct,3,0.5,,,,INPUT: the 3-cent rule of thumb applied to the average gain
+P058,text,"from 2015 to 2019, consumer spending averaged 90.5 percent of disposable income",pce_share_dpi_avg_2015_2019,90.5,0.05,,,,"PCE / disposable personal income, average of 2015Q1-2019Q4 quarterly values"
+P059,text,So far in 2026 it has averaged 91.6 percent,pce_share_dpi_2026ytd,91.6,0.05,,,,"PCE / DPI, average of 2026Q1-Q3"
+P060,text,about 1 percent of income higher,pce_share_change_2015_19_to_2026ytd_pts,1,0.5,,,,Approximate: 91.6 - 90.5 = 1.1 points of income
+P061,text,the stock that households own rose from 1.8 times their annual income,hh_stock_dpi_avg_2015_2019,1.8,0.05,,,,"Household directly+indirectly held equities / DPI, average 2015-2019 (stock at start of quarter); appendix prints 1.76"
+P062,text,to 2.8 times,hh_stock_dpi_2026ytd,2.8,0.05,,,,"Household equities / DPI, average 2026Q1-Q3 (start-of-quarter stock); appendix prints 2.81"
+P063,text,an increase worth about a full year of income,hh_stock_dpi_change_2015_19_to_2026ytd,1,0.5,,,,Approximate: 2.81 - 1.76 = 1.05 years of income
+P064,text,An extra year’s income in stock wealth bringing an extra 1 percent of income in spending is 1 cent per dollar,boe_mpc_base2015_19_to2026ytd_cents,1,0.5,,,,"Back-of-envelope: change in PCE/DPI divided by change in stock/DPI, 2015-2019 base to 2026 so far (Table A18: 1.0)"
+P065,text,The Federal Reserve’s model has a wealth effect of roughly 1 cent per dollar,frbus_mpc_stock_cents_approx,1,0.5,,,,Approximate summary of FRB/US 0.9 (1 year) and 1.4 (long run) cents per dollar
+P066,text,a marginal propensity to consume out of wealth of 0.9 cents per dollar in the short run,frbus_le_mpc_1y_cents,0.9,0.05,,,,"FRB/US via Econvitals Macroeconomic Simulator, permanent 25 percent stock fall, lower-earnings version: PCE cut after 1 year / stock wealth lost ($175bn / $18.5tn)"
+P067,text,and 1.4 cents in the long run,frbus_le_mpc_5y_cents,1.4,0.05,,,,"Same, after five years ($263bn / $18.5tn)"
+P068,text,Its prediction is within a fraction of a percent of actual spending in 2026,frbus_pce_abs_error_2026q2_pct,,,0,1,,"Absolute FRB/US consumption-equation prediction error vs actual PCE, 2026Q2; ""fraction of a percent"" = below 1 (appendix: 0.15)"
+P069,text,it puts the marginal propensity to consume at about 2 cents out of stock wealth,cf_stock_coef_1955_2019,2,0.5,,,,"Consumption function, 1955Q1-2019Q4 OLS, stock wealth/income coefficient x100; precise value 2.22; ""about 2"""
+P070,text,and 4 cents out of housing wealth,cf_housing_coef_1955_2019,4,0.5,,,,"Same regression, housing wealth coefficient; precise value 4.44; ""about 4"""
+P071,text,the actual spending rate is 2.1 percent of income lower than predicted,cf_shortfall_pct_dpi_2026q3_anchor2019,2.1,0.05,,,,"Predicted minus actual PCE/DPI, 2026Q3, 1955-2019 function anchored to 2019 average residual"
+P072,text,or $510 billion a year,cf_shortfall_bn_2026q3_anchor2019,510,5,,,,"Same, in $ billions at annual rate; rounded to nearest $10 billion (appendix prints 509)"
+P073,text,the shortfall is 3.6 percent of income,cf_shortfall_pct_dpi_2026q3_anchor2015_19,3.6,0.05,,,,"Same, anchored to 2015-2019 average residual"
+P074,text,or about $870 billion,cf_shortfall_bn_2026q3_anchor2015_19,870,5,,,,"Same in $ billions; ""about"", rounded to nearest $10 billion (appendix prints 865)"
+P075,text,adding up to about 15 percent of a year’s income since the start of 2020,cf_cum_overpred_since2020_pct_dpi,15,0.5,,,,"Cumulative (summed quarterly at annual rate /4) predicted minus actual PCE since 2020Q1, anchored 2019, as share of one year of DPI ($3.7 trillion)"
+P076,text,takes it down to 1 cent or lower,cf_adjusted_mpc_stock_cents,,,,1,,Upper bound: visible stock effect after adjusting for prediction errors (0.54 cents anchored 2019; negative anchored 2015-2019)
+P077min,text,was about 2 to 3 cents in the periods ending between 2012 and 2019,rolling20_stock_coef_range_end2012_2019_min,,,1.95,3.05,,"Range of 20-year rolling stock coefficients for windows ending 2012-2019; approximate (appendix: 2.0 to 2.7) [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+P077max,text,was about 2 to 3 cents in the periods ending between 2012 and 2019,rolling20_stock_coef_range_end2012_2019_max,,,1.95,3.05,,"Range of 20-year rolling stock coefficients for windows ending 2012-2019; approximate (appendix: 2.0 to 2.7) [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+P078,text,to only 0.6 cents for the 20 years ending in 2026,rolling20_stock_coef_2026q3,0.6,0.05,,,,"20-year window 2006Q4-2026Q3, with lockdown dummies"
+P079,text,(1.2 if you exclude 2020 and 2021),rolling20_stock_coef_2026q3_ex2020_21,1.2,0.05,,,,Same window dropping 2020-2021 entirely (appendix note: 1.19)
+P080,text,a decline in consumption of roughly 0.6 to 1.0 percent is plausible,pce_cut_25pct_plausible_range_pct,,,0.55,1.05,,"Range of reduction in real PCE after a 25 percent fall under the preferred approaches (1-cent rule ~0.8, FRB/US 0.78 after 1 year to ~1.2 long run); approximate [bounds widened by half a unit of the printed digit]"
+P081,text,about a 0.4 to 0.6 percentage point reduction in GDP growth,gdp_growth_hit_25pct_plausible_range,,,0.35,0.65,,"Range across Table 1 FRB/US (0.4, 0.6) and 1-cent (0.6) cells, 25 percent fall [bounds widened by half a unit of the printed digit]"
+P082,text,"but probably by only about 0.3 percentage point, as discussed in the first post",gdp_hit_datacenter_cutback_pp,0.3,0.05,,,,CITED: Part 1 of the series (FRB/US estimate of data-center cutback)
+P083,text,because about three-quarters of that spending is imported,datacenter_import_share_pct,75,5,,,,"CITED: Part 1, about 75 percent of data-center spending imported"
+P084,table,Baseline: 25 percent / Stock wealth lost,hh_stock_loss_25pct_tn,19,0.5,,,,"Household stock $74.0tn x 25% = $18.5tn, printed rounded to $19 trillion"
+P085,table,Bad case: 35 percent / Stock wealth lost,hh_stock_loss_35pct_tn,26,0.5,,,,"$74.0tn x 35% = $25.9tn, printed $26 trillion"
+P086,table,Severe case: 50 percent / Stock wealth lost,hh_stock_loss_50pct_tn,37,0.5,,,,$74.0tn x 50% = $37.0tn
+P087,table,Baseline: 25 percent / Investors expect lower earnings,gdp_growth_hit_25pct_frbus_le,0.4,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US lower-earnings version (Simulator, Fed responds, imports), 1-year GDP level effect; one decimal (Table A20 has two)"
+P088,table,Baseline: 25 percent / Investors demand a higher return,gdp_growth_hit_25pct_frbus_hr,0.6,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US higher-required-return version, 1-year GDP level effect; one decimal (Table A20 has two)"
+P089,table,Baseline: 25 percent / Spend 1 cent per dollar,gdp_growth_hit_25pct_1cent,0.6,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1-cent rule: 0.01 x stock wealth lost / GDP, all in first year; one decimal (Table A20 has two)"
+P090,table,Baseline: 25 percent / Historical consumption function (2 cents per dollar),gdp_growth_hit_25pct_cf,0.9,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1955-2019 function (2.22 cents) phased in at partial-adjustment speed, 72 percent in a year; one decimal (Table A20 has two)"
+P091,table,Baseline: 25 percent / Spend 3 cents per dollar,gdp_growth_hit_25pct_3cent,1.7,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 3-cent rule: 0.03 x stock wealth lost / GDP; one decimal (Table A20 has two)"
+P092,table,Bad case: 35 percent / Investors expect lower earnings,gdp_growth_hit_35pct_frbus_le,0.6,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US lower-earnings version (Simulator, Fed responds, imports), 1-year GDP level effect; one decimal (Table A20 has two)"
+P093,table,Bad case: 35 percent / Investors demand a higher return,gdp_growth_hit_35pct_frbus_hr,0.8,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US higher-required-return version, 1-year GDP level effect; one decimal (Table A20 has two)"
+P094,table,Bad case: 35 percent / Spend 1 cent per dollar,gdp_growth_hit_35pct_1cent,0.8,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1-cent rule: 0.01 x stock wealth lost / GDP, all in first year; one decimal (Table A20 has two)"
+P095,table,Bad case: 35 percent / Historical consumption function (2 cents per dollar),gdp_growth_hit_35pct_cf,1.2,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1955-2019 function (2.22 cents) phased in at partial-adjustment speed, 72 percent in a year; one decimal (Table A20 has two)"
+P096,table,Bad case: 35 percent / Spend 3 cents per dollar,gdp_growth_hit_35pct_3cent,2.4,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 3-cent rule: 0.03 x stock wealth lost / GDP; one decimal (Table A20 has two)"
+P097,table,Severe case: 50 percent / Investors expect lower earnings,gdp_growth_hit_50pct_frbus_le,0.9,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US lower-earnings version (Simulator, Fed responds, imports), 1-year GDP level effect; one decimal (Table A20 has two)"
+P098,table,Severe case: 50 percent / Investors demand a higher return,gdp_growth_hit_50pct_frbus_hr,1.1,0.05,,,,"Table 1 cell, pp of GDP growth over next year; FRB/US higher-required-return version, 1-year GDP level effect; one decimal (Table A20 has two)"
+P099,table,Severe case: 50 percent / Spend 1 cent per dollar,gdp_growth_hit_50pct_1cent,1.1,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1-cent rule: 0.01 x stock wealth lost / GDP, all in first year; one decimal (Table A20 has two)"
+P100,table,Severe case: 50 percent / Historical consumption function (2 cents per dollar),gdp_growth_hit_50pct_cf,1.8,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 1955-2019 function (2.22 cents) phased in at partial-adjustment speed, 72 percent in a year; one decimal (Table A20 has two)"
+P101,table,Severe case: 50 percent / Spend 3 cents per dollar,gdp_growth_hit_50pct_3cent,3.4,0.05,,,,"Table 1 cell, pp of GDP growth over next year; 3-cent rule: 0.03 x stock wealth lost / GDP; one decimal (Table A20 has two)"
+P102,table,Table 1 header: Historical consumption function (2 cents per dollar),cf_stock_coef_1955_2019,2,0.5,,,,Column header rounds 2.22 to 2
+P103,table,"Table 1 note: The historical consumption function (2.2 cents per dollar, estimated on 1955–2019)",cf_stock_coef_1955_2019,2.2,0.05,,,,Stock coefficient 2.22
+P104,table,"Table 1 note: phases in at its estimated pace, about 72 percent within a year",cf_pa_share_4q_pct,72,0.5,,,,Partial-adjustment model 1955-2019: share of long-run effect reached after 4 quarters
+P105,figure,Figure 1 bar 1946–47,stock_decline_1946_47_pct,-31.7,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P106,figure,Figure 1 bar 1948–49,stock_decline_1948_49_pct,-22.1,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P107,figure,Figure 1 bar 1957,stock_decline_1957_pct,-21.5,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P108,figure,Figure 1 bar 1961–62,stock_decline_1961_62_pct,-28.9,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P109,figure,Figure 1 bar 1966,stock_decline_1966_pct,-22.0,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P110,figure,Figure 1 bar 1968–70,stock_decline_1968_70_pct,-39.8,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P111,figure,Figure 1 bar 1973–74,stock_decline_1973_74_pct,-51.2,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P112,figure,Figure 1 bar 1980–82,stock_decline_1980_82_pct,-26.8,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P113,figure,Figure 1 bar 1987,stock_decline_1987_pct,-33.7,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P114,figure,Figure 1 bar 1989–90*,stock_decline_1989_90_pct,-21.6,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P115,figure,Figure 1 bar 1998*,stock_decline_1998_pct,-22.2,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P116,figure,Figure 1 bar 2000–02,stock_decline_2000_02_pct,-50.9,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P117,figure,Figure 1 bar 2007–09,stock_decline_2007_09_pct,-56.1,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P118,figure,Figure 1 bar 2011*,stock_decline_2011_pct,-21.0,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P119,figure,Figure 1 bar 2018*,stock_decline_2018_pct,-20.8,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P120,figure,Figure 1 bar 2020,stock_decline_2020_pct,-34.3,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as recession"
+P121,figure,Figure 1 bar 2021–22,stock_decline_2021_22_pct,-26.6,0.05,,,,"Peak-to-trough fall in all listed U.S. stocks ex estimated dividends (French/CRSP value-weighted, price only), percent; colored as no recession"
+P122,figure,Figure 1 note: *The S&P 500 fell just under 20 percent.,sp500_decline_starred_episodes_pct,,,-20,-19,licensed/sp500_daily.csv,"S&P 500 peak-to-trough fall in each starred episode (1989-90, 1998, 2011, 2018) was just under 20 percent; signed"
+P123,figure,Figure 2 bar 1953–54,pce_contrib_shortfall_1953_54_pp,-2.0,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P124,figure,Figure 2 bar 1957–58,pce_contrib_shortfall_1957_58_pp,-1.8,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P125,figure,Figure 2 bar 1960–61,pce_contrib_shortfall_1960_61_pp,-1.7,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P126,figure,Figure 2 bar 1969–70,pce_contrib_shortfall_1969_70_pp,-1.5,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P127,figure,Figure 2 bar 1973–75,pce_contrib_shortfall_1973_75_pp,-3.7,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P128,figure,Figure 2 bar 1980–82*,pce_contrib_shortfall_1980_82_pp,-3.2,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp; 1980 and 1981-82 combined (Jan 1980-Nov 1982)"
+P129,figure,Figure 2 bar 1990–91,pce_contrib_shortfall_1990_91_pp,-1.9,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P130,figure,Figure 2 bar 2001,pce_contrib_shortfall_2001_pp,-0.5,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P131,figure,Figure 2 bar 2007–09,pce_contrib_shortfall_2007_09_pp,-4.9,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P132,figure,Figure 2 bar 2020,pce_contrib_shortfall_2020_pp,-8.0,0.05,,,,"Shortfall in PCE contribution to real GDP growth, business-cycle peak to trough, below prior-10-year pace, pp"
+P133,figure,"Figure 3 GDP / Fed staff forecast, December 2000",greenbook_dec2000_gdp_2001,3.1,0.05,,,,"Greenbook Dec 13, 2000 forecast, real growth 2000Q4-2001Q4, percent"
+P134,figure,Figure 3 GDP / Actual,gdp_growth_2000q4_2001q4_current,0.2,0.05,,,,"Actual real growth 2000Q4-2001Q4, latest BEA vintage"
+P135,figure,"Figure 3 Consumer spending / Fed staff forecast, December 2000",greenbook_dec2000_pce_2001,3.0,0.05,,,,"Greenbook Dec 13, 2000 forecast, real growth 2000Q4-2001Q4, percent"
+P136,figure,Figure 3 Consumer spending / Actual,pce_growth_2000q4_2001q4_current,2.5,0.05,,,,"Actual real growth 2000Q4-2001Q4, latest BEA vintage"
+P137,figure,"Figure 3 Residential investment / Fed staff forecast, December 2000",greenbook_dec2000_resinv_2001,-0.4,0.05,,,,"Greenbook Dec 13, 2000 forecast, real growth 2000Q4-2001Q4, percent"
+P138,figure,Figure 3 Residential investment / Actual,resinv_growth_2000q4_2001q4_current,2.0,0.05,,,,"Actual real growth 2000Q4-2001Q4, latest BEA vintage"
+P139,figure,"Figure 3 Business investment / Fed staff forecast, December 2000",greenbook_dec2000_businv_2001,7.1,0.05,,,,"Greenbook Dec 13, 2000 forecast, real growth 2000Q4-2001Q4, percent"
+P140,figure,Figure 3 Business investment / Actual,businv_growth_2000q4_2001q4_current,-6.9,0.05,,,,"Actual real growth 2000Q4-2001Q4, latest BEA vintage"
+P141,figure,"Figure 3 Government / Fed staff forecast, December 2000",greenbook_dec2000_govt_2001,3.6,0.05,,,,"Greenbook Dec 13, 2000 forecast, real growth 2000Q4-2001Q4, percent"
+P142,figure,Figure 3 Government / Actual,govt_growth_2000q4_2001q4_current,4.9,0.05,,,,"Actual real growth 2000Q4-2001Q4, latest BEA vintage"
+P143,figure,"Figure 3 note: Actual growth as first published, February 2002: GDP 0.1",gdp_growth_2000q4_2001q4_first_published,0.1,0.05,,,,"As first published, February 2002 vintage (Philadelphia Fed real-time data), real growth 2000Q4-2001Q4"
+P144,figure,"Figure 3 note: Actual growth as first published, February 2002: consumer spending 3.0",pce_growth_2000q4_2001q4_first_published,3.0,0.05,,,,"As first published, February 2002 vintage (Philadelphia Fed real-time data), real growth 2000Q4-2001Q4"
+P145,figure,"Figure 3 note: Actual growth as first published, February 2002: residential investment 2.4",resinv_growth_2000q4_2001q4_first_published,2.4,0.05,,,,"As first published, February 2002 vintage (Philadelphia Fed real-time data), real growth 2000Q4-2001Q4"
+P146,figure,"Figure 3 note: Actual growth as first published, February 2002: business investment −9.2",businv_growth_2000q4_2001q4_first_published,-9.2,0.05,,,,"As first published, February 2002 vintage (Philadelphia Fed real-time data), real growth 2000Q4-2001Q4"
+P147,figure,"Figure 3 note: Actual growth as first published, February 2002: government 4.9",govt_growth_2000q4_2001q4_first_published,4.9,0.05,,,,"As first published, February 2002 vintage (Philadelphia Fed real-time data), real growth 2000Q4-2001Q4"
+P148,figure,Figure 4 label 2000: 187%,us_stock_mktval_gdp_2000q1,187,0.5,,,,"All U.S. corporate stock / GDP, 2000 peak"
+P149,figure,Figure 4 label 2000: 137%,hh_stock_gdp_2000q1,137,0.5,,,,"Household-held stock / GDP, 2000 (same quarter as the all-stock peak)"
+P150,figure,Figure 4 label 2026: 286%,us_stock_mktval_gdp_2026q2,286,0.5,,,,"All U.S. corporate stock / GDP, last point (2026Q2)"
+P151,figure,Figure 4 label 2026: 227%,hh_stock_gdp_2026q2,227,0.5,,,,"Household-held stock / GDP, last point (2026Q2)"
+P152,figure,Figure 5 label 2015–19 average: 90.5%,pce_share_dpi_avg_2015_2019,90.5,0.05,,,,PCE/DPI average 2015-2019
+P153,figure,Figure 5 label Second quarter of 2020: 73%,pce_share_dpi_2020q2,73,0.5,,,,"Actual PCE/DPI, 2020Q2 (lockdown trough)"
+P154,figure,Figure 5 end label 94.2% (Historical consumption function),cf_pred_pce_share_2026q3_anchor2019,94.2,0.05,,,,"Predicted PCE/DPI 2026Q3, 1955-2019 function anchored to 2019, no lockdown dummies"
+P155,figure,Figure 5 end label 92.1% (Actual),pce_share_dpi_2026q3,92.1,0.05,,,,"Actual PCE/DPI, 2026Q3"
+P156,figure,"Figure 5 note: estimated on 1955–2019, 2.2 cents per dollar of stock wealth",cf_stock_coef_1955_2019,2.2,0.05,,,,Stock coefficient 2.22
+P157,figure,Figure 5 note: and 4.4 per dollar of housing wealth,cf_housing_coef_1955_2019,4.4,0.05,,,,Housing coefficient 4.44
+P158,figure,Figure 6 label 2000–2019: 2.7,rolling20_stock_coef_2019q4,2.7,0.05,,,,20-year window 2000Q1-2019Q4 stock coefficient (Table A14: 2.70)
+P159,figure,Figure 6 label 2007–2026: 0.6,rolling20_stock_coef_2026q3,0.6,0.05,,,,20-year window ending 2026Q3 (2006Q4-2026Q3)
+P160,figure,Figure 7 legend: Historical consumption function (2 cents per dollar),cf_stock_coef_1955_2019,2,0.5,,,,Legend rounds 2.22 to 2
+P161,figure,"Figure 7 note: the historical consumption function (2.2 cents per dollar, estimated on 1955–2019)",cf_stock_coef_1955_2019,2.2,0.05,,,,Stock coefficient 2.22
+A001,appendix-text,The literature’s central estimate is about 3 cents of extra annual spending per extra dollar of stock wealth,mpc_stock_literature_cents,3,0.5,,,,CITED: literature consensus
+A002,appendix-text,with most credible estimates between 2 and 4 cents,mpc_stock_literature_range,,,2,4,,CITED: literature range
+A003,appendix-text,gives 2.2 cents per dollar of stock wealth,cf_stock_coef_1955_2019,2.2,0.05,,,,"Consumption function (Table A3 spec), OLS, Newey-West 8 lags, 1955Q1-2019Q4, stock coefficient (2.22)"
+A004,appendix-text,and 4.4 cents per dollar of housing wealth,cf_housing_coef_1955_2019,4.4,0.05,,,,"Same regression, housing coefficient (4.44)"
+A005,appendix-text,about 70 percent of the long-run effect arrives within a year,cf_pa_share_4q_pct,70,5,,,,"""About 70"": partial-adjustment share after 4 quarters, printed elsewhere as 72"
+A006,appendix-text,spending in the third quarter of 2026 was 2.1 percent of disposable income,cf_shortfall_pct_dpi_2026q3_anchor2019,2.1,0.05,,,,"Predicted minus actual PCE/DPI 2026Q3, anchored to 2019"
+A007,appendix-text,($510 billion a year),cf_shortfall_bn_2026q3_anchor2019,510,5,,,,Rounded to nearest $10 billion (Table A7: 509)
+A008,appendix-text,"starting from the 2015–2019 average, 3.6 percent",cf_shortfall_pct_dpi_2026q3_anchor2015_19,3.6,0.05,,,,Anchored to 2015-2019 average residual
+A009,appendix-text,($870 billion),cf_shortfall_bn_2026q3_anchor2015_19,870,5,,,,Rounded to nearest $10 billion (Table A8: 865)
+A010,appendix-text,Only about a quarter of the stock effect the function expected is visible from a 2019 start,cf_visible_share_stock_effect_anchor2019_pct,,,20,30,,"""About a quarter"": visible / expected stock effect, anchor 2019 (Table A7 text: 24 percent)"
+A011,appendix-text,and none from a 2015–2019 start,cf_visible_stock_effect_bn_anchor2015_19,,,,0,,Visible stock effect anchored 2015-2019 is zero or negative (Table A8: -166)
+A012,appendix-text,“down to 1 cent or lower.”,cf_adjusted_mpc_stock_cents,,,,1,,Quotes the post; upper bound
+A013,appendix-text,past misses track how much the model expected stocks to add (correlation 0.7),backtest_corr_error_vs_stock_contrib,0.7,0.05,,,,Correlation across 43 pre-2020 backtest runs (anchors 1970-2012) of 27-quarter-ahead error with expected stock contribution (Table A10 note: 0.70)
+A014,appendix-text,from 2.2 cents through 2019,cf_stock_coef_1955_2019,2.2,0.05,,,,"Stock coefficient, 1955-2019"
+A015,appendix-text,to 1.1 cents through mid-2026 on all data since 1955,cf_stock_coef_1955_2026q3,1.1,0.05,,,,Stock coefficient 1955Q1-2026Q3 with six lockdown dummies (1.15)
+A016,appendix-text,and to 0.6 cents over the latest 20 years,rolling20_stock_coef_2026q3,0.6,0.05,,,,20-year window 2006Q4-2026Q3
+A017,appendix-text,"a household that spread an extra dollar evenly over the rest of a 40-year horizon, earning a 3 percent real return, would spend about 4.3 cents a year more",annuity_mpc_40y_3pct_cents,4.3,0.05,,,,"Own arithmetic: annuity factor r/(1-(1+r)^-40) with r = 0.03, x100 (inputs 40 years and 3 percent are assumptions)"
+A018,appendix-text,the rule of thumb in policy circles was 1 to 5 cents,policy_rule_of_thumb_mid1990s_range,,,1,5,,"CITED: policy rule of thumb, mid-1990s (Furman recollection)"
+A019,appendix-text,put the consensus long-run effect at about 3 cents per dollar of stock wealth,poterba2000_mpc_stock_lr_cents,3,0.5,,,,CITED: Poterba (2000)
+A020,appendix-text,within a range of 1 to 5,poterba2000_mpc_stock_range,,,1,5,,CITED: Poterba (2000)
+A021,appendix-text,with 1 to 2 cents showing up in the first year,poterba2000_mpc_stock_1y_range,,,1,2,,CITED: Poterba (2000)
+A022,appendix-text,Ludvigson and Steindel (1999) found about 4 cents for stocks over 1953–1997,ludvigson_steindel1999_mpc_stock_cents,4,0.5,,,,CITED: Ludvigson and Steindel (1999)
+A023,appendix-text,"Davis and Palumbo (2001), 3 to 6 cents for total wealth",davis_palumbo2001_mpc_total_range,,,3,6,,CITED: Davis and Palumbo (2001)
+A024,appendix-text,finds about 4 cents per dollar of financial wealth,fair2017_mpc_financial_cents,4,0.5,,,,CITED: Fair (2017)
+A025,appendix-text,and about 5 per dollar of housing wealth,fair2017_mpc_housing_cents,5,0.5,,,,CITED: Fair (2017)
+A026,appendix-text,leaves the effect at about 4 cents,fair2024_mpc_cents,4,0.5,,,,CITED: Fair (2024) re-estimate through 2023
+A027,appendix-text,only 0.8 cents per dollar of financial wealth shows up in the first quarter,cos2011_mpc_financial_q1_cents,0.8,0.05,,,,"CITED: Carroll, Otsuka and Slacalek (2011)"
+A028,appendix-text,against 4.1 cents eventually,cos2011_mpc_financial_lr_cents,4.1,0.05,,,,"CITED: Carroll, Otsuka and Slacalek (2011)"
+A029,appendix-text,implying that households spend 3.2 cents a year per dollar of stock wealth,cns2021_mpc_stock_cents,3.2,0.05,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021)"
+A030,appendix-text,with about half the response within two quarters,cns2021_share_within_2q_pct,50,10,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021); ""about half"""
+A031,appendix-text,and the whole of it within about seven,cns2021_quarters_to_full_response,7,0.5,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021)"
+A032,appendix-text,spend 23 cents per dollar of unrealized stock gains,dkm2020_mpc_bottom_half_cents,23,0.5,,,,"CITED: Di Maggio, Kermani and Majlesi (2020), bottom half of wealth distribution"
+A033,appendix-text,while those in the top 5 percent spend 2.8 cents,dkm2020_mpc_top5_cents,2.8,0.05,,,,"CITED: Di Maggio, Kermani and Majlesi (2020), top 5 percent"
+A034,appendix-text,0.8 cents per dollar for wealth held by the top fifth of the income distribution,bgm2025_mpc_top_fifth_cents,0.8,0.05,,,,"CITED: Beach, Gamber and Moran (2025)"
+A035,appendix-text,against 7.5 cents for the other four-fifths,bgm2025_mpc_bottom_four_fifths_cents,7.5,0.05,,,,"CITED: Beach, Gamber and Moran (2025)"
+A036,appendix-text,find spending rises about 4 cents per dollar over the first year,ajs2024_mpc_1y_cents,4,0.5,,,,"CITED: Andersen, Johannesen and Sheridan (2024), working-paper figure"
+A037,appendix-text,(4.4 in the published version),ajs2024_mpc_1y_published_cents,4.4,0.05,,,,"CITED: Andersen, Johannesen and Sheridan (2024), published"
+A038,appendix-text,with 15 cents for the least liquid third of investors,ajs2024_mpc_least_liquid_cents,15,0.5,,,,"CITED: Andersen, Johannesen and Sheridan (2024)"
+A039,appendix-text,against 3 cents for the most liquid,ajs2024_mpc_most_liquid_cents,3,0.5,,,,"CITED: Andersen, Johannesen and Sheridan (2024)"
+A040,appendix-text,2 to 4 cents per dollar of stock wealth is the best summary of the literature,mpc_stock_literature_range,,,2,4,,CITED: summary of literature
+A041,appendix-text,and 3 cents is a fair center,mpc_stock_literature_cents,3,0.5,,,,CITED: summary of literature
+A042,appendix-text,"Carroll, Otsuka and Slacalek’s eventual housing effect is 8.7 cents",cos2011_mpc_housing_lr_cents,8.7,0.05,,,,"CITED: Carroll, Otsuka and Slacalek (2011)"
+A043,appendix-text,against 4.1 for financial wealth,cos2011_mpc_financial_lr_cents,4.1,0.05,,,,"CITED: Carroll, Otsuka and Slacalek (2011)"
+A044,appendix-text,Studies that use local variation in house prices find 2 to 7 cents,local_housing_mpc_range,,,2,7,,CITED: local house-price studies
+A045,appendix-text,"Mian, Rao and Sufi (2013) 5 to 7 cents",mrs2013_mpc_housing_range,,,5,7,,"CITED: Mian, Rao and Sufi (2013)"
+A046,appendix-text,Aladangady (2017) 4.7 cents for homeowners,aladangady2017_mpc_housing_cents,4.7,0.05,,,,CITED: Aladangady (2017)
+A047,appendix-text,"Guren, McKay, Nakamura and Steinsson (2021) 2.4 cents over 1978–2017",gmns2021_mpc_housing_cents,2.4,0.05,,,,"CITED: Guren, McKay, Nakamura and Steinsson (2021)"
+A048,appendix-text,"Beach, Gamber and Moran put housing at just over 5 cents",bgm2025_mpc_housing_cents,,,5,6,,"CITED: Beach, Gamber and Moran (2025); ""just over 5"""
+A049,appendix-text,and stocks at slightly above 1,bgm2025_mpc_stock_cents,,,1,1.5,,"CITED: Beach, Gamber and Moran (2025); ""slightly above 1"""
+A050,appendix-text,The consumption function in this appendix gives 4.4 cents for housing,cf_housing_coef_1955_2019,4.4,0.05,,,,"Housing coefficient, 1955-2019"
+A051,appendix-text,and 2.2 for stocks over 1955–2019,cf_stock_coef_1955_2019,2.2,0.05,,,,"Stock coefficient, 1955-2019"
+A052,appendix-text,Fair’s estimates for the two are close (about 5 and 4 cents),fair2017_mpc_housing_cents,5,0.5,,,,"CITED: Fair, housing"
+A053,appendix-text,Fair’s estimates for the two are close (about 5 and 4 cents),fair2017_mpc_financial_cents,4,0.5,,,,"CITED: Fair, financial/stocks"
+A054,appendix-text,from about 1 cent in the 1980s,dmm2017_mpc_housing_1980s_cents,1,0.5,,,,"CITED: Duca, Muellbauer and Murphy (2017)"
+A055,appendix-text,to above 3.75 cents in the mid-2000s,dmm2017_mpc_housing_mid2000s_cents,,,3.75,,,"CITED: Duca, Muellbauer and Murphy (2017); ""above 3.75"""
+A056,appendix-text,and below 2 cents by 2015,dmm2017_mpc_housing_2015_cents,,,,2,,"CITED: Duca, Muellbauer and Murphy (2017); ""below 2"""
+A057,appendix-text,stays at 1 to 2 cents,dmm2017_mpc_illiquid_financial_range,,,1,2,,"CITED: Duca, Muellbauer and Murphy (2017)"
+A058,appendix-text,still end up with 5 to 8 cents for housing,clm2013_mpc_housing_range,,,5,8,,"CITED: Calomiris, Longhofer and Miles (2013)"
+A059,appendix-text,and less than 2 for stocks,clm2013_mpc_stock_cents,,,,2,,"CITED: Calomiris, Longhofer and Miles (2013); ""less than 2"""
+A060,appendix-text,the total-wealth effect is 4 to 6 cents where mortgage markets are deep,slacalek2009_mpc_total_deep_range,,,4,6,,CITED: Slacalek (2009)
+A061,appendix-text,but under 1 cent for the euro area as a group,slacalek2009_mpc_total_euro_cents,,,,1,,"CITED: Slacalek (2009); ""under 1"""
+A062,appendix-text,In mid-2026 the top 10 percent of households owned 88 percent of the stocks and mutual funds,top10_share_stocks_funds_2026q2_pct,88,0.5,,,,"Distributional Financial Accounts, 2026Q2, top 10 percent share of equities and mutual funds outside 401(k)s and pensions"
+A063,appendix-text,U.S. homeowners extracted 25 cents for every dollar of home-equity gains,mian_sufi2011_extraction_cents,25,0.5,,,,CITED: Mian and Sufi (2011)
+A064,appendix-text,withdrawals from brokerage accounts rise 35 cents per dollar of dividends,bnw2007_withdrawal_per_dividend_cents,35,0.5,,,,"CITED: Baker, Nagel and Wurgler (2007)"
+A065,appendix-text,but only 2 cents per dollar of total returns,bnw2007_withdrawal_per_return_cents,2,0.5,,,,"CITED: Baker, Nagel and Wurgler (2007)"
+A066,appendix-text,its consumption equations put a single elasticity (0.187) on total household net worth,frbus_networth_elasticity,0.187,0.0005,,,,"CITED: a coefficient of the Board’s published FRB/US model (model.xml in the public package), quoted, not estimated here. FRB/US model parameter (Board public model package), long-run elasticity of consumption target to net worth; read, not estimated"
+A067,appendix-text,at 3 cents per dollar of stock wealth,frbus1996_mpc_stock_cents,3,0.5,,,,"CITED: original 1996 FRB/US, as reported by Mehra (2001)"
+A068,appendix-text,and 7.5 cents per dollar of other net wealth,frbus1996_mpc_other_cents,7.5,0.05,,,,"CITED: original 1996 FRB/US, as reported by Mehra (2001)"
+A069,appendix-text,(4.8 cents for rises against 2.8 for falls),vantreeck2008_mpc_rises_cents,4.8,0.05,,,,CITED: van Treeck (2008)
+A070,appendix-text,(4.8 cents for rises against 2.8 for falls),vantreeck2008_mpc_falls_cents,2.8,0.05,,,,CITED: van Treeck (2008)
+A071,appendix-text,but only about a quarter of their quarters had negative returns,cns2021_share_negative_quarters_pct,,,20,30,,"CITED: Chodorow-Reich, Nenov and Simsek (2021); ""about a quarter"""
+A072,appendix-text,"(0.049 for falls against 0.057 for rises, in elasticity terms)",gmns2021_elasticity_falls,0.049,0.0005,,,,"CITED: Guren, McKay, Nakamura and Steinsson (2021)"
+A073,appendix-text,"(0.049 for falls against 0.057 for rises, in elasticity terms)",gmns2021_elasticity_rises,0.057,0.0005,,,,"CITED: Guren, McKay, Nakamura and Steinsson (2021)"
+A074,appendix-text,Ludvigson and Steindel found 2.6 cents over 1953–1975,ludvigson_steindel1999_mpc_1953_1975_cents,2.6,0.05,,,,CITED: Ludvigson and Steindel (1999)
+A075,appendix-text,10.6 over 1976–1985,ludvigson_steindel1999_mpc_1976_1985_cents,10.6,0.05,,,,CITED: Ludvigson and Steindel (1999)
+A076,appendix-text,and 2.1 over 1986–1997,ludvigson_steindel1999_mpc_1986_1997_cents,2.1,0.05,,,,CITED: Ludvigson and Steindel (1999)
+A077,appendix-text,fit a ratio model on 1960–2007 (3.5 cents per dollar of total wealth),af2018_mpc_total_cents,3.5,0.05,,,,CITED: Aladangady and Feiveson (2018)
+A078,appendix-text,by 2017 spending was about 3 percent of disposable income below its prediction,af2018_shortfall_2017_pct_dpi,3,0.5,,,,CITED: Aladangady and Feiveson (2018)
+A079,appendix-text,"Beach, Gamber and Moran’s version of that model gives 3.5 cents on 1964–2011",bgm2025_mpc_total_cents,3.5,0.05,,,,"CITED: Beach, Gamber and Moran (2025)"
+A080,appendix-text,the effect of total wealth falls from 3.3 cents before 2012,bgm2025_mpc_total_pre2012_cents,3.3,0.05,,,,"CITED: Beach, Gamber and Moran (2025)"
+A081,appendix-text,to 2.7 after,bgm2025_mpc_total_post2012_cents,2.7,0.05,,,,"CITED: Beach, Gamber and Moran (2025)"
+A082,appendix-text,almost all of the decline (94 percent),bgm2025_share_decline_concentration_pct,94,0.5,,,,"CITED: Beach, Gamber and Moran (2025)"
+A083,appendix-text,FRB/US’s elasticity of 0.187,frbus_networth_elasticity,0.187,0.0005,,,,"CITED: a coefficient of the Board’s published FRB/US model (model.xml in the public package), quoted, not estimated here. FRB/US model parameter"
+A084,appendix-text,implies about 3.2 cents at the 1990 ratio of household net worth to spending,frbus_implied_mpc_1990_cents,3.2,0.05,,,,Own arithmetic: 0.187 x (PCE / household net worth) in 1990 x 100
+A085,appendix-text,and 2.1 cents at today’s,frbus_implied_mpc_today_cents,2.1,0.05,,,,"Own arithmetic: 0.187 x (PCE / household net worth), latest quarter (2026Q2/Q3), x 100"
+A086,appendix-text,equaled 6.8 percent of spending in April 2026,jpmci2026_withdrawals_share_apr2026_pct,6.8,0.05,,,,CITED: JPMorganChase Institute (2026)
+A087,appendix-text,against 3.5 percent in April 2019,jpmci2026_withdrawals_share_apr2019_pct,3.5,0.05,,,,CITED: JPMorganChase Institute (2026)
+A088,appendix-text,a dollar of stock wealth goes with 2.2 cents of annual spending,cf_stock_coef_1955_2019,2.2,0.05,,,,"Consumption function (Table A3 spec), OLS, Newey-West 8 lags, 1955-2019"
+A089,appendix-text,(standard error 0.5),cf_stock_se_1955_2019,0.5,0.05,,,,Newey-West (8 lags) SE of the 1955-2019 stock coefficient (0.49)
+A090,appendix-text,a dollar of housing wealth with 4.4 cents,cf_housing_coef_1955_2019,4.4,0.05,,,,Housing coefficient 1955-2019
+A091,appendix-text,a dollar of housing wealth with 4.4 cents (0.7),cf_housing_se_1955_2019,0.7,0.05,,,,SE of housing coefficient 1955-2019 (0.72)
+A092,appendix-text,"roughly halves the stock coefficient, to 1.1 cents",cf_stock_coef_1955_2026q3,1.1,0.05,,,,Stock coefficient 1955-2026Q3 with lockdown dummies
+A093,appendix-text,to 1.1 cents (0.6),cf_stock_se_1955_2026q3,0.6,0.05,,,,SE (0.57)
+A094,appendix-text,the stock coefficient is 1.7 cents,cf_stock_coef_1989_2015,1.7,0.05,,,,"Stock coefficient, 1989-2015 sample (1.68)"
+A095,appendix-text,below their 3.2,cns2021_mpc_stock_cents,3.2,0.05,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021)"
+A096,appendix-text,Over 1990–2019 stocks get 2.4 cents,cf_stock_coef_1990_2019,2.4,0.05,,,,"Stock coefficient, 1990-2019 (2.43)"
+A097,appendix-text,but housing only 1.5,cf_housing_coef_1990_2019,1.5,0.05,,,,"Housing coefficient, 1990-2019 (1.49)"
+A098,appendix-text,"Over 2010–2019 alone, on 40 quarters",cf_nobs_2010_2019,40,0.5,,,,"Observations, 2010-2019 regression"
+A099,appendix-text,other wealth gets nearly 11 cents,cf_other_coef_2010_2019,,,10.5,11,,"""Nearly 11"": other-wealth coefficient 2010-2019 (Table A3: 10.76)"
+A100,appendix-text,which is why the Durbin–Watson statistic is only 0.31,cf_dw_1955_2019,0.31,0.005,,,,"Durbin-Watson, 1955-2019 regression"
+A101,appendix-text,In 2013 actual spending was 1.4 points of income above the model,cf_resid_2013_pts,1.4,0.05,,,,"Annual-average residual (actual minus fitted), 2013, points of DPI"
+A102,appendix-text,by 2019 it was 2.0 points below,cf_resid_2019_pts,-2.0,0.05,,,,"""Below"" recorded negative; annual-average residual 2019, lowest in 1955-2019 sample"
+A103,appendix-text,a statistic of −4.36,cf_eg_stat_1955_2019,-4.36,0.005,,,,"Engle-Granger: spending share on the three wealth ratios alone, ADF on residual, 1955-2019"
+A104,appendix-text,against a 5 percent critical value of −4.14,cf_eg_cv5_1955_2019,-4.14,0.005,,,,MacKinnon 5 percent critical value
+A105,appendix-text,leaves the stock coefficient almost unchanged (2.18 cents; Table A5),cf_stock_coef_dols2_1955_2019,2.18,0.005,,,,"DOLS with leads and lags +/-2 of wealth-ratio changes, 1955-2019"
+A106,appendix-text,Over 1955–2019 that is 27 percent a quarter,cf_pa_speed_1955_2019_pct,27,0.5,,,,Partial adjustment: 1 minus coefficient on lagged spending share (0.271)
+A107,appendix-text,so 72 percent of the long-run effect arrives within a year,cf_pa_share_4q_pct,72,0.5,,,,"Partial adjustment, 1955-2019, share after 4 quarters"
+A108,appendix-text,and 92 percent within two,cf_pa_share_8q_pct,92,0.5,,,,"Partial adjustment, share after 8 quarters"
+A109,appendix-text,It closes only 11 percent of the gap a quarter,cf_ecm_speed_1955_2019_pct,11,0.5,,,,Error correction speed 1955-2019 (0.112)
+A110,appendix-text,so 58 percent of the long-run effect arrives in the first quarter,cf_ecm_share_q1_pct,58,0.5,,,,"Error correction, 1955-2019, share in quarter 1"
+A111,appendix-text,and 66 percent within a year,cf_ecm_share_q4_pct,66,0.5,,,,"Error correction, share by quarter 4"
+A112,appendix-text,complete within about seven quarters,cns2021_quarters_to_full_response,7,0.5,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021)"
+A113,appendix-text,in which about 45 percent arrives after a year,fair_pa_share_1y_pct,45,0.5,,,,CITED: Fair partial-adjustment equations
+A114min,appendix-text,the stock coefficient stays between 1.5 and 2.5 cents in every variant but three,a5_stock_coef_1955_2019_range_ex3_min,,,1.45,2.55,,"Range of Table A5 1955-2019 stock column excluding home equity (3.29), net worth (2.52) and income ex interest/dividends (-1.83) [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A114max,appendix-text,the stock coefficient stays between 1.5 and 2.5 cents in every variant but three,a5_stock_coef_1955_2019_range_ex3_max,,,1.45,2.55,,"Range of Table A5 1955-2019 stock column excluding home equity (3.29), net worth (2.52) and income ex interest/dividends (-1.83) [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A115,appendix-text,in every variant but three,a5_stock_coef_1955_2019_outside_count,3,0.5,,,,Number of Table A5 variants outside 1.5-2.5 cents through 2019
+A116,appendix-text,Measuring housing as home equity (net of mortgages) raises it to 3.3 cents,cf_stock_coef_homeequity_1955_2019,3.3,0.05,,,,"Home-equity variant, stock coefficient 1955-2019 (3.29)"
+A117,appendix-text,Using total net worth instead of the three types gives 2.5 cents per dollar of all wealth,cf_networth_coef_1955_2019,2.5,0.05,,,,"Single net-worth coefficient, 1955-2019 (2.52)"
+A118,appendix-text,And taking interest and dividends out of income turns it negative (−1.8),cf_stock_coef_exintdiv_1955_2019,-1.8,0.05,,,,"Income ex interest and dividends variant, stock coefficient (-1.83)"
+A119min,appendix-text,by between a quarter and four-fifths in all,a5_stock_coef_pct_cut_range_min,,,20,82,,"Percent fall in stock coefficient from 1955-2019 to 1955-2026 across Table A5 variants (ex income-ex-dividends); approximate bounds [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A119max,appendix-text,by between a quarter and four-fifths in all,a5_stock_coef_pct_cut_range_max,,,20,82,,"Percent fall in stock coefficient from 1955-2019 to 1955-2026 across Table A5 variants (ex income-ex-dividends); approximate bounds [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A120min,appendix-text,to between 0.3 and 1.4 cents,a5_stock_coef_1955_2026_range_min,,,0.25,1.45,,"Range of Table A5 1955-2026 stock column, ex income-ex-dividends (0.34 to 1.44) [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A120max,appendix-text,to between 0.3 and 1.4 cents,a5_stock_coef_1955_2026_range_max,,,0.25,1.45,,"Range of Table A5 1955-2026 stock column, ex income-ex-dividends (0.34 to 1.44) [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A121,appendix-text,Dropping 2020–2022 entirely instead of using lockdown dummies gives 1.2 cents,cf_stock_coef_1955_2026q3_drop2020_22,1.2,0.05,,,,Stock coefficient 1955-2026Q3 dropping 2020-2022 (1.18)
+A122,appendix-text,starting in 1980 instead of 1955 lowers it from 4.4,cf_housing_coef_1955_2019,4.4,0.05,,,,Housing coefficient 1955-2019
+A123,appendix-text,to 2.5 cents,cf_housing_coef_1980_2019,2.5,0.05,,,,"Housing coefficient, 1980-2019 sample (2.50)"
+A124,appendix-text,"the main anchor is 2019, whose average residual is −2.01 points of income",cf_anchor_resid_2019_pts,-2.01,0.005,,,,Average 2019 residual of 1955-2019 regression
+A125,appendix-text,Stock wealth rose from 1.81 times disposable income on average in 2019,hh_stock_dpi_avg_2019,1.81,0.005,,,,"Household equities (start of quarter) / DPI, 2019 average"
+A126,appendix-text,to 3.06 times in the third quarter of 2026,hh_stock_dpi_2026q3,3.06,0.005,,,,Household equities (end 2026Q2) / DPI 2026Q3
+A127,appendix-text,an excess over the 2019 ratio of $30.2 trillion,excess_stock_wealth_over_2019_ratio_tn,30.2,0.05,,,,"(3.06 - 1.81) x DPI 2026Q3, $ trillion"
+A128,appendix-text,the model predicts that spending in the third quarter of 2026 would be 94.2 percent of disposable income,cf_pred_pce_share_2026q3_anchor2019,94.2,0.05,,,,"Anchored to 2019, no lockdown dummies"
+A129,appendix-text,Actual spending was 92.1 percent,pce_share_dpi_2026q3,92.1,0.05,,,,Actual PCE/DPI 2026Q3
+A130,appendix-text,a shortfall of 2.1 percent of income,cf_shortfall_pct_dpi_2026q3_anchor2019,2.1,0.05,,,,"Predicted minus actual, points of DPI"
+A131,appendix-text,or $509 billion at an annual rate,cf_shortfall_bn_2026q3_anchor2019,509,0.5,,,,"Predicted minus actual, $ billions SAAR"
+A132,appendix-text,(2.3 percent of spending),cf_shortfall_pct_pce_2026q3_anchor2019,2.3,0.05,,,,Same as percent of actual PCE
+A133,appendix-text,"Summed from the start of 2020, the model overpredicts spending by $3.7 trillion",cf_cum_overpred_since2020_tn,3.7,0.05,,,,"Cumulative quarterly overprediction (SAAR/4) 2020Q1-2026Q3, anchored 2019"
+A134,appendix-text,about 15 percent of a year’s disposable income,cf_cum_overpred_since2020_pct_dpi,15,0.5,,,,Cumulative 2020Q1-2026Q3 / annual DPI
+A135,appendix-text,"summed from the start of 2022, by $1.8 trillion",cf_cum_overpred_since2022_tn,1.8,0.05,,,,"Cumulative 2022Q1-2026Q3 (Table A19: 1,783 billion)"
+A136,appendix-text,Of the predicted rise in the spending share of 4.9 points,cf_pred_change_share_2019_2026q3_pts,4.9,0.05,,,,"Predicted change in PCE/DPI, 2019 avg to 2026Q3"
+A137,appendix-text,"($1,184 billion a year at today’s income)",cf_pred_change_bn_2019_2026q3,1184,0.5,,,,Points x DPI 2026Q3
+A138,appendix-text,2.8 points ($672 billion) come from stocks,cf_contrib_stock_pts_2019_2026q3,2.8,0.05,,,,Stock coefficient x change in stock/DPI (2.77)
+A139,appendix-text,2.8 points ($672 billion) come from stocks,cf_expected_stock_effect_bn_anchor2019,672,0.5,,,,"Expected stock effect, $ billions"
+A140,appendix-text,1.4 points ($337 billion) from housing,cf_contrib_housing_pts_2019_2026q3,1.4,0.05,,,,Housing contribution (1.39)
+A141,appendix-text,1.4 points ($337 billion) from housing,cf_contrib_housing_bn_2019_2026q3,337,0.5,,,,"Housing contribution, $ billions"
+A142,appendix-text,0.5 points ($122 billion) from income growing more slowly than its recent average,cf_contrib_incgap_pts_2019_2026q3,0.5,0.05,,,,Income-relative-to-average contribution (0.50)
+A143,appendix-text,0.5 points ($122 billion) from income growing more slowly than its recent average,cf_contrib_incgap_bn_2019_2026q3,122,0.5,,,,$ billions
+A144,appendix-text,The actual share rose 2.8 points,pce_share_change_2019_2026q3_pts,2.8,0.05,,,,"Actual PCE/DPI change, 2019 avg to 2026Q3 (2.79)"
+A145,appendix-text,The actual share rose 2.8 points ($675 billion),pce_share_change_bn_2019_2026q3,675,0.5,,,,$ billions
+A146,appendix-text,actual spending is $163 billion higher,cf_visible_stock_effect_bn_anchor2019,163,0.5,,,,Actual minus model with stock/DPI held at 2019 ratio
+A147,appendix-text,24 percent of it,cf_visible_share_stock_effect_anchor2019_pct,24,0.5,,,,163 / 672
+A148,appendix-text,or 0.54 cents per dollar of excess stock wealth,cf_visible_mpc_anchor2019_cents,0.54,0.005,,,,163bn / 30.2tn
+A149,appendix-text,"The saving rate was unusually high in 2019, 7.3 percent",saving_rate_2019_pct,7.3,0.05,,,,"BEA personal saving rate, 2019 annual average"
+A150,appendix-text,when the residual was about −0.5 points,cf_anchor_resid_2015_19_pts,-0.5,0.05,,,,Average residual 2015-2019 (-0.54)
+A151,appendix-text,the model is 3.6 percent of income,cf_shortfall_pct_dpi_2026q3_anchor2015_19,3.6,0.05,,,,Anchored 2015-2019
+A152,appendix-text,($865 billion) above actual spending,cf_shortfall_bn_2026q3_anchor2015_19,865,0.5,,,,"Anchored 2015-2019, $ billions"
+A153,appendix-text,more than its whole expected stock effect ($699 billion),cf_expected_stock_effect_bn_anchor2015_19,699,0.5,,,,Expected stock effect anchored 2015-2019
+A154min,appendix-text,Anchoring to individual years from 2015 to 2017 gives shortfalls of 3.8 to 4.7 percent of income,cf_shortfall_pct_dpi_range_anchor2015_2017_min,,,3.75,4.75,,"Range across single-year anchors 2015, 2016, 2017 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A154max,appendix-text,Anchoring to individual years from 2015 to 2017 gives shortfalls of 3.8 to 4.7 percent of income,cf_shortfall_pct_dpi_range_anchor2015_2017_max,,,3.75,4.75,,"Range across single-year anchors 2015, 2016, 2017 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A155,appendix-text,a shortfall of 0.8 percent of income,cf_shortfall_pct_dpi_2026q3_anchor2023,0.8,0.05,,,,Anchored to 2023
+A156,appendix-text,or none at all,cf_shortfall_pct_dpi_2026q3_anchor2024,,,,0,,Anchored to 2024: zero or negative shortfall (Table A8: -0.2)
+A157,appendix-text,is visible (1.5 cents per dollar),cf_visible_mpc_anchor2023_cents,1.5,0.05,,,,Visible stock effect / excess stock wealth over 2023 ratio
+A158,appendix-text,all of it and more (2.5 cents),cf_visible_mpc_anchor2024_cents,2.5,0.05,,,,Visible stock effect / excess stock wealth over 2024 ratio
+A159,appendix-text,That matters for reading the post’s “about 1 cent”,mpc_stock_recent_cents,1,0.5,,,,Quotes the post
+A160,appendix-text,the response at the margin over 2024–2026 has been closer to 2 cents,mpc_stock_margin_2024_2026_cents,2,0.5,,,,Approximate marginal response since 2024
+A161min,appendix-text,The shortfall ranges from 1.3 to 4.7 percent of income,a9_shortfall_pct_dpi_range_min,,,1.25,4.75,,"Range across Table A9 rows [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A161max,appendix-text,The shortfall ranges from 1.3 to 4.7 percent of income,a9_shortfall_pct_dpi_range_max,,,1.25,4.75,,"Range across Table A9 rows [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A162,appendix-text,ranges from none to 57 percent,a9_visible_share_max_pct,57,0.5,,,,Largest visible share across Table A9 rows (1955-2007 sample)
+A163,appendix-text,ranges from none to 57 percent,a9_visible_share_min_pct,,,,0,,"""None"": smallest visible share across Table A9 rows is zero or negative"
+A164,appendix-text,"(its anchor is −5.9 points, against −2.0)",cf_anchor_resid_2019_est1955_2007_pts,-5.9,0.05,,,,"Model estimated 1955-2007, average 2019 residual (-5.94)"
+A165,appendix-text,"(its anchor is −5.9 points, against −2.0)",cf_anchor_resid_2019_pts,-2.0,0.05,,,,Baseline 2019 anchor (-2.01)
+A166,appendix-text,"the simple rules of more than about 2 cents in Section 6.3, overpredict spending since 2019",rule_fit_cents_2019start,2,0.5,,,,Approximate threshold; exact fitting rule is 2.2
+A167,appendix-text,put spending 4.2 percent below its fitted value in 2019,loglog_resid_2019_pct,-4.2,0.05,,,,"Log PCE on log DPI and log net worth through 2019; residual 2019, ""below"" recorded negative"
+A168,appendix-text,and 4.5 percent below in the latest four quarters,loglog_resid_latest4q_pct,-4.5,0.05,,,,"Same model, out of sample, latest four quarters (2025Q4-2026Q3)"
+A169,appendix-text,To judge whether a 2.3 percent miss after six and three-quarter years is large,cf_shortfall_pct_pce_2026q3_anchor2019,2.3,0.05,,,,Percent of spending
+A170,appendix-text,the absolute error after 27 quarters had a median of 1.4 percent,backtest_abs_err_27q_median_pct,1.4,0.05,,,,"43 runs, anchors 1970-2012, estimate 1955-anchor year, error 27 quarters later"
+A171,appendix-text,a 75th percentile of 3.9,backtest_abs_err_27q_p75_pct,3.9,0.05,,,,Same 43 runs
+A172,appendix-text,and a maximum of 6.3,backtest_abs_err_27q_max_pct,6.3,0.05,,,,Same 43 runs
+A173,appendix-text,42 percent of runs missed by at least 2.3 percent in one direction or the other,backtest_share_abs_err_ge2p3_pct,42,0.5,,,,Share of the 43 runs
+A174,appendix-text,and 16 percent overpredicted by at least that much,backtest_share_overpred_ge2p3_pct,16,0.5,,,,Share of the 43 runs
+A175,appendix-text,the error lines up with the model’s own expected stock contribution (correlation 0.7),backtest_corr_error_vs_stock_contrib,0.7,0.05,,,,Across pre-2020 runs
+A176,appendix-text,"in the 2010s, with a coefficient of about 2.5 cents",cf_stock_coef_est_end2009_2012_approx,2.5,0.1,,,,"Stock coefficient estimated 1955 through 2009-2012 (Table A14: 2.49 through 2012); ""about"""
+A177min,appendix-text,"it produced overpredictions of 3 to 6 percent (runs anchored in 2009–2012, compared in 2016–2019)",backtest_err_range_anchor2009_2012_pct_min,,,2.5,6.5,,"Range of 27-quarter errors for anchors 2009-2012 (Table A10: 3.1, 5.2, 6.0, 5.4) [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A177max,appendix-text,"it produced overpredictions of 3 to 6 percent (runs anchored in 2009–2012, compared in 2016–2019)",backtest_err_range_anchor2009_2012_pct_max,,,2.5,6.5,,"Range of 27-quarter errors for anchors 2009-2012 (Table A10: 3.1, 5.2, 6.0, 5.4) [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A178,appendix-text,the 2019 run has the largest expected stock contribution of any run (3.0 percent of spending),backtest_2019_expected_stock_contrib_pct_pce,3.0,0.05,,,,"Expected stock contribution, 2019 run, percent of spending"
+A179,appendix-text,the 2.2 cents the model was estimated with,cf_stock_coef_1955_2019,2.2,0.05,,,,Stock coefficient 1955-2019
+A180,appendix-text,translates into about 0.5 cents of visible spending per dollar of stock gains since 2019,cf_visible_mpc_anchor2019_cents,0.5,0.05,,,,Rounded 0.54
+A181,appendix-text,and less than nothing since the 2015–2019 average,cf_visible_mpc_anchor2015_19_cents,,,,0,,Negative
+A182,appendix-text,takes the 2-cent estimate “down to 1 cent or lower.”,cf_adjusted_mpc_stock_cents,,,,1,,Upper bound
+A183,appendix-text,the response since 2023–2024 looks closer to 2 cents,mpc_stock_margin_2024_2026_cents,2,0.5,,,,Approximate
+A184,appendix-text,about 1 cent on all data since 1955,cf_stock_coef_1955_2026q3,1,0.5,,,,Approximate (1.15)
+A185,appendix-text,a dollar of accumulated losses moves spending somewhat more than a dollar of accumulated gains (3.2 against 2.1 cents),gl_losses_coef_1955_2019,3.2,0.05,,,,"Levels model, accumulated real losses since 1952, 1955-2019 (3.21)"
+A186,appendix-text,(3.2 against 2.1 cents),gl_gains_coef_1955_2019,2.1,0.05,,,,"Accumulated real gains coefficient, 1955-2019 (2.10)"
+A187,appendix-text,(t = −1.3),gl_t_gains_minus_losses_1955_2019,-1.3,0.05,,,,t-statistic gains minus losses (-1.34)
+A188,appendix-text,"(3.4 against 1.6 cents, t = −3.0)",gl_losses_coef_1955_2026q3,3.4,0.05,,,,1955-2026Q3 (3.36)
+A189,appendix-text,"(3.4 against 1.6 cents, t = −3.0)",gl_gains_coef_1955_2026q3,1.6,0.05,,,,1955-2026Q3 (1.55)
+A190,appendix-text,"(3.4 against 1.6 cents, t = −3.0)",gl_t_gains_minus_losses_1955_2026q3,-3.0,0.05,,,,(-3.03)
+A191,appendix-text,Give the post-2019 gains their own coefficient and they get 0.2 cents,gl_gains_post2019_coef_split,0.2,0.05,,,,1955-2026Q3 with gains from 2020 on separate (0.21)
+A192,appendix-text,earlier gains 2.2,gl_gains_coef_split,2.2,0.05,,,,"Gains through 2019, split model (2.17)"
+A193,appendix-text,and losses 2.8,gl_losses_coef_split,2.8,0.05,,,,"Losses, split model (2.76)"
+A194,appendix-text,(t = −0.7),gl_t_gains_minus_losses_split,-0.7,0.05,,,,Earlier gains minus losses (-0.74)
+A195,appendix-text,"(1.9 cents extra for losses, 2.3 for gains)",gl_extra_losses_2y_1955_2019,1.9,0.05,,,,"Extra effect of losses over past 2 years, 1955-2019 (1.93)"
+A196,appendix-text,"(1.9 cents extra for losses, 2.3 for gains)",gl_extra_gains_2y_1955_2019,2.3,0.05,,,,"Extra effect of gains over past 2 years, 1955-2019 (2.29)"
+A197,appendix-text,2.3 cents for gains and 2.7 for losses after four quarters,chg_gains_cum4q_1955_2019,2.3,0.05,,,,"Changes model cumulative response at quarter 4, 1955-2019 (2.30)"
+A198,appendix-text,2.3 cents for gains and 2.7 for losses after four quarters,chg_losses_cum4q_1955_2019,2.7,0.05,,,,(2.66)
+A199,appendix-text,"With the full sample, gains run ahead (2.1 against 1.2)",chg_gains_cum4q_1955_2026q3,2.1,0.05,,,,(2.15) [the appendix's R1 printed 2.2; corrected to 2.1 in R2 after this check found it]
+A200,appendix-text,"With the full sample, gains run ahead (2.2 against 1.2)",chg_losses_cum4q_1955_2026q3,1.2,0.05,,,,(1.24)
+A201,appendix-text,(2.9 against 0.2 cents),county_retail_mpc_market_up_1992_2018,2.9,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, 1992-2018, market-up quarters (Table A17, not otherwise checked)"
+A202,appendix-text,(2.9 against 0.2 cents),county_retail_mpc_market_down_1992_2018,0.2,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, market-down quarters"
+A203min,appendix-text,the stock coefficient stays between 2.2 and 2.9 cents,expanding_stock_coef_range_end2000_2019_min,,,2.15,2.95,,"Expanding window from 1955, samples ending 2000-2019 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A203max,appendix-text,the stock coefficient stays between 2.2 and 2.9 cents,expanding_stock_coef_range_end2000_2019_max,,,2.15,2.95,,"Expanding window from 1955, samples ending 2000-2019 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A204,appendix-text,(2.8 through 1999,expanding_stock_coef_1999q4,2.8,0.05,,,,1955-1999Q4 (2.84)
+A205,appendix-text,2.5 through 2012,expanding_stock_coef_2012q4,2.5,0.05,,,,1955-2012Q4 (2.49)
+A206,appendix-text,2.2 through 2019),cf_stock_coef_1955_2019,2.2,0.05,,,,1955-2019Q4
+A207,appendix-text,2.0 through 2023,expanding_stock_coef_2023q4,2.0,0.05,,,,1955-2023Q4 with dummies (1.97)
+A208,appendix-text,1.7 through 2024,expanding_stock_coef_2024q4,1.7,0.05,,,,1955-2024Q4 (1.67)
+A209,appendix-text,1.3 through 2025,expanding_stock_coef_2025q4,1.3,0.05,,,,1955-2025Q4 (1.34)
+A210,appendix-text,and 1.1 through mid-2026,cf_stock_coef_1955_2026q3,1.1,0.05,,,,1955-2026Q3
+A211,appendix-text,Dropping 2020 and 2021 entirely gives 1.2,cf_stock_coef_1955_2026q3_drop2020_21,1.2,0.05,,,,1955-2026Q3 dropping 2020-2021 (1.19)
+A212,appendix-text,"Housing barely moves, from 4.4 through 2019",cf_housing_coef_1955_2019,4.4,0.05,,,,Housing 1955-2019
+A213,appendix-text,to 4.2,cf_housing_coef_1955_2026q3,4.2,0.05,,,,Housing 1955-2026Q3 (4.20)
+A214min,appendix-text,before 1999 the stock coefficient ranges from −5.3 to 12.0 cents,rolling10_stock_coef_range_end_pre1999_min,,,-5.35,12.05,,"10-year windows ending before 1999 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A214max,appendix-text,before 1999 the stock coefficient ranges from −5.3 to 12.0 cents,rolling10_stock_coef_range_end_pre1999_max,,,-5.35,12.05,,"10-year windows ending before 1999 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A215min,appendix-text,even windows ending 2010–2019 run from 1.3 to 3.4,rolling10_stock_coef_range_end2010_2019_min,,,1.25,3.45,,"10-year windows ending 2010-2019 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A215max,appendix-text,even windows ending 2010–2019 run from 1.3 to 3.4,rolling10_stock_coef_range_end2010_2019_max,,,1.25,3.45,,"10-year windows ending 2010-2019 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A216min,appendix-text,2.0 to 2.7 cents for windows ending 2012–2019,rolling20_stock_coef_range_end2012_2019_min,,,1.95,3.05,,"20-year windows ending 2012-2019 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A216max,appendix-text,2.0 to 2.7 cents for windows ending 2012–2019,rolling20_stock_coef_range_end2012_2019_max,,,1.95,3.05,,"20-year windows ending 2012-2019 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A217min,appendix-text,−0.1 to 0.9 cents for 20-year windows ending from the third quarter of 2021 on,rolling20_stock_coef_range_end2021q3_on_min,,,-0.15,0.95,,"20-year windows ending 2021Q3-2026Q3 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A217max,appendix-text,−0.1 to 0.9 cents for 20-year windows ending from the third quarter of 2021 on,rolling20_stock_coef_range_end2021q3_on_max,,,-0.15,0.95,,"20-year windows ending 2021Q3-2026Q3 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A218,appendix-text,"(0.6 for the latest, 2006Q4–2026Q3",rolling20_stock_coef_2026q3,0.6,0.05,,,,Latest 20-year window
+A219,appendix-text,or 1.2 without 2020–2021),rolling20_stock_coef_2026q3_ex2020_21,1.2,0.05,,,,Latest 20-year window dropping 2020-2021 (1.19)
+A220min,appendix-text,and −1.6 to 0.5 for 15-year windows,rolling15_stock_coef_range_end2021q3_on_min,,,-1.65,0.55,,"15-year windows ending 2021Q3 on [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A220max,appendix-text,and −1.6 to 0.5 for 15-year windows,rolling15_stock_coef_range_end2021q3_on_max,,,-1.65,0.55,,"15-year windows ending 2021Q3 on [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A221,appendix-text,the response to stock gains after four quarters is 5.1 cents,chg4_gains_cum4q_1955_1989,5.1,0.05,,,,"Changes model with four lags, era 1955-1989"
+A222,appendix-text,(standard error 1.2) over 1955–1989,chg4_gains_cum4q_se_1955_1989,1.2,0.05,,,,SE
+A223,appendix-text,3.1 (0.8) over 1990–2008,chg4_gains_cum4q_1990_2008,3.1,0.05,,,,Era 1990-2008
+A224,appendix-text,3.1 (0.8) over 1990–2008,chg4_gains_cum4q_se_1990_2008,0.8,0.05,,,,SE
+A225,appendix-text,3.4 (1.0) over 2009–2019,chg4_gains_cum4q_2009_2019,3.4,0.05,,,,Era 2009-2019
+A226,appendix-text,3.4 (1.0) over 2009–2019,chg4_gains_cum4q_se_2009_2019,1.0,0.05,,,,SE
+A227,appendix-text,and 1.7 (1.1) over 2021Q3–2026Q3,chg4_gains_cum4q_2021q3_2026q3,1.7,0.05,,,,Era 2021Q3-2026Q3
+A228,appendix-text,and 1.7 (1.1) over 2021Q3–2026Q3,chg4_gains_cum4q_se_2021q3_2026q3,1.1,0.05,,,,SE
+A229,appendix-text,"finds a significant break in the stock coefficient, dated 2013Q4",break_stock_full_date,2013.4,0,,,,"Date encoded YYYY.Q (2013.4 = 2013Q4); sup-Wald, 15 percent trimming"
+A230,appendix-text,(2.5 cents before,break_stock_full_before_cents,2.5,0.05,,,,Stock coefficient before 2013Q4 break (2.50)
+A231,appendix-text,essentially zero after),break_stock_full_after_cents,,,-0.25,0.25,,"""Essentially zero"" (Table A15: 0.09)"
+A232,appendix-text,"with more of the sample trimmed from each end, 2008Q2",break_stock_trim20_date,2008.2,0,,,,Date encoded YYYY.Q; 20 percent trimming
+A233,appendix-text,"the test picks its very first candidate, 1964Q4",break_stock_thru2019_date,1964.4,0,,,,Date encoded YYYY.Q; sample through 2019
+A234,appendix-text,the stock coefficient after 2010 or after 2013 is about 1.5 cents,break2010q1_after_thru2019_cents,1.5,0.1,,,,"Fixed break 2010Q1, data through 2019 (1.50)"
+A235,appendix-text,the stock coefficient after 2010 or after 2013 is about 1.5 cents,break2013q4_after_thru2019_cents,1.5,0.1,,,,"Fixed break 2013Q4, data through 2019 (1.43); ""about"""
+A236,appendix-text,(Wald statistics of 1.8 and 1.2),break2010q1_wald_thru2019,1.8,0.05,,,,"Wald, 2010Q1 break, through 2019"
+A237,appendix-text,(Wald statistics of 1.8 and 1.2),break2013q4_wald_thru2019,1.2,0.05,,,,"Wald, 2013Q4 break, through 2019"
+A238,appendix-text,After 2008 it is 0.68 cents,break2008q2_after_thru2019_cents,0.68,0.005,,,,"Fixed break 2008Q2, through 2019"
+A239,appendix-text,a Wald statistic of 6.2,break2008q2_wald_thru2019,6.2,0.05,,,,"Wald, 2008Q2 break, through 2019"
+A240,appendix-text,The rebuild matches the paper on total payroll (1.9 against 2.2 basis points),county_total_payroll_rebuild_same_years,1.9,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, same years as CNS"
+A241,appendix-text,(1.9 against 2.2 basis points),cns2021_total_payroll_bp,2.2,0.05,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021), total payroll (2.18)"
+A242,appendix-text,"payroll in retail, restaurants and hotels, the number that reads as the propensity to spend: 1.9",county_retail_payroll_rebuild_same_years,1.9,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, retail/restaurants/hotels payroll, same years"
+A243,appendix-text,1.9 against 3.2,cns2021_mpc_stock_cents,3.2,0.05,,,,"CITED: Chodorow-Reich, Nenov and Simsek (2021) (3.24)"
+A244,appendix-text,So the county-implied effect is about 2 cents per dollar,county_mpc_rebuild_approx_cents,2,0.5,,,county/ (about 10 GB of public inputs; run by hand),Approximate
+A245,appendix-text,or 2 to 3 allowing for the gap,county_mpc_rebuild_adjusted_range,,,2,3,county/ (about 10 GB of public inputs; run by hand),Allowing for gap vs paper
+A246,appendix-text,the response is 0.6 cents for stock moves in 1992–2004,county_retail_1992_2004,0.6,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, first half"
+A247,appendix-text,and 2.5 cents for moves in 2005–2018,county_retail_2005_2018,2.5,0.05,,,county/ (about 10 GB of public inputs; run by hand),"County rebuild, second half"
+A248,appendix-text,larger in the second half in every variant but one,county_variants_second_half_not_larger_count,1,0.5,,,county/ (about 10 GB of public inputs; run by hand),Count of variants
+A249,appendix-text,leaving only five clean quarters (2023Q2–2024Q2),county_clean_postcovid_quarters,5,0.5,,,county/ (about 10 GB of public inputs; run by hand),Count of usable post-COVID quarters
+A250,appendix-text,those quarters give 1.6 cents,county_retail_postcovid_pooled,1.6,0.05,,,county/ (about 10 GB of public inputs; run by hand),Post-COVID quarters pooled with 1992-2018
+A251,appendix-text,a 95 percent confidence interval from about −1.5,county_retail_postcovid_ci95_lo,-1.5,0.05,,,county/ (about 10 GB of public inputs; run by hand),"Lower 95 percent bound; ""about"""
+A252,appendix-text,to 4.6,county_retail_postcovid_ci95_hi,4.6,0.05,,,county/ (about 10 GB of public inputs; run by hand),Upper 95 percent bound
+A253,appendix-text,the point estimate is negative (−2.6),county_retail_postcovid_alone_2015_2018,-2.6,0.05,,,county/ (about 10 GB of public inputs; run by hand),Post-COVID quarters estimated with 2015-2018 only
+A254,appendix-text,spending rose from 90.5,pce_share_dpi_avg_2015_2019,90.5,0.05,,,,PCE/DPI 2015-2019 average
+A255,appendix-text,to 91.6 percent of income,pce_share_dpi_2026ytd,91.6,0.05,,,,PCE/DPI 2026Q1-Q3 average
+A256,appendix-text,about 1 point,pce_share_change_2015_19_to_2026ytd_pts,1,0.5,,,,Approximate (1.1)
+A257,appendix-text,while stock wealth rose from 1.76,hh_stock_dpi_avg_2015_2019,1.76,0.005,,,,"Household equities (start of quarter) / DPI, 2015-2019 average"
+A258,appendix-text,to 2.81 times income,hh_stock_dpi_2026ytd,2.81,0.005,,,,"Household equities / DPI, 2026Q1-Q3 average"
+A259,appendix-text,about one year’s income,hh_stock_dpi_change_2015_19_to_2026ytd,1,0.5,,,,Approximate (1.05)
+A260,appendix-text,One extra point of spending per extra year of income in stock wealth is 1 cent per dollar,boe_mpc_base2015_19_to2026ytd_cents,1,0.5,,,,"Back-of-envelope, base 2015-2019, to 2026 so far"
+A261,appendix-text,the calculation gives 0.9 cents from a 2015 base,boe_mpc_base2015_to2026q3_cents,0.9,0.05,,,,To 2026Q3
+A262,appendix-text,2.2 from 2019,boe_mpc_base2019_to2026q3_cents,2.2,0.05,,,,To 2026Q3
+A263,appendix-text,less than nothing from 2022,boe_mpc_base2022_to2026q3_cents,,,,0,,To 2026Q3; negative (Table A18: -1.6)
+A264,appendix-text,and 2.9 from 2024,boe_mpc_base2024_to2026q3_cents,2.9,0.05,,,,To 2026Q3
+A265,appendix-text,The 2019 saving rate was unusually high (7.3 percent),saving_rate_2019_pct,7.3,0.05,,,,BEA saving rate 2019
+A266,appendix-text,(the saving rate was 3.5 percent),saving_rate_2022_pct,3.5,0.05,,,,BEA saving rate 2022 annual average
+A267,appendix-text,0.8 cents from 2010–2019,boe_mpc_base2010_19_to2026ytd_cents,0.8,0.05,,,,To 2026 so far
+A268,appendix-text,and 0.2 cents from 2000–2019,boe_mpc_base2000_19_to2026ytd_cents,0.2,0.05,,,,To 2026 so far
+A269,appendix-text,1.7 cents from 2023,boe_mpc_base2023_to2026ytd_cents,1.7,0.05,,,,To 2026 so far
+A270,appendix-text,and 3.3 from 2024 (to 2026 so far),boe_mpc_base2024_to2026ytd_cents,3.3,0.05,,,,To 2026 so far
+A271,appendix-text,The last column credits housing with the consumption function’s 4.4 cents per dollar,cf_housing_coef_1955_2019,4.4,0.05,,,,Housing coefficient
+A272,appendix-text,(and 1 cent from 2019),boe_mpc_net_housing_base2019_to2026ytd_cents,1,0.5,,,,"Net of housing, base 2019 (Table A18: 1.0)"
+A273,appendix-text,with an elasticity of 0.187 on net worth,frbus_networth_elasticity,0.187,0.0005,,,,"CITED: a coefficient of the Board’s published FRB/US model (model.xml in the public package), quoted, not estimated here. FRB/US model parameter"
+A274,appendix-text,closes about 16 percent of the gap to that target each quarter,frbus_nds_gap_closure_pct,16,0.5,,,,"CITED: a coefficient of the Board’s published FRB/US model (model.xml in the public package), quoted, not estimated here. FRB/US consumption equation parameter (nondurables and services), read from model package"
+A275,appendix-text,about 30 percent of it follows current income one for one,frbus_rule_of_thumb_share_pct,30,0.5,,,,"CITED: a coefficient of the Board’s published FRB/US model (model.xml in the public package), quoted, not estimated here. FRB/US parameter: share of liquidity-constrained (rule-of-thumb) spending"
+A276,appendix-text,its prediction was within $33 billion,frbus_pce_error_2026q2_bn,33,0.5,,,,"FRB/US consumption equations run by hand, predicted minus actual PCE, 2026Q2, $ billions SAAR"
+A277,appendix-text,"0.15 percent, of actual spending",frbus_pce_abs_error_2026q2_pct,0.15,0.005,,,,Same as percent of PCE
+A278,appendix-text,it has never been off by more than 0.64 percent,frbus_max_abs_err_2022q3_2026q2_pct,0.64,0.005,,,,Max absolute percent error 2022Q3-2026Q2
+A279,appendix-text,Summed from the start of 2020 it overpredicts spending by $1.5 trillion,frbus_cum_overpred_since2020_tn,1.5,0.05,,,,Cumulative 2020Q1-2026Q2
+A280,appendix-text,"summed from the start of 2022, by $0.17 trillion",frbus_cum_overpred_since2022_tn,0.17,0.005,,,,Cumulative 2022Q1-2026Q2 (Table A19: 174 billion)
+A281,appendix-text,a marginal propensity to consume of 0.9 cents in the short run,frbus_le_mpc_1y_cents,0.9,0.05,,,,"Simulator, lower-earnings version, 1 year"
+A282,appendix-text,and 1.4 in the long run,frbus_le_mpc_5y_cents,1.4,0.05,,,,"Simulator, lower-earnings version, 5 years"
+A283,appendix-text,which takes $18.5 trillion from households,hh_stock_loss_25pct_tn,18.5,0.05,,,,25 percent x $74.0 trillion
+A284,appendix-text,real consumer spending is 0.78 percent lower after a year,frbus_le_pce_cut_25pct_1y_pct,0.78,0.005,,,,"Simulator, permanent 25 percent fall, lower-earnings version; reduction in real PCE vs baseline"
+A285,appendix-text,and 1.18 percent lower after five years,frbus_le_pce_cut_25pct_5y_pct,1.18,0.005,,,,"Same, after five years"
+A286,appendix-text,$175 billion,frbus_le_pce_cut_25pct_1y_bn,175,0.5,,,,Percent cut x current PCE
+A287,appendix-text,and $263 billion at today’s spending,frbus_le_pce_cut_25pct_5y_bn,263,0.5,,,,"Same, five years"
+A288,appendix-text,or 0.9 and 1.4 cents per dollar lost,frbus_le_mpc_1y_cents,0.9,0.05,,,,"175 / 18,500"
+A289,appendix-text,or 0.9 and 1.4 cents per dollar lost,frbus_le_mpc_5y_cents,1.4,0.05,,,,"263 / 18,500"
+A290,appendix-text,the figures are 1.0 and 1.6 cents,frbus_hr_mpc_1y_cents,1.0,0.05,,,,"Higher-required-return version, 1 year"
+A291,appendix-text,the figures are 1.0 and 1.6 cents,frbus_hr_mpc_5y_cents,1.6,0.05,,,,"Higher-required-return version, 5 years"
+A292,appendix-text,the roughly 2.1 cents per dollar that the 0.187 elasticity implies at today’s ratio,frbus_implied_mpc_today_cents,2.1,0.05,,,,0.187 x PCE/net worth today
+A293,appendix-text,A 1-cent rule underpredicts spending in the third quarter of 2026 by $373 billion,rule1_pred_minus_actual_bn_2026q3,-373,0.5,,,,"""Underpredicts"" recorded as predicted minus actual = -373"
+A294,appendix-text,a 3-cent rule overpredicts it by $232 billion,rule3_pred_minus_actual_bn_2026q3,232,0.5,,,,Predicted minus actual
+A295,appendix-text,and a 5-cent rule by $837 billion,rule5_pred_minus_actual_bn_2026q3,837,0.5,,,,Predicted minus actual
+A296,appendix-text,A rule of 2.2 cents fits exactly from a 2019 start,rule_fit_cents_2019start,2.2,0.05,,,,Rule matching 2026Q3 spending from 2019 base
+A297min,appendix-text,the rule that fits has been between 1.7 and 2.9 cents since late 2024,rule_fit_quarterly_range_since2024q4_min,,,1.65,2.95,,"Quarter-by-quarter exact-fit rule, 2024Q4-2026Q3 [checked as two rows, the min of the range; printed bounds widened by half a unit]"
+A297max,appendix-text,the rule that fits has been between 1.7 and 2.9 cents since late 2024,rule_fit_quarterly_range_since2024q4_max,,,1.65,2.95,,"Quarter-by-quarter exact-fit rule, 2024Q4-2026Q3 [checked as two rows, the max of the range; printed bounds widened by half a unit]"
+A298,appendix-text,a single rule fitted to every quarter since 2023 is 2.1 cents,rule_fit_cents_since2023,2.1,0.05,,,,Least-squares fit over 2023Q1-2026Q3
+A299,appendix-text,the same arithmetic from a 2015 start gives 0.9 cents,boe_mpc_base2015_to2026q3_cents,0.9,0.05,,,,Base 2015 to 2026Q3
+A300,appendix-text,Households held $74.0 trillion of stock at the end of the second quarter of 2026,hh_stock_wealth_2026q2_tn,74.0,0.05,,,,"Financial Accounts B.101.e, households directly+indirectly held equities, 2026Q2"
+A301,appendix-text,so a 25 percent fall takes $18.5 trillion,hh_stock_loss_25pct_tn,18.5,0.05,,,,"0.25 x $74.0 trillion household stock, 2026Q2"
+A302,appendix-text,a 35 percent fall $25.9 trillion,hh_stock_loss_35pct_tn,25.9,0.05,,,,0.35 x $74.0 trillion
+A303,appendix-text,and a 50 percent fall $37.0 trillion,hh_stock_loss_50pct_tn,37.0,0.05,,,,0.50 x $74.0 trillion
+A304,appendix-text,GDP is $33.0 trillion at an annual rate,gdp_2026q3_tn,33.0,0.05,,,,Nominal GDP 2026Q3 SAAR
+A305,appendix-text,1 cent per dollar of $18.5 trillion is $185 billion,rule1_spend_cut_25pct_bn,185,0.5,,,,"0.01 x $18.5 trillion, cut in annual spending, $ billions"
+A306,appendix-text,0.56 percent of GDP,gdp_growth_hit_25pct_1cent,0.56,0.005,,,,185bn / 33.0tn
+A307,appendix-text,and 3 cents is 1.68 percent,gdp_growth_hit_25pct_3cent,1.68,0.005,,,,"0.03 x $18.5tn / $33.0tn GDP, percent"
+A308,appendix-text,72 percent of the long-run effect within a year,cf_pa_share_4q_pct,72,0.5,,,,Partial adjustment 1955-2019
+A309,appendix-text,or 0.89 percent of GDP,gdp_growth_hit_25pct_cf,0.89,0.005,,,,"Consumption function phased in, 1 year"
+A310,appendix-text,rising to 1.24 percent in the long run,gdp_hit_25pct_cf_5y,1.24,0.005,,,,Table A20 after 5 years
+A311,appendix-text,0.43 percent of GDP after a year in the version in which investors expect lower earnings,gdp_growth_hit_25pct_frbus_le,0.43,0.005,,,,"FRB/US lower earnings, 1 year"
+A312,appendix-text,and 0.57 percent in the version in which they demand a higher return,gdp_growth_hit_25pct_frbus_hr,0.57,0.005,,,,"FRB/US higher return, 1 year"
+A313,appendix-text,rising to 0.58 and 1.0 percent after three years,gdp_hit_25pct_frbus_le_3y,0.58,0.005,,,,"FRB/US lower earnings, 3 years"
+A314,appendix-text,rising to 0.58 and 1.0 percent after three years,gdp_hit_25pct_frbus_hr_3y,1.0,0.05,,,,"FRB/US higher return, 3 years (Table A20: 1.00)"
+A315,appendix-text,"The post’s preferred case, 1 cent per dollar, gives 0.6 percentage point for a 25 percent fall",gdp_growth_hit_25pct_1cent,0.6,0.05,,,,"Preferred case, pp of GDP growth over next year (0.56 rounded)"
+A316,appendix-text,"its severe case, 3 cents with a 50 percent fall, gives 3.4",gdp_growth_hit_50pct_3cent,3.4,0.05,,,,"Severe case, 3-cent rule, 50 percent fall (3.36 rounded)"
+A1240,appendix-table,Table A20: row label 25 percent ($18.5 trillion),hh_stock_loss_25pct_tn,18.5,0.05,,,,Stock wealth lost: 25 percent of $74.0 trillion
+A1246,appendix-table,Table A20: row label 35 percent ($25.9 trillion),hh_stock_loss_35pct_tn,25.9,0.05,,,,Stock wealth lost: 35 percent of $74.0 trillion
+A1252,appendix-table,Table A20: row label 50 percent ($37.0 trillion),hh_stock_loss_50pct_tn,37.0,0.05,,,,Stock wealth lost: 50 percent of $74.0 trillion
+A1278,appendix-table,Table A4 note: (1.30 cents through 2019),cf_ecm_impact_stock_1955_2019_cents,1.30,0.005,,,,"Error-correction model, coefficient on current change in stock wealth ratio, 1955-2019"
+A1279,appendix-table,Table A6 note: (−2.01 points for 2019,cf_anchor_resid_2019_pts,-2.01,0.005,,,,Average 2019 residual
+A1280,appendix-table,Table A6 note: −0.54 for 2015–2019),cf_anchor_resid_2015_19_pts,-0.54,0.005,,,,Average 2015-2019 residual
+A1281,appendix-table,"Table A7 note: disposable income in 2026 Q3 ($24.2 trillion, annual rate)",dpi_2026q3_tn,24.2,0.05,,,,"Nominal DPI 2026Q3 SAAR, $ trillion"
+A1282,appendix-table,Table A10 note: a median of 1.4 percent,backtest_abs_err_27q_median_pct,1.4,0.05,,,,"43 runs, anchors 1970-2012"
+A1283,appendix-table,Table A10 note: a 75th percentile of 3.9,backtest_abs_err_27q_p75_pct,3.9,0.05,,,,43 runs
+A1284,appendix-table,Table A10 note: a 90th percentile of 5.2,backtest_abs_err_27q_p90_pct,5.2,0.05,,,,43 runs
+A1285,appendix-table,Table A10 note: a maximum of 6.3,backtest_abs_err_27q_max_pct,6.3,0.05,,,,43 runs
+A1286,appendix-table,Table A10 note: its correlation with what the model expected stocks to add was 0.70,backtest_corr_error_vs_stock_contrib,0.70,0.005,,,,"43 runs, signed error vs expected stock contribution"
+A1287,appendix-table,Table A14 note: the estimate through 2026 Q3 is 1.19 from 1955,cf_stock_coef_1955_2026q3_drop2020_21,1.19,0.005,,,,Dropping 2020-2021 entirely
+A1288,appendix-table,Table A14 note: and 1.19 over the last 20 years,rolling20_stock_coef_2026q3_ex2020_21,1.19,0.005,,,,20-year window to 2026Q3 dropping 2020-2021
+A1289,appendix-table,Table A18 note: the spending share averaged 91.6 percent,pce_share_dpi_2026ytd,91.6,0.05,,,,2026Q1-Q3 average
+A1290,appendix-table,Table A18 note: and stock wealth 2.81 times income,hh_stock_dpi_2026ytd,2.81,0.005,,,,"2026Q1-Q3 average, start-of-quarter stock"
+A1291,appendix-table,"Table A18 note: in the third quarter alone, 92.1",pce_share_dpi_2026q3,92.1,0.05,,,,2026Q3
+A1292,appendix-table,Table A18 note: and 3.06,hh_stock_dpi_2026q3,3.06,0.005,,,,2026Q3
+A1293,appendix-table,Table A19 note: Disposable income rose 50 percent,dpi_growth_2019_2026q3_pct,50,0.5,,,,"Nominal DPI, 2019 average to 2026Q3"
+A1294,appendix-table,Table A19 note: household stock wealth went from 1.81,hh_stock_dpi_avg_2019,1.81,0.005,,,,2019 average
+A1295,appendix-table,Table A19 note: to 3.06 times income,hh_stock_dpi_2026q3,3.06,0.005,,,,2026Q3
+A1296,appendix-table,Table A19 note: a rule of 2.2 cents matches spending exactly,rule_fit_cents_2019start,2.2,0.05,,,,Exact-fit rule from 2019 base
+A1297,appendix-table,Table A19 note: (actual growth to then: 52.3 percent),pce_growth_2019_2026q2_pct,52.3,0.05,,,,Nominal PCE growth 2019 average to 2026Q2
+A1298,appendix-table,Table A20 note: Household stock wealth is $74.0 trillion,hh_stock_wealth_2026q2_tn,74.0,0.05,,,,Financial Accounts 2026Q2
+A1299,appendix-table,Table A20 note: GDP $33.0 trillion,gdp_2026q3_tn,33.0,0.05,,,,Nominal GDP 2026Q3 SAAR
+A1300,appendix-table,Table A20 note: phases 2.22 cents in,cf_stock_coef_1955_2019,2.22,0.005,,,,Stock coefficient 1955-2019
+A1301,appendix-table,Table A20 note: (27 percent of the remaining gap each quarter,cf_pa_speed_1955_2019_pct,27,0.5,,,,Partial-adjustment speed
+A1302,appendix-table,Table A20 note: 72 percent within a year),cf_pa_share_4q_pct,72,0.5,,,,Partial adjustment share after 4 quarters

@@ -1,0 +1,12 @@
+{
+ "stock_wealth": {
+  "today_q": "2026Q2",
+  "today": 2.2727,
+  "baseline_q": "2040Q1",
+  "baseline": 1.3004,
+  "share_today": 0.3773,
+  "share_baseline": 0.2814,
+  "factor": 1.3409
+ },
+ "note": "From the Simulator's data/current.json (econvitals-site), the factor that scales its stored stock-price runs to today's household stock wealth."
+}

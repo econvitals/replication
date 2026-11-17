@@ -1,0 +1,5 @@
+{
+  "status": "documented",
+  "why_not_compared": "the post's inputs are frozen and nothing it checks changes after publication; run_all.py ends with verify.py, which checks every number in the post and in its online appendix against the rebuilt values (the S&P 500 correlation needs a licensed file; the county check needs large public files and is run by hand, see county/README.md)",
+  "compare": []
+}

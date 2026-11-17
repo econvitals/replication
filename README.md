@@ -82,6 +82,7 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Analytic tools | [Macroeconomic Simulator](simulator/) | Exact; run by hand |
 | Occasional Posts | [The AI Boom’s Two Engines](posts/2026-11-09-ai-boom-two-engines/) (November 9, 2026) | Exact; run by hand |
 | Occasional Posts | [How Far Could Stocks Fall?](posts/2026-11-15-how-far-could-stocks-fall/) (November 15, 2026) | Partial: 60 of 155 numbers from public data; the rest need licensed data, described but not included; run by hand |
+| Occasional Posts | [Consumers Can Handle a Stock Crash](posts/2026-11-17-consumers-stock-crash/) and its online appendix (November 17, 2026) | Exact for the post and the appendix (414 numbers, every appendix table cell); 3 numbers need the licensed S&P 500 and the county check is run by hand; run by hand |
 Not here yet: the [Fedspeak Tracker’s](https://econvitals.org/tools/fedspeak/) hawk–dove score, whose method is described on the Methods page.
 
 ## The nightly check
