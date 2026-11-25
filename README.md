@@ -71,7 +71,7 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Fiscal | [Econvitals Fiscal Explorer](measures/fiscal-explorer/) | Exact, with some recorded inputs |
 | Fiscal | [Real Net Interest](measures/real-net-interest/) | Exact, with some recorded inputs |
 | Fiscal | [Treasury Duration Index](measures/treasury-duration/) | Exact |
-| Yield decomposition | [Term Premium](measures/term-premium/) | Close, within a stated tolerance |
+| Yield decomposition | [Term Premium](measures/term-premium/) | Exact |
 | Analytic tools | [CBO-2020 Counterfactual](measures/cbo-2020-counterfactual/) | Exact, with some recorded inputs |
 | Analytic tools | [Inequality Explorer](measures/inequality-explorer/) | Run by hand |
 | Analytic tools | [Market-Implied Expectations](measures/market-implied-expectations/) | Exact, with some recorded inputs |
@@ -90,3 +90,5 @@ Not here yet: the [Fedspeak Tracker’s](https://econvitals.org/tools/fedspeak/)
 ## The nightly check
 
 Every night Econvitals reruns `tools/check_all.py`, which runs each script and compares its output with the data behind the live site. A series that stops matching (because a method changed without its script, or a publisher changed a series) is investigated the next morning. Changing how a measure is built on the site means changing its script here at the same time.
+
+A revision alone is not a mismatch. The scripts download today’s numbers, while a page on the site was built from the numbers on the day it was last rebuilt, so when an agency revises its data the two can differ for a day or two with nothing wrong. A measure that stops matching while neither the site’s file nor the measure’s code has changed since the last night it matched is reported as waiting for the site to rebuild, not as a failure. Once the site has rebuilt its file, any difference that remains is a real one; so is a site file that has not caught up within a week (`site_rebuild_days` in a folder’s `check.json` changes that). `python tools/test_check_all.py` tests the rule.

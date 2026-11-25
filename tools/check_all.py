@@ -27,14 +27,29 @@ site's last update). When the script writes no row for it, that series is report
 nothing today (`empty_why` says why), not as a pass and not as a mismatch; a folder whose every series
 is like that tonight is NOT COMPARED TODAY. Rows written but matching no published date still fail.
 
-Exit code: 0 when every compared series matches; 1 when any series does not match, or a script
-has failed on two runs in a row (one failure is retried and remembered, since publishers' servers
-do go down for an hour).
+A REVISION ALONE IS NOT A FAILURE (2026-11-25). The scripts download today's numbers; the site's
+file was built from the numbers on the day it was last rebuilt. When an agency revises its data
+in between, the two differ for a day or two without anything being wrong (on November 25, 2026,
+FHFA's monthly house price release and the Federal Reserve's full-history revision of industrial
+production, both out on the 24th, failed two measures whose site files had not been rebuilt since).
+So a folder that stops matching is judged against the last night it matched: if neither the site's
+file nor the folder's code has changed since then, the only thing that moved is the data the
+script downloaded, and the folder is reported as WAITING FOR THE SITE, not as a mismatch. Once the
+site rebuilds its file, a difference that remains is a real one and fails the night; a site file
+that has not caught up within `site_rebuild_days` (check.json, default 7) fails it too. A changed
+script, check.json, input file or shared reader never counts as a revision.
+
+    python tools/check_all.py --compare-only    # judge the outputs already written, rerunning nothing
+
+Exit code: 0 when every compared series matches or is waiting for the site; 1 when any series does
+not match, or a script has failed on two runs in a row (one failure is retried and remembered,
+since publishers' servers do go down for an hour).
 """
 from __future__ import annotations
 
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 import subprocess
@@ -167,8 +182,43 @@ def output_series(folder: Path, spec: dict) -> pd.Series:
     return s.dropna()
 
 
+def fingerprint(s: pd.Series) -> str:
+    """A short hash of a series' dates and values: the same published file gives the same text."""
+    items = sorted((str(k), repr(round(float(v), 10))) for k, v in s.items())
+    return hashlib.sha1(json.dumps(items).encode()).hexdigest()[:16]
+
+
+def code_fingerprint(folder: Path) -> str:
+    """What the folder's result depends on besides downloaded data: its scripts, check.json and
+    inputs/, and the shared readers in common/. A change to any of them is never a revision."""
+    h = hashlib.sha1()
+    files = sorted(folder.glob("*.py")) + [folder / "check.json"] + sorted(
+        p for p in (folder / "inputs").rglob("*") if p.is_file()) + sorted((ROOT / "common").glob("*.py"))
+    for p in files:
+        if p.exists():
+            h.update(str(p.relative_to(ROOT)).encode())
+            h.update(p.read_bytes())
+    return h.hexdigest()[:16]
+
+
+def plain_name(folder: Path) -> str:
+    """The measure's name as its README's first heading gives it ("House Prices Relative to Income
+    and Rent"), for anything a person reads; the folder name if there is none."""
+    readme = folder / "README.md"
+    if readme.exists():
+        for line in readme.read_text().splitlines():
+            if line.startswith("# "):
+                return line[2:].strip()
+    return folder.name
+
+
+def _is_date(k: str) -> bool:
+    return len(k) == 10 and k[4] == "-" and k[7] == "-" and k[:4].isdigit()
+
+
 def compare(folder: Path, spec: dict) -> dict:
     ours, theirs = output_series(folder, spec), published_series(spec)
+    published_fp = fingerprint(theirs)
     common = [k for k in theirs.index if k in ours.index]
     common.sort()
     if spec.get("from"):       # compare only from this date on (e.g. after a seasonal revision)
@@ -177,22 +227,29 @@ def compare(folder: Path, spec: dict) -> dict:
     tol = float(spec.get("tolerance", 0.01))
     label = f"{spec['output_column']} vs {spec['published']}:{spec.get('published_column') or spec.get('published_glob')}"
     if not common and spec.get("may_be_empty") and not len(ours):
-        return {"series": label, "ok": True, "empty": True,
+        return {"series": label, "ok": True, "empty": True, "published_fp": published_fp,
                 "why": spec.get("empty_why", "the script wrote nothing to compare today")}
     if not common:
-        return {"series": label, "ok": False, "why": "no dates in common",
+        return {"series": label, "ok": False, "why": "no dates in common", "published_fp": published_fp,
                 "ours_latest": max(ours.index) if len(ours) else None,
                 "published_latest": max(theirs.index) if len(theirs) else None}
     window = common[-n:]
     if len(window) < int(spec.get("at_least", 0)):
-        return {"series": label, "ok": False, "compared": len(window),
+        return {"series": label, "ok": False, "compared": len(window), "published_fp": published_fp,
                 "why": f"only {len(window)} values in common, fewer than the {spec['at_least']} expected"}
     diff = (ours[window] - theirs[window]).abs()
     worst = diff.idxmax()
     ok = bool(diff.max() <= tol + 1e-12)
-    return {"series": label, "ok": ok, "compared": len(window), "tolerance": tol,
-            "max_abs_diff": round(float(diff.max()), 6), "worst_at": worst,
-            "ours_latest": max(ours.index), "published_latest": max(theirs.index)}
+    out = {"series": label, "ok": ok, "compared": len(window), "tolerance": tol,
+           "max_abs_diff": round(float(diff.max()), 6), "worst_at": worst,
+           "ours_latest": max(ours.index), "published_latest": max(theirs.index),
+           "published_fp": published_fp}
+    if not ok and all(_is_date(k) for k in window):
+        # Where the difference is, for the morning mail: in the latest values, or only further back.
+        recent = window[-3:]
+        out["where"] = "latest" if (diff[recent] > tol + 1e-12).any() else "history"
+        out["latest_diff"] = round(float(diff[recent].max()), 6)
+    return out
 
 
 def main() -> int:
@@ -208,6 +265,9 @@ def main() -> int:
     ap.add_argument("--script-env", action="append", default=[], metavar="FOLDER:NAME=VALUE",
                     help="set NAME=VALUE for that folder's script only (e.g. "
                          "pce-tracking-estimate:X13PATH=/opt/x13); repeatable")
+    ap.add_argument("--compare-only", action="store_true",
+                    help="judge the outputs already in each folder's output/, rerunning no script")
+    ap.add_argument("--today", help=argparse.SUPPRESS)   # YYYY-MM-DD: replay a past night (tests)
     args = ap.parse_args()
 
     if args.keys_file:
@@ -232,10 +292,15 @@ def main() -> int:
 
     state_path = Path(args.state)
     state = json.loads(state_path.read_text()) if state_path.exists() else {}
+    # Beside the per-folder failure counts: the last night each folder matched (its published
+    # fingerprints and code fingerprint), and since when a folder has been waiting for the site.
+    matched = state.setdefault("_matched", {})
+    waiting = state.setdefault("_waiting_since", {})
+    today = args.today or dt.date.today().isoformat()
     results, alarm = [], False
     for f in todo:
         c = json.loads((f / "check.json").read_text())
-        rec = {"folder": f.name, "status": c.get("status")}
+        rec = {"folder": f.name, "name": plain_name(f), "status": c.get("status")}
         if c.get("status") == "documented" or not c.get("compare"):
             rec["result"] = "NOT COMPARED"
             rec["why"] = c.get("why_not_compared", "no runnable comparison")
@@ -243,10 +308,13 @@ def main() -> int:
             print(f"  --   {f.name}: not compared ({rec['why']})")
             continue
         t0 = time.time()
-        ok, err = run_script(f, int(c.get("timeout_seconds", 900)), only_for)
-        if not ok:
-            time.sleep(20)
+        if args.compare_only:
+            ok, err = True, ""
+        else:
             ok, err = run_script(f, int(c.get("timeout_seconds", 900)), only_for)
+            if not ok:
+                time.sleep(20)
+                ok, err = run_script(f, int(c.get("timeout_seconds", 900)), only_for)
         rec["seconds"] = round(time.time() - t0, 1)
         if not ok:
             fails = state.get(f.name, 0) + 1
@@ -256,18 +324,44 @@ def main() -> int:
             results.append(rec)
             print(f"  !!   {f.name}: script failed ({fails} in a row): {err}")
             continue
-        state[f.name] = 0
+        if not args.compare_only:
+            state[f.name] = 0
         try:
             rec["series"] = [compare(f, s) for s in c["compare"]]
         except Exception as exc:  # a missing column or file is a mismatch, not a crash
             rec["series"] = [{"ok": False, "why": f"{type(exc).__name__}: {exc}"}]
         good = all(s["ok"] for s in rec["series"])
         idle = good and all(s.get("empty") for s in rec["series"])
+        published = {s.get("series", ""): s.get("published_fp") for s in rec["series"]}
+        code = code_fingerprint(f)
         rec["result"] = "NOT COMPARED TODAY" if idle else "MATCHES" if good else "DOES NOT MATCH"
-        alarm = alarm or not good
+        if good and not idle:
+            matched[f.name] = {"night": today, "code": code, "published": published}
+            waiting.pop(f.name, None)
+        elif not good:
+            last = matched.get(f.name)
+            if last and last["code"] == code and last["published"] == published and None not in published.values():
+                # Neither the site's file nor this folder's code has changed since the night it
+                # last matched: only the downloaded data moved, i.e. an agency revised or added
+                # numbers the site has not rebuilt from yet.
+                since = waiting.setdefault(f.name, today)
+                days = (dt.date.fromisoformat(today) - dt.date.fromisoformat(since)).days
+                limit = int(c.get("site_rebuild_days", 7))
+                rec["matched_last"] = last["night"]
+                rec["waiting_since"] = since
+                if days < limit:
+                    rec["result"] = "WAITING FOR THE SITE"
+                    rec["why"] = (f"the agencies' data changed after econvitals.org last built this file; the file "
+                                  f"is unchanged since it matched on {last['night']}")
+                else:
+                    rec["why"] = (f"econvitals.org has still not rebuilt this file {days} days after the "
+                                  f"agencies' data changed (it gets {limit})")
+            else:
+                waiting.pop(f.name, None)
+        alarm = alarm or rec["result"] == "DOES NOT MATCH"
         results.append(rec)
-        mark = "--" if idle else "ok" if good else "XX"
-        print(f"  {mark}   {f.name}: {rec['result']}")
+        mark = "--" if idle else "ok" if good else ".." if rec["result"] == "WAITING FOR THE SITE" else "XX"
+        print(f"  {mark}   {f.name}: {rec['result']}" + (f" ({rec['why']})" if rec.get("why") else ""))
         for s in rec["series"]:
             if not s["ok"] or len(rec["series"]) == 1:
                 detail = (f"nothing to compare today: {s['why']}" if s.get("empty") else s.get("why")
