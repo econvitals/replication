@@ -270,8 +270,9 @@ samples = {e["cc"]: e.get("model_sample") for e in index["economies"]}
 todo = [a for a in sys.argv[1:] if a in CURVES] or list(CURVES)
 for cc in todo:
     curve = CURVES[cc]()
-    # Re-estimated once a month. To rebuild what the site shows today, fit on the same months as
-    # the site's current fit (its sample is in the published index); without one, use every month.
+    # Re-estimated once a month, on complete months of official data only. To rebuild what the
+    # site shows today, fit on the same months as the site's current fit (its sample is in the
+    # published index); without one, use every month.
     end = (samples.get(cc) or [None, curve.index[-1].strftime("%Y-%m-%d")])[1]
     monthly = end_of_month(curve, FIT_START[cc], end)
     coef = fit(monthly)
