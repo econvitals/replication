@@ -78,6 +78,7 @@ Folders under [`posts/`](posts/) are the same kind of exception: each is the rep
 | Analytic tools | [Policy-Cycle Phase](measures/policy-cycle-phase/) | Exact |
 | Analytic tools | [Policy-Rule Tracker](measures/policy-rule-tracker/) | Exact |
 | Analytic tools | [Recession Explorer](measures/recession-explorer/) | Exact |
+| Analytic tools | [Risk Monitor](measures/risk-monitor/) | Exact, with some recorded inputs |
 | Analytic tools | [Trend Gaps](measures/trend-gaps/) | Exact |
 | Composite indicators | [Econvitals Composite Activity and Inflation Indicators](measures/composite-indicators/) | Exact |
 | International trade | [Econvitals Trade Balance Excluding Data-Center Goods](measures/data-center-trade/) | Exact |
