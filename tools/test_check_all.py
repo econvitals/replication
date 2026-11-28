@@ -100,6 +100,30 @@ def test_revision_rule():
         assert rep["series"][0]["where"] == "history", rep
 
 
+def test_text_and_shared_path():
+    """A `published` path given once at the top of check.json serves every series that names none, and a
+    `text` series compares words exactly (a nested data file, read with published_glob)."""
+    with tempfile.TemporaryDirectory() as t:
+        tmp = Path(t)
+        m = _layout(tmp)
+        (m / "check.json").write_text(json.dumps({"status": "reproduces", "published": "data/nested.json", "compare": [
+            {"output": "output/kinds.csv", "output_index": "key", "output_column": "kind", "text": True,
+             "published_glob": "rows.*.alarms.*.kind", "last_n": 100, "at_least": 3},
+            {"output": "output/kinds.csv", "output_index": "key", "output_column": "n",
+             "published_glob": "rows.*.alarms.*.n", "last_n": 100, "at_least": 3, "tolerance": 0}]}))
+        site = {"rows": [{"id": "a", "alarms": [{"kind": "hit", "n": 3}, {"kind": "false", "n": 1}]},
+                         {"id": "b", "alarms": [{"kind": "late", "n": 7}]}]}
+        (tmp / "pub" / "data" / "nested.json").write_text(json.dumps(site))
+        (m / "output" / "kinds.csv").write_text("key,kind,n\n0|0,hit,3\n0|1,false,1\n1|0,late,7\n")
+        assert _night(tmp, "2026-11-28")[:2] == (0, "MATCHES")
+        (m / "output" / "kinds.csv").write_text("key,kind,n\n0|0,hit,3\n0|1,open,1\n1|0,late,7\n")
+        rc, res, rep = _night(tmp, "2026-11-29", "fresh.json")
+        assert (rc, res) == (1, "DOES NOT MATCH") and "'open' here, 'false' on the site" in rep["series"][0]["why"], rep
+        assert rep["series"][1]["ok"]
+
+
 if __name__ == "__main__":
     test_revision_rule()
     print("PASS test_revision_rule")
+    test_text_and_shared_path()
+    print("PASS test_text_and_shared_path")

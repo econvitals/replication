@@ -21,6 +21,11 @@ columns of rows that are plain lists, and `published_index` may then be a list o
 "|" the same way. `at_least` (a count) fails a comparison that finds fewer values in common, so a
 script that quietly stopped writing rows cannot pass by matching nothing.
 
+A `published` path given once at the top of check.json is used by every series that names none, so
+a page that moves changes one line. A series whose spec says `"text": true` compares words, not
+numbers (a recession signal's alarm is "hit" or "false", its first month "1966-01"): each value in
+common must be the same text exactly, and the tolerance does not apply.
+
 A series whose spec says `"may_be_empty": true` is one the script can rebuild only some of the time
 (a tracked quarter after BLS has printed it; the day's estimate when no report has printed since the
 site's last update). When the script writes no row for it, that series is reported as compared on
@@ -153,12 +158,16 @@ def published_series(spec: dict) -> pd.Series:
     out = {}
     if spec.get("published_glob"):
         for names, v in _glob(d, spec["published_glob"].split(".")):
+            if spec.get("text"):
+                if v is not None and not isinstance(v, (dict, list)):
+                    out[_norm("|".join(names))] = str(v)
+                continue
             if v is not None and not isinstance(v, (bool, dict, list)):
                 try:
                     out[_norm("|".join(names))] = float(v)
                 except (TypeError, ValueError):
                     continue
-        return pd.Series(out, dtype=float)
+        return pd.Series(out, dtype=object if spec.get("text") else float)
     rows = _dig(d, spec.get("published_rows") or "data")
     if spec.get("published_fields"):
         rows = [dict(zip(spec["published_fields"], r)) for r in rows]
@@ -178,13 +187,16 @@ def output_series(folder: Path, spec: dict) -> pd.Series:
     df = pd.read_csv(folder / spec["output"], dtype=str)
     index = spec.get("output_index") or df.columns[0]
     col = spec["output_column"]
+    if spec.get("text"):
+        s = pd.Series(df[col].values, index=df[index].map(_norm), dtype=object)
+        return s.dropna()
     s = pd.Series(pd.to_numeric(df[col], errors="coerce").values, index=df[index].map(_norm))
     return s.dropna()
 
 
 def fingerprint(s: pd.Series) -> str:
     """A short hash of a series' dates and values: the same published file gives the same text."""
-    items = sorted((str(k), repr(round(float(v), 10))) for k, v in s.items())
+    items = sorted((str(k), v if isinstance(v, str) else repr(round(float(v), 10))) for k, v in s.items())
     return hashlib.sha1(json.dumps(items).encode()).hexdigest()[:16]
 
 
@@ -237,6 +249,15 @@ def compare(folder: Path, spec: dict) -> dict:
     if len(window) < int(spec.get("at_least", 0)):
         return {"series": label, "ok": False, "compared": len(window), "published_fp": published_fp,
                 "why": f"only {len(window)} values in common, fewer than the {spec['at_least']} expected"}
+    if spec.get("text"):
+        differ = [k for k in window if str(ours[k]) != str(theirs[k])]
+        out = {"series": label, "ok": not differ, "compared": len(window), "tolerance": "exact text",
+               "max_abs_diff": len(differ), "published_fp": published_fp}
+        if differ:
+            k = differ[0]
+            out.update(worst_at=k, why=f"{len(differ)} of {len(window)} differ; first at {k}: "
+                                       f"{ours[k]!r} here, {theirs[k]!r} on the site")
+        return out
     diff = (ours[window] - theirs[window]).abs()
     worst = diff.idxmax()
     ok = bool(diff.max() <= tol + 1e-12)
@@ -327,7 +348,7 @@ def main() -> int:
         if not args.compare_only:
             state[f.name] = 0
         try:
-            rec["series"] = [compare(f, s) for s in c["compare"]]
+            rec["series"] = [compare(f, {"published": c.get("published"), **s}) for s in c["compare"]]
         except Exception as exc:  # a missing column or file is a mismatch, not a crash
             rec["series"] = [{"ok": False, "why": f"{type(exc).__name__}: {exc}"}]
         good = all(s["ok"] for s in rec["series"])
